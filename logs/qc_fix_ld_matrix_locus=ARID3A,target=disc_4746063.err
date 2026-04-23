@@ -1,4 +1,0 @@
-Config file configs/analysis.yml is extended by additional config specified via the command line.
-SyntaxError in file /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/rules/07_run_susier.smk, line 38:
-No rule keywords allowed after run/shell/script/notebook/wrapper/template_engine/cwl in rule run_susier. (07_run_susier.smk, line 38)
-  File "/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile", line 63, in <module>
