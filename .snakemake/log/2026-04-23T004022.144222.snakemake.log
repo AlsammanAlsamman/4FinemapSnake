@@ -1,0 +1,74 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 15
+Job stats:
+job                      count
+---------------------  -------
+all                          1
+build_ld_matrix              2
+export_summary               2
+filter_and_match_snps        2
+qc_fix_ld_matrix             2
+run_cojo_iterative           2
+run_finemap                  2
+run_susier                   2
+total                       15
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+
+[Thu Apr 23 00:40:24 2026]
+rule filter_and_match_snps:
+    input: results/disc/02_harmonize/ARID3A/harmonized.tsv, resources/refpanel/g1000_eas.bim
+    output: results/disc/03_match/ARID3A/matched.tsv, results/disc/03_match/ARID3A/diagnostics.json, results/disc/03_match/ARID3A/match.done
+    log: results/log/02_match_disc_ARID3A.log
+    jobid: 12
+    reason: Missing output files: results/disc/03_match/ARID3A/matched.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1237, disk_mib=1180, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/filter_and_match_snps.py           --harmonized results/disc/02_harmonize/ARID3A/harmonized.tsv           --ref-prefix resources/refpanel/g1000_eas           --maf-min 0.01           --out-tsv results/disc/03_match/ARID3A/matched.tsv           --diag-json results/disc/03_match/ARID3A/diagnostics.json           --done-file results/disc/03_match/ARID3A/match.done           > results/log/02_match_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "filter_and_match_snps", "local": false, "input": ["results/disc/02_harmonize/ARID3A/harmonized.tsv", "resources/refpanel/g1000_eas.bim"], "output": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/03_match/ARID3A/diagnostics.json", "results/disc/03_match/ARID3A/match.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"ref_prefix": "resources/refpanel/g1000_eas", "maf_min": 0.01}, "log": ["results/log/02_match_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1237, "disk_mib": 1180, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 12, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'filter_and_match_snps:target=disc,locus=ARID3A' --allowed-rules 'filter_and_match_snps' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1237' 'disk_mib=1180' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.3u3owm8n' 'results/disc/02_harmonize/ARID3A/harmonized.tsv' 'resources/refpanel/g1000_eas.bim' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'mtime' 'params' 'input' 'code' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.3u3owm8n/12.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.3u3owm8n/12.jobfailed'; exit 1)
+
+Submitted job 12 with external jobid 'Submitted batch job 4745444'.
+
+[Thu Apr 23 00:40:24 2026]
+rule filter_and_match_snps:
+    input: results/asian/02_harmonize/ARID3A/harmonized.tsv, resources/refpanel/g1000_eas.bim
+    output: results/asian/03_match/ARID3A/matched.tsv, results/asian/03_match/ARID3A/diagnostics.json, results/asian/03_match/ARID3A/match.done
+    log: results/log/02_match_asian_ARID3A.log
+    jobid: 3
+    reason: Missing output files: results/asian/03_match/ARID3A/matched.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1237, disk_mib=1180, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/filter_and_match_snps.py           --harmonized results/asian/02_harmonize/ARID3A/harmonized.tsv           --ref-prefix resources/refpanel/g1000_eas           --maf-min 0.01           --out-tsv results/asian/03_match/ARID3A/matched.tsv           --diag-json results/asian/03_match/ARID3A/diagnostics.json           --done-file results/asian/03_match/ARID3A/match.done           > results/log/02_match_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "filter_and_match_snps", "local": false, "input": ["results/asian/02_harmonize/ARID3A/harmonized.tsv", "resources/refpanel/g1000_eas.bim"], "output": ["results/asian/03_match/ARID3A/matched.tsv", "results/asian/03_match/ARID3A/diagnostics.json", "results/asian/03_match/ARID3A/match.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"ref_prefix": "resources/refpanel/g1000_eas", "maf_min": 0.01}, "log": ["results/log/02_match_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1237, "disk_mib": 1180, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 3, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'filter_and_match_snps:target=asian,locus=ARID3A' --allowed-rules 'filter_and_match_snps' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1237' 'disk_mib=1180' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.3u3owm8n' 'results/asian/02_harmonize/ARID3A/harmonized.tsv' 'resources/refpanel/g1000_eas.bim' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'mtime' 'params' 'input' 'code' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.3u3owm8n/3.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.3u3owm8n/3.jobfailed'; exit 1)
+
+Submitted job 3 with external jobid 'Submitted batch job 4745445'.
+Waiting at most 120 seconds for missing files.
+[Thu Apr 23 00:40:54 2026]
+Finished job 12.
+1 of 15 steps (7%) done
+[Thu Apr 23 00:40:54 2026]
+Finished job 3.
+2 of 15 steps (13%) done
+Complete log: .snakemake/log/2026-04-23T004022.144222.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

@@ -1,0 +1,27 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=32000, mem_mib=30518, disk_mb=7816, disk_mib=7454, cores=2
+Select jobs to execute...
+
+[Thu Apr 23 17:38:05 2026]
+rule extract_locus:
+    input: inputs/Disc.tsv, inputs/loci.txt, resources/refpanel/g1000_eas.bed, resources/refpanel/g1000_eas.bim, resources/refpanel/g1000_eas.fam
+    output: results/disc/01_extract/ARID3A/extracted.tsv, results/disc/01_extract/ARID3A/diagnostics.json, results/disc/01_extract/ARID3A/refpanel.bed, results/disc/01_extract/ARID3A/refpanel.bim, results/disc/01_extract/ARID3A/refpanel.fam, results/disc/01_extract/ARID3A/refpanel.afreq, results/disc/01_extract/ARID3A/refpanel_diagnostics.json, results/disc/01_extract/ARID3A/refpanel_extract.done, results/disc/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_disc_ARID3A.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=7816, disk_mib=7454, tmpdir=/tmp, time=00:30:00, cores=2
+
+
+        python scripts/extract_loci.py           --gwas inputs/Disc.tsv           --loci inputs/loci.txt           --locus ARID3A           --out-tsv results/disc/01_extract/ARID3A/extracted.tsv           --diag-json results/disc/01_extract/ARID3A/diagnostics.json           --done-file results/disc/01_extract/ARID3A/extract.done                     > results/log/00_extract_disc_ARID3A.log 2>&1
+
+                module load plink2/2.00a3.3lm
+                python scripts/extract_refpanel_locus.py                     --ref-prefix resources/refpanel/g1000_eas                     --loci inputs/loci.txt                     --locus ARID3A                     --out-prefix results/disc/01_extract/ARID3A/refpanel                     --diag-json results/disc/01_extract/ARID3A/refpanel_diagnostics.json                     --done-file results/disc/01_extract/ARID3A/refpanel_extract.done                     >> results/log/00_extract_disc_ARID3A.log 2>&1
+        
+[Thu Apr 23 17:39:51 2026]
+Finished job 0.
+1 of 1 steps (100%) done

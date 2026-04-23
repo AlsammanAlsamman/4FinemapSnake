@@ -1,0 +1,334 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 15
+Job stats:
+job                    count
+-------------------  -------
+all                        1
+build_ld_matrix            2
+export_summary             2
+ldscore_diagnostics        2
+qc_fix_ld_matrix           2
+run_cojo_iterative         2
+run_finemap                2
+run_susier                 2
+total                     15
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+
+[Thu Apr 23 20:29:54 2026]
+rule build_ld_matrix:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/03_match/ARID3A/refpanel_matched.bim
+    output: results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv, results/disc/05_ld_matrix/ARID3A/diagnostics.json, results/disc/05_ld_matrix/ARID3A/ld_matrix.done
+    log: results/log/04_ld_matrix_disc_ARID3A.log
+    jobid: 16
+    reason: Set of input files has changed since last execution; Code has changed since last execution
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+                module load R/4.5.1-mkl
+                Rscript scripts/build_ld_matrix.R           --input-tsv results/disc/03_match/ARID3A/matched.tsv                     --ref-bim results/disc/03_match/ARID3A/refpanel_matched.bim           --out-matrix results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv           --diag-json results/disc/05_ld_matrix/ARID3A/diagnostics.json           --done-file results/disc/05_ld_matrix/ARID3A/ld_matrix.done           > results/log/04_ld_matrix_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "build_ld_matrix", "local": false, "input": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/03_match/ARID3A/refpanel_matched.bim"], "output": ["results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv", "results/disc/05_ld_matrix/ARID3A/diagnostics.json", "results/disc/05_ld_matrix/ARID3A/ld_matrix.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {}, "log": ["results/log/04_ld_matrix_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 16, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'build_ld_matrix:target=disc,locus=ARID3A' --allowed-rules 'build_ld_matrix' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/disc/03_match/ARID3A/matched.tsv' 'results/disc/03_match/ARID3A/refpanel_matched.bim' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/16.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/16.jobfailed'; exit 1)
+
+Submitted job 16 with external jobid 'Submitted batch job 4745990'.
+
+[Thu Apr 23 20:29:54 2026]
+rule build_ld_matrix:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/03_match/ARID3A/refpanel_matched.bim
+    output: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv, results/asian/05_ld_matrix/ARID3A/diagnostics.json, results/asian/05_ld_matrix/ARID3A/ld_matrix.done
+    log: results/log/04_ld_matrix_asian_ARID3A.log
+    jobid: 7
+    reason: Set of input files has changed since last execution; Code has changed since last execution
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+                module load R/4.5.1-mkl
+                Rscript scripts/build_ld_matrix.R           --input-tsv results/asian/03_match/ARID3A/matched.tsv                     --ref-bim results/asian/03_match/ARID3A/refpanel_matched.bim           --out-matrix results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv           --diag-json results/asian/05_ld_matrix/ARID3A/diagnostics.json           --done-file results/asian/05_ld_matrix/ARID3A/ld_matrix.done           > results/log/04_ld_matrix_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "build_ld_matrix", "local": false, "input": ["results/asian/03_match/ARID3A/matched.tsv", "results/asian/03_match/ARID3A/refpanel_matched.bim"], "output": ["results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv", "results/asian/05_ld_matrix/ARID3A/diagnostics.json", "results/asian/05_ld_matrix/ARID3A/ld_matrix.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {}, "log": ["results/log/04_ld_matrix_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 7, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'build_ld_matrix:target=asian,locus=ARID3A' --allowed-rules 'build_ld_matrix' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/asian/03_match/ARID3A/matched.tsv' 'results/asian/03_match/ARID3A/refpanel_matched.bim' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/7.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/7.jobfailed'; exit 1)
+
+Submitted job 7 with external jobid 'Submitted batch job 4745991'.
+[Thu Apr 23 20:30:14 2026]
+Finished job 7.
+1 of 15 steps (7%) done
+Resources before job selection: {'_cores': 9223372036854775806, '_nodes': 14}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775804, '_nodes': 12}
+
+[Thu Apr 23 20:30:14 2026]
+rule ldscore_diagnostics:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    output: results/asian/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png, results/asian/04_ldscore_plot/ARID3A/correlation.tsv, results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done
+    log: results/log/03_ldscore_plot_asian_ARID3A.log
+    jobid: 19
+    reason: Input files updated by another job: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        module load R/4.5.1-mkl
+        Rscript scripts/plot_ldscore_vs_p.R           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --ld-matrix results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv           --plot-png results/asian/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png           --diag-tsv results/asian/04_ldscore_plot/ARID3A/correlation.tsv           --done-file results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done           --require-correlation false           --min-correlation 0.05           > results/log/03_ldscore_plot_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "ldscore_diagnostics", "local": false, "input": ["results/asian/03_match/ARID3A/matched.tsv", "results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv"], "output": ["results/asian/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png", "results/asian/04_ldscore_plot/ARID3A/correlation.tsv", "results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"require_corr": "false", "min_corr": 0.05}, "log": ["results/log/03_ldscore_plot_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 19, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'ldscore_diagnostics:target=asian,locus=ARID3A' --allowed-rules 'ldscore_diagnostics' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/asian/03_match/ARID3A/matched.tsv' 'results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/19.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/19.jobfailed'; exit 1)
+
+Submitted job 19 with external jobid 'Submitted batch job 4745992'.
+
+[Thu Apr 23 20:30:14 2026]
+rule qc_fix_ld_matrix:
+    input: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    output: results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv, results/asian/06_ld_qc/ARID3A/diagnostics.json, results/asian/06_ld_qc/ARID3A/ld_qc.done
+    log: results/log/05_ld_qc_asian_ARID3A.log
+    jobid: 6
+    reason: Input files updated by another job: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+                module load R/4.5.1-mkl
+                Rscript scripts/qc_fix_ld_matrix.R           --input-matrix results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv           --out-matrix results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --diag-json results/asian/06_ld_qc/ARID3A/diagnostics.json           --done-file results/asian/06_ld_qc/ARID3A/ld_qc.done           --tolerance 1e-06           > results/log/05_ld_qc_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "qc_fix_ld_matrix", "local": false, "input": ["results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv"], "output": ["results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv", "results/asian/06_ld_qc/ARID3A/diagnostics.json", "results/asian/06_ld_qc/ARID3A/ld_qc.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"tolerance": 1e-06}, "log": ["results/log/05_ld_qc_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 6, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'qc_fix_ld_matrix:target=asian,locus=ARID3A' --allowed-rules 'qc_fix_ld_matrix' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/6.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/6.jobfailed'; exit 1)
+
+Submitted job 6 with external jobid 'Submitted batch job 4745993'.
+Waiting at most 120 seconds for missing files.
+[Thu Apr 23 20:30:25 2026]
+Finished job 16.
+2 of 15 steps (13%) done
+Resources before job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775803, '_nodes': 11}
+
+[Thu Apr 23 20:30:25 2026]
+rule ldscore_diagnostics:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv
+    output: results/disc/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png, results/disc/04_ldscore_plot/ARID3A/correlation.tsv, results/disc/04_ldscore_plot/ARID3A/ldscore_plot.done
+    log: results/log/03_ldscore_plot_disc_ARID3A.log
+    jobid: 20
+    reason: Input files updated by another job: results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        module load R/4.5.1-mkl
+        Rscript scripts/plot_ldscore_vs_p.R           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --ld-matrix results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv           --plot-png results/disc/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png           --diag-tsv results/disc/04_ldscore_plot/ARID3A/correlation.tsv           --done-file results/disc/04_ldscore_plot/ARID3A/ldscore_plot.done           --require-correlation false           --min-correlation 0.05           > results/log/03_ldscore_plot_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "ldscore_diagnostics", "local": false, "input": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv"], "output": ["results/disc/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png", "results/disc/04_ldscore_plot/ARID3A/correlation.tsv", "results/disc/04_ldscore_plot/ARID3A/ldscore_plot.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"require_corr": "false", "min_corr": 0.05}, "log": ["results/log/03_ldscore_plot_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 20, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'ldscore_diagnostics:target=disc,locus=ARID3A' --allowed-rules 'ldscore_diagnostics' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/disc/03_match/ARID3A/matched.tsv' 'results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/20.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/20.jobfailed'; exit 1)
+
+Submitted job 20 with external jobid 'Submitted batch job 4745994'.
+
+[Thu Apr 23 20:30:25 2026]
+rule qc_fix_ld_matrix:
+    input: results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv
+    output: results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv, results/disc/06_ld_qc/ARID3A/diagnostics.json, results/disc/06_ld_qc/ARID3A/ld_qc.done
+    log: results/log/05_ld_qc_disc_ARID3A.log
+    jobid: 15
+    reason: Input files updated by another job: results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+                module load R/4.5.1-mkl
+                Rscript scripts/qc_fix_ld_matrix.R           --input-matrix results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv           --out-matrix results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --diag-json results/disc/06_ld_qc/ARID3A/diagnostics.json           --done-file results/disc/06_ld_qc/ARID3A/ld_qc.done           --tolerance 1e-06           > results/log/05_ld_qc_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "qc_fix_ld_matrix", "local": false, "input": ["results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv"], "output": ["results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv", "results/disc/06_ld_qc/ARID3A/diagnostics.json", "results/disc/06_ld_qc/ARID3A/ld_qc.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"tolerance": 1e-06}, "log": ["results/log/05_ld_qc_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 15, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'qc_fix_ld_matrix:target=disc,locus=ARID3A' --allowed-rules 'qc_fix_ld_matrix' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/15.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/15.jobfailed'; exit 1)
+
+Submitted job 15 with external jobid 'Submitted batch job 4745995'.
+[Thu Apr 23 20:30:44 2026]
+Finished job 19.
+3 of 15 steps (20%) done
+[Thu Apr 23 20:30:44 2026]
+Finished job 6.
+4 of 15 steps (27%) done
+Resources before job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+Ready jobs (3)
+Select jobs to execute...
+Selected jobs (3)
+Resources after job selection: {'_cores': 9223372036854775802, '_nodes': 10}
+
+[Thu Apr 23 20:30:44 2026]
+rule run_finemap:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/asian/07_finemap/ARID3A/finemap_credible_set.tsv, results/asian/07_finemap/ARID3A/diagnostics.json, results/asian/07_finemap/ARID3A/finemap.done
+    log: results/log/06_finemap_asian_ARID3A.log
+    jobid: 2
+    reason: Input files updated by another job: results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        bash scripts/run_finemap.sh           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --ld-matrix results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/asian/07_finemap/ARID3A/finemap_credible_set.tsv           --diag-json results/asian/07_finemap/ARID3A/diagnostics.json           --done-file results/asian/07_finemap/ARID3A/finemap.done           --max-causal 10           > results/log/06_finemap_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_finemap", "local": false, "input": ["results/asian/03_match/ARID3A/matched.tsv", "results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv"], "output": ["results/asian/07_finemap/ARID3A/finemap_credible_set.tsv", "results/asian/07_finemap/ARID3A/diagnostics.json", "results/asian/07_finemap/ARID3A/finemap.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"max_causal": 10}, "log": ["results/log/06_finemap_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 2, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_finemap:target=asian,locus=ARID3A' --allowed-rules 'run_finemap' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/asian/03_match/ARID3A/matched.tsv' 'results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/2.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/2.jobfailed'; exit 1)
+
+Submitted job 2 with external jobid 'Submitted batch job 4745996'.
+
+[Thu Apr 23 20:30:44 2026]
+rule run_cojo_iterative:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/asian/09_cojo/ARID3A/cojo_independent_signals.tsv, results/asian/09_cojo/ARID3A/diagnostics.json, results/asian/09_cojo/ARID3A/cojo.done
+    log: results/log/08_cojo_asian_ARID3A.log
+    jobid: 9
+    reason: Input files updated by another job: results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+                module load R/4.5.1-mkl
+                Rscript scripts/run_cojo_iterative.R           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --ld-matrix results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/asian/09_cojo/ARID3A/cojo_independent_signals.tsv           --diag-json results/asian/09_cojo/ARID3A/diagnostics.json           --done-file results/asian/09_cojo/ARID3A/cojo.done           --p-cutoff 5e-08           --max-iterations 25                     --plot-dir results/asian/09_cojo/ARID3A/iterations           > results/log/08_cojo_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_cojo_iterative", "local": false, "input": ["results/asian/03_match/ARID3A/matched.tsv", "results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv"], "output": ["results/asian/09_cojo/ARID3A/cojo_independent_signals.tsv", "results/asian/09_cojo/ARID3A/diagnostics.json", "results/asian/09_cojo/ARID3A/cojo.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"p_cutoff": 5e-08, "max_iter": 25, "plot_dir": "results/asian/09_cojo/ARID3A/iterations"}, "log": ["results/log/08_cojo_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 9, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_cojo_iterative:target=asian,locus=ARID3A' --allowed-rules 'run_cojo_iterative' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/asian/03_match/ARID3A/matched.tsv' 'results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/9.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/9.jobfailed'; exit 1)
+
+Submitted job 9 with external jobid 'Submitted batch job 4745997'.
+
+[Thu Apr 23 20:30:44 2026]
+rule run_susier:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/asian/08_susier/ARID3A/susier_credible_set.tsv, results/asian/08_susier/ARID3A/diagnostics.json, results/asian/08_susier/ARID3A/susier.done
+    log: results/log/07_susier_asian_ARID3A.log
+    jobid: 8
+    reason: Input files updated by another job: results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+                python scripts/run_susier.py           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --ld-matrix results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/asian/08_susier/ARID3A/susier_credible_set.tsv           --diag-json results/asian/08_susier/ARID3A/diagnostics.json           --done-file results/asian/08_susier/ARID3A/susier.done           --L 10           --coverage 0.95           > results/log/07_susier_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_susier", "local": false, "input": ["results/asian/03_match/ARID3A/matched.tsv", "results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv"], "output": ["results/asian/08_susier/ARID3A/susier_credible_set.tsv", "results/asian/08_susier/ARID3A/diagnostics.json", "results/asian/08_susier/ARID3A/susier.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"L": 10, "coverage": 0.95}, "log": ["results/log/07_susier_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 8, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_susier:target=asian,locus=ARID3A' --allowed-rules 'run_susier' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/asian/03_match/ARID3A/matched.tsv' 'results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/8.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/8.jobfailed'; exit 1)
+
+Submitted job 8 with external jobid 'Submitted batch job 4745998'.
+Waiting at most 120 seconds for missing files.
+[Thu Apr 23 20:31:14 2026]
+Finished job 2.
+5 of 15 steps (33%) done
+[Thu Apr 23 20:31:14 2026]
+Finished job 8.
+6 of 15 steps (40%) done
+[Thu Apr 23 20:31:24 2026]
+Finished job 20.
+7 of 15 steps (47%) done
+[Thu Apr 23 20:31:24 2026]
+Finished job 15.
+8 of 15 steps (53%) done
+Resources before job selection: {'_cores': 9223372036854775806, '_nodes': 14}
+Ready jobs (3)
+Select jobs to execute...
+Selected jobs (3)
+Resources after job selection: {'_cores': 9223372036854775803, '_nodes': 11}
+
+[Thu Apr 23 20:31:24 2026]
+rule run_susier:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/disc/08_susier/ARID3A/susier_credible_set.tsv, results/disc/08_susier/ARID3A/diagnostics.json, results/disc/08_susier/ARID3A/susier.done
+    log: results/log/07_susier_disc_ARID3A.log
+    jobid: 17
+    reason: Input files updated by another job: results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+                python scripts/run_susier.py           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --ld-matrix results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/disc/08_susier/ARID3A/susier_credible_set.tsv           --diag-json results/disc/08_susier/ARID3A/diagnostics.json           --done-file results/disc/08_susier/ARID3A/susier.done           --L 10           --coverage 0.95           > results/log/07_susier_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_susier", "local": false, "input": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv"], "output": ["results/disc/08_susier/ARID3A/susier_credible_set.tsv", "results/disc/08_susier/ARID3A/diagnostics.json", "results/disc/08_susier/ARID3A/susier.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"L": 10, "coverage": 0.95}, "log": ["results/log/07_susier_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 17, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_susier:target=disc,locus=ARID3A' --allowed-rules 'run_susier' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/disc/03_match/ARID3A/matched.tsv' 'results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/17.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/17.jobfailed'; exit 1)
+
+Submitted job 17 with external jobid 'Submitted batch job 4745999'.
+
+[Thu Apr 23 20:31:25 2026]
+rule run_cojo_iterative:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/disc/09_cojo/ARID3A/cojo_independent_signals.tsv, results/disc/09_cojo/ARID3A/diagnostics.json, results/disc/09_cojo/ARID3A/cojo.done
+    log: results/log/08_cojo_disc_ARID3A.log
+    jobid: 18
+    reason: Input files updated by another job: results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+                module load R/4.5.1-mkl
+                Rscript scripts/run_cojo_iterative.R           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --ld-matrix results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/disc/09_cojo/ARID3A/cojo_independent_signals.tsv           --diag-json results/disc/09_cojo/ARID3A/diagnostics.json           --done-file results/disc/09_cojo/ARID3A/cojo.done           --p-cutoff 5e-08           --max-iterations 25                     --plot-dir results/disc/09_cojo/ARID3A/iterations           > results/log/08_cojo_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_cojo_iterative", "local": false, "input": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv"], "output": ["results/disc/09_cojo/ARID3A/cojo_independent_signals.tsv", "results/disc/09_cojo/ARID3A/diagnostics.json", "results/disc/09_cojo/ARID3A/cojo.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"p_cutoff": 5e-08, "max_iter": 25, "plot_dir": "results/disc/09_cojo/ARID3A/iterations"}, "log": ["results/log/08_cojo_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 18, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_cojo_iterative:target=disc,locus=ARID3A' --allowed-rules 'run_cojo_iterative' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/disc/03_match/ARID3A/matched.tsv' 'results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/18.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/18.jobfailed'; exit 1)
+
+Submitted job 18 with external jobid 'Submitted batch job 4746000'.
+
+[Thu Apr 23 20:31:25 2026]
+rule run_finemap:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/disc/07_finemap/ARID3A/finemap_credible_set.tsv, results/disc/07_finemap/ARID3A/diagnostics.json, results/disc/07_finemap/ARID3A/finemap.done
+    log: results/log/06_finemap_disc_ARID3A.log
+    jobid: 11
+    reason: Input files updated by another job: results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        bash scripts/run_finemap.sh           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --ld-matrix results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/disc/07_finemap/ARID3A/finemap_credible_set.tsv           --diag-json results/disc/07_finemap/ARID3A/diagnostics.json           --done-file results/disc/07_finemap/ARID3A/finemap.done           --max-causal 10           > results/log/06_finemap_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_finemap", "local": false, "input": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv"], "output": ["results/disc/07_finemap/ARID3A/finemap_credible_set.tsv", "results/disc/07_finemap/ARID3A/diagnostics.json", "results/disc/07_finemap/ARID3A/finemap.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"max_causal": 10}, "log": ["results/log/06_finemap_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 11, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_finemap:target=disc,locus=ARID3A' --allowed-rules 'run_finemap' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo' 'results/disc/03_match/ARID3A/matched.tsv' 'results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'software-env' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/11.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.vjxlevzo/11.jobfailed'; exit 1)
+
+Submitted job 11 with external jobid 'Submitted batch job 4746001'.
+[Thu Apr 23 20:31:25 2026]
+Finished job 9.
+9 of 15 steps (60%) done
+Waiting at most 120 seconds for missing files.
+[Thu Apr 23 20:31:55 2026]
+Finished job 17.
+10 of 15 steps (67%) done
+[Thu Apr 23 20:31:55 2026]
+Finished job 11.
+11 of 15 steps (73%) done
+[Thu Apr 23 20:32:05 2026]
+Finished job 18.
+12 of 15 steps (80%) done
+Complete log: .snakemake/log/2026-04-23T202951.990066.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

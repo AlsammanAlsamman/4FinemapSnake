@@ -1,0 +1,24 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, cores=2
+Select jobs to execute...
+
+[Thu Apr 23 00:42:25 2026]
+rule run_finemap:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/disc/07_finemap/ARID3A/finemap_credible_set.tsv, results/disc/07_finemap/ARID3A/diagnostics.json, results/disc/07_finemap/ARID3A/finemap.done
+    log: results/log/06_finemap_disc_ARID3A.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=/tmp, time=00:30:00, cores=2
+
+
+        bash scripts/run_finemap.sh           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --ld-matrix results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/disc/07_finemap/ARID3A/finemap_credible_set.tsv           --diag-json results/disc/07_finemap/ARID3A/diagnostics.json           --done-file results/disc/07_finemap/ARID3A/finemap.done           --max-causal 10           > results/log/06_finemap_disc_ARID3A.log 2>&1
+        
+[Thu Apr 23 00:42:26 2026]
+Finished job 0.
+1 of 1 steps (100%) done

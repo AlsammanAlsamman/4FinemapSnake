@@ -1,0 +1,201 @@
+# Analysis configuration and paths
+project_name: "finemapping-analysis-hispanic-eas"
+version: "0.1.0"
+results_dir: "results_hispanic_eas"  # Absolute path to results directory for the Hispanic cohort with CHB/EAS reference
+
+
+
+# Default resources
+default_resources:
+  mem_mb: 32000
+  cores: 2
+  time: "00:30:00"
+
+# First-step pipeline settings
+first_step:
+  panel_file: "resources/1000g_phase3/panel/integrated_call_samples_v3.20130502.ALL.panel"
+  output_dir: "results_hispanic_eas/reference_panel_prep"
+  populations: ["CHB", "PEL", "CEU"]
+  ancestry_labels:
+    CHB: "EAS"
+    PEL: "AMR"
+    CEU: "EUR"
+
+# Step 2: subset 1000G reference VCFs to CHB/PEL/CEU samples
+step2:
+  reference_release_dir: "resources/1000g_phase3/release_20130502"
+  sample_list: "results_hispanic_eas/reference_panel_prep/CHB_PEL_CEU.samples.txt"
+  output_dir: "results_hispanic_eas/reference_panel_subset"
+  output_suffix: "CHB_PEL_CEU"
+
+# Step 3: subset cohort PLINK data using loci boundaries and export chr-based VCFs
+step3:
+  plink_prefix: "inputs/Hispanic"
+  loci_file: "input/loci.txt"
+  output_dir: "results_hispanic_eas/cohort_region_subset"
+  output_suffix: "loci"
+
+# Step 4: phase cohort VCFs per chromosome for RFMix input
+step4:
+  cohort_input_pattern: "results_hispanic_eas/cohort_region_subset/chr{chr}.loci.vcf.gz"
+  reference_vcf_pattern: "results_hispanic_eas/reference_panel_subset/chr{chr}.CHB_PEL_CEU.vcf.gz"
+  genetic_map_pattern: "resources/geneticmaps37/chr{chr}.b37.gmap.gz"
+  output_dir: "results_hispanic_eas/cohort_phasing"
+
+# Step 5: run RFMix local ancestry per chromosome
+step5:
+  cohort_phased_pattern: "results_hispanic_eas/cohort_phasing/chr{chr}.phased.vcf.gz"
+  reference_vcf_pattern: "results_hispanic_eas/reference_panel_subset/chr{chr}.CHB_PEL_CEU.vcf.gz"
+  genetic_map_pattern: "resources/geneticmaps37/chr{chr}.b37.gmap.gz"
+  sample_map_file: "results_hispanic_eas/reference_panel_prep/CHB_PEL_CEU.sample_map.txt"
+  sample_map_label_codes:
+    EAS: "0"
+    AMR: "1"
+    EUR: "2"
+  output_dir: "results_hispanic_eas/rfmix"
+
+# Step 6: plot chromosome-level local ancestry tracts from RFMix MSP output
+step6:
+  rfmix_msp_pattern: "results_hispanic_eas/rfmix/chr{chr}.deconvoluted.msp.tsv"
+  output_dir: "results_hispanic_eas/rfmix_plots"
+  output_prefix_pattern: "chr{chr}.rfmix_ancestry_tracts"
+  ancestry_labels:
+    "0": "EAS"
+    "1": "AMR"
+    "2": "EUR"
+  ancestry_colors:
+    EAS: "#1f77b4"
+    AMR: "#ff7f0e"
+    EUR: "#2ca02c"
+
+# Step 7: bin chromosome into windows, compare case/control stacked ancestry, and annotate genes per bin
+step7:
+  rfmix_msp_pattern: "results_hispanic_eas/rfmix/chr{chr}.deconvoluted.msp.tsv"
+  output_dir: "results_hispanic_eas/rfmix_bin_case_control"
+  output_prefix_pattern: "chr{chr}.rfmix_case_control_bins"
+  bin_size_bp: 250000
+  gene_annotation_file: "resources/NCBI37.3.gene.loc"
+  max_genes_per_bin_label: 3
+  phenotype_file: "inputs/Hispanic.fam"
+  phenotype_format: "fam"  # fam|table
+  fam_case_code: "2"
+  fam_control_code: "1"
+  table_sample_column: "IID"
+  table_status_column: "PHENO"
+  table_case_value: "case"
+  table_control_value: "control"
+  ancestry_labels:
+    "0": "EAS"
+    "1": "AMR"
+    "2": "EUR"
+  ancestry_colors:
+    EAS: "#1f77b4"
+    AMR: "#ff7f0e"
+    EUR: "#2ca02c"
+
+# Step 8: correlate PRS with per-chromosome RFMix .Q ancestry contributions
+step8:
+  rfmix_q_pattern: "results_hispanic_eas/rfmix/chr{chr}.deconvoluted.rfmix.Q"
+  ancestry_contribution_bins: 10
+  phenotype_file: "inputs/Hispanic.fam"
+  phenotype_format: "fam"   # currently fam supported for stratified case/control correlation
+  fam_case_code: "2"
+  fam_control_code: "1"
+  prs_file: "input/LAMR_PRS_using_MEX.txt"
+  prs_iid_column: "IID"
+  prs_score_column: "PRS"
+  prs_in_regression_column: "In_Regression"
+  prs_in_regression_keep_value: "Yes"
+  output_dir: "results_hispanic_eas/rfmix_prs_correlation"
+  per_chr_prefix_pattern: "chr{chr}.rfmix_prs_correlation"
+  matrix_prefix: "rfmix_prs_r2_matrix"
+  ancestry_labels:
+    "0": "EAS"
+    "1": "AMR"
+    "2": "EUR"
+  ancestry_colors:
+    EAS: "#1f77b4"
+    AMR: "#ff7f0e"
+    EUR: "#2ca02c"
+
+# Tractor: extract ancestry-specific tracts and dosage from phased VCF + MSP
+tractor:
+  vcf_pattern: "results_hispanic_eas/cohort_phasing/chr{chr}.phased.vcf.gz"
+  msp_pattern: "results_hispanic_eas/rfmix/chr{chr}.deconvoluted.msp.tsv"
+  num_ancs: 3
+  output_dir: "results_hispanic_eas/tractor"
+  output_vcf: false
+  compress_output: false
+
+# Tractor GWAS: pairwise ancestry combinations, per chromosome then merged + plotted
+tractor_gwas:
+  extract_output_dir: "results_hispanic_eas/tractor"
+  phenotype_file: "inputs/Hispanic.fam"
+  phenotype_format: "fam"   # fam|table
+  fam_case_code: "2"
+  fam_control_code: "1"
+  table_iid_column: "IID"
+  table_phenotype_column: "PHENO"
+  covariates:
+    enabled: true
+    pca_file: "inputs/covariates_Hispanic_5PC.txt"   # user-provided Hispanic full-genome PCA covariate file
+    format: "plink_eigenvec"                         # expected layout: FID IID PC1 PC2 ...
+    has_header: false
+    fid_column: "FID"
+    iid_column: "IID"
+    n_pcs: 5
+  output_dir: "results_hispanic_eas/tractor_gwas"
+  per_chr_prefix_pattern: "chr{chr}.model_{pair}"
+  merged_prefix_pattern: "merged.model_{pair}"
+  ancestry_labels:
+    "0": "EAS"
+    "1": "AMR"
+    "2": "EUR"
+  min_partitions: 32
+
+annotation_meta:
+  annotation: "resources/NCBI37.3.gene.loc"
+
+maf_summary:
+  output_dir: "results_hispanic_eas/maf_summary"
+
+maf_gwas_summary:
+  output_dir: "results_hispanic_eas/maf_gwas_summary"
+
+locus_ancestry_report:
+  input_tsv: "results_hispanic_eas/maf_gwas_summary/merged.maf_gwas_summary.tsv"
+  output_dir: "results_hispanic_eas/locus_ancestry_report"
+  cohort_maf_min: 0.01           # keep SNPs with at least 1% cohort MAF
+  ancestry_maf_min: 0.01         # and at least 1% MAF in at least one ancestry
+  max_p_dosage: 0.01             # exploratory ancestry-specific dosage evidence threshold
+  min_or_dosage_deviation: 0.10  # require OR <= 0.90 or >= 1.10
+  max_p_local_ancestry: 0.05     # supportive local ancestry evidence threshold
+  min_or_local_deviation: 0.05   # require local ancestry OR <= 0.95 or >= 1.05
+  min_supporting_snps: 1         # SNPs needed to call an ancestry active for a locus
+  clustering_method: "ward"     # hierarchical clustering linkage for the locus dendrogram
+  clustering_metric: "euclidean" # distance metric for locus clustering
+
+admixture_validation:
+  summary_tsv: "results_hispanic_eas/maf_gwas_summary/merged.maf_gwas_summary.tsv"
+  rfmix_q_pattern: "results_hispanic_eas/rfmix/chr{chr}.deconvoluted.rfmix.Q"
+  tractor_dosage_pattern: "results_hispanic_eas/tractor/chr{chr}.phased.anc{anc}.dosage.txt"
+  output_dir: "results_hispanic_eas/admixture_validation"
+  include_sex: true               # use PLINK/FAM sex if available (1=male, 2=female)
+  include_age: false              # no age table configured yet; enable later if available
+  age_file: ""
+  age_iid_column: "IID"
+  age_column: "AGE"
+  global_ancestry_reference: "AMR"   # drop one ancestry proportion from the model to avoid collinearity
+  snp_pvalue_threshold: 0.01          # select admixture-associated SNPs from merged.maf_gwas_summary.tsv
+  max_snps_per_ancestry: 50
+  use_top_snp_per_locus: true
+  cv_folds: 5
+  random_state: 42
+
+admixture_importance:
+  sample_features_tsv: "results_hispanic_eas/admixture_validation/sample_prediction_features.tsv"
+  selected_snps_tsv: "results_hispanic_eas/admixture_validation/selected_admixture_snps.tsv"
+  tractor_dosage_pattern: "results_hispanic_eas/tractor/chr{chr}.phased.anc{anc}.dosage.txt"
+  output_dir: "results_hispanic_eas/admixture_importance"
+  top_n_loci_plot: 20
+  global_ancestry_reference: "AMR"

@@ -1,0 +1,8 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).
+Complete log: .snakemake/log/2026-04-23T004610.091063.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

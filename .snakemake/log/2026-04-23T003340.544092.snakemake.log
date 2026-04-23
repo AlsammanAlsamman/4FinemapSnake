@@ -1,0 +1,75 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 15
+Job stats:
+job                        count
+-----------------------  -------
+all                            1
+build_ld_matrix                2
+export_summary                 2
+extract_locus                  2
+filter_and_match_snps          2
+harmonize_with_refpanel        2
+qc_fix_ld_matrix               2
+run_cojo_iterative             2
+run_finemap                    2
+run_susier                     2
+total                         19
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+
+[Thu Apr 23 00:33:49 2026]
+rule extract_locus:
+    input: inputs/Asian.tsv, inputs/loci.txt
+    output: results/asian/01_extract/ARID3A/extracted.tsv, results/asian/01_extract/ARID3A/diagnostics.json, results/asian/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_asian_ARID3A.log
+    jobid: 5
+    reason: Missing output files: results/asian/01_extract/ARID3A/extracted.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/extract_loci.py           --gwas inputs/Asian.tsv           --loci inputs/loci.txt           --locus ARID3A           --out-tsv results/asian/01_extract/ARID3A/extracted.tsv           --diag-json results/asian/01_extract/ARID3A/diagnostics.json           --done-file results/asian/01_extract/ARID3A/extract.done           > results/log/00_extract_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "extract_locus", "local": false, "input": ["inputs/Asian.tsv", "inputs/loci.txt"], "output": ["results/asian/01_extract/ARID3A/extracted.tsv", "results/asian/01_extract/ARID3A/diagnostics.json", "results/asian/01_extract/ARID3A/extract.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"locus": "ARID3A"}, "log": ["results/log/00_extract_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 5, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'extract_locus:target=asian,locus=ARID3A' --allowed-rules 'extract_locus' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.dzcpzf4v' 'inputs/Asian.tsv' 'inputs/loci.txt' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'mtime' 'input' 'params' 'code' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.dzcpzf4v/5.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.dzcpzf4v/5.jobfailed'; exit 1)
+
+Submitted job 5 with external jobid 'Submitted batch job 4745437'.
+
+[Thu Apr 23 00:33:50 2026]
+rule extract_locus:
+    input: inputs/Disc.tsv, inputs/loci.txt
+    output: results/disc/01_extract/ARID3A/extracted.tsv, results/disc/01_extract/ARID3A/diagnostics.json, results/disc/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_disc_ARID3A.log
+    jobid: 14
+    reason: Missing output files: results/disc/01_extract/ARID3A/extracted.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1229, disk_mib=1173, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/extract_loci.py           --gwas inputs/Disc.tsv           --loci inputs/loci.txt           --locus ARID3A           --out-tsv results/disc/01_extract/ARID3A/extracted.tsv           --diag-json results/disc/01_extract/ARID3A/diagnostics.json           --done-file results/disc/01_extract/ARID3A/extract.done           > results/log/00_extract_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "extract_locus", "local": false, "input": ["inputs/Disc.tsv", "inputs/loci.txt"], "output": ["results/disc/01_extract/ARID3A/extracted.tsv", "results/disc/01_extract/ARID3A/diagnostics.json", "results/disc/01_extract/ARID3A/extract.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"locus": "ARID3A"}, "log": ["results/log/00_extract_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1229, "disk_mib": 1173, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 14, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'extract_locus:target=disc,locus=ARID3A' --allowed-rules 'extract_locus' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1229' 'disk_mib=1173' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.dzcpzf4v' 'inputs/Disc.tsv' 'inputs/loci.txt' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'mtime' 'input' 'params' 'code' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.dzcpzf4v/14.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.dzcpzf4v/14.jobfailed'; exit 1)
+
+Submitted job 14 with external jobid 'Submitted batch job 4745438'.
+[Thu Apr 23 00:36:01 2026]
+Finished job 5.
+1 of 19 steps (5%) done
+[Thu Apr 23 00:36:01 2026]
+Finished job 14.
+2 of 19 steps (11%) done
+Complete log: .snakemake/log/2026-04-23T003340.544092.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

@@ -1,0 +1,24 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, cores=2
+Select jobs to execute...
+
+[Thu Apr 23 17:55:29 2026]
+rule export_summary:
+    input: results/disc/07_finemap/ARID3A/finemap_credible_set.tsv, results/disc/08_susier/ARID3A/susier_credible_set.tsv, results/disc/09_cojo/ARID3A/cojo_independent_signals.tsv
+    output: results/disc/10_summary/ARID3A/summary.tsv, results/disc/10_summary/ARID3A/summary.xlsx, results/disc/10_summary/ARID3A/summary.done
+    log: results/log/10_summary_disc_ARID3A.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=/tmp, time=00:30:00, cores=2
+
+
+        python scripts/export_summary.py           --target disc           --locus ARID3A           --finemap-tsv results/disc/07_finemap/ARID3A/finemap_credible_set.tsv           --susier-tsv results/disc/08_susier/ARID3A/susier_credible_set.tsv           --cojo-tsv results/disc/09_cojo/ARID3A/cojo_independent_signals.tsv           --out-tsv results/disc/10_summary/ARID3A/summary.tsv           --out-xlsx results/disc/10_summary/ARID3A/summary.xlsx           --done-file results/disc/10_summary/ARID3A/summary.done           > results/log/10_summary_disc_ARID3A.log 2>&1
+        
+[Thu Apr 23 17:55:31 2026]
+Finished job 0.
+1 of 1 steps (100%) done

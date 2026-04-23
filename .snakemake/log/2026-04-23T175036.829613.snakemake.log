@@ -1,0 +1,77 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 15
+Job stats:
+job                      count
+---------------------  -------
+filter_and_match_snps        2
+total                        2
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+
+[Thu Apr 23 17:50:41 2026]
+rule filter_and_match_snps:
+    input: results/disc/02_harmonize/ARID3A/harmonized.tsv, results/disc/01_extract/ARID3A/refpanel.bed, results/disc/01_extract/ARID3A/refpanel.bim, results/disc/01_extract/ARID3A/refpanel.fam
+    output: results/disc/03_match/ARID3A/matched.tsv, results/disc/03_match/ARID3A/matched.snplist, results/disc/03_match/ARID3A/refpanel_matched.bed, results/disc/03_match/ARID3A/refpanel_matched.bim, results/disc/03_match/ARID3A/refpanel_matched.fam, results/disc/03_match/ARID3A/refpanel_matched.afreq, results/disc/03_match/ARID3A/diagnostics.json, results/disc/03_match/ARID3A/match.done
+    log: results/log/02_match_disc_ARID3A.log
+    jobid: 12
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/filter_and_match_snps.py           --harmonized results/disc/02_harmonize/ARID3A/harmonized.tsv           --ref-prefix results/disc/01_extract/ARID3A/refpanel           --maf-min 0.01           --out-tsv results/disc/03_match/ARID3A/matched.tsv                     --out-snplist results/disc/03_match/ARID3A/matched.snplist           --diag-json results/disc/03_match/ARID3A/diagnostics.json           --done-file results/disc/03_match/ARID3A/match.done           > results/log/02_match_disc_ARID3A.log 2>&1
+
+                module load plink2/2.00a3.3lm
+                plink2                     --bfile results/disc/01_extract/ARID3A/refpanel                     --extract results/disc/03_match/ARID3A/matched.snplist                     --make-bed                     --out results/disc/03_match/ARID3A/refpanel_matched                     >> results/log/02_match_disc_ARID3A.log 2>&1
+
+                plink2                     --bfile results/disc/03_match/ARID3A/refpanel_matched                     --freq                     --out results/disc/03_match/ARID3A/refpanel_matched                     >> results/log/02_match_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "filter_and_match_snps", "local": false, "input": ["results/disc/02_harmonize/ARID3A/harmonized.tsv", "results/disc/01_extract/ARID3A/refpanel.bed", "results/disc/01_extract/ARID3A/refpanel.bim", "results/disc/01_extract/ARID3A/refpanel.fam"], "output": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/03_match/ARID3A/matched.snplist", "results/disc/03_match/ARID3A/refpanel_matched.bed", "results/disc/03_match/ARID3A/refpanel_matched.bim", "results/disc/03_match/ARID3A/refpanel_matched.fam", "results/disc/03_match/ARID3A/refpanel_matched.afreq", "results/disc/03_match/ARID3A/diagnostics.json", "results/disc/03_match/ARID3A/match.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"ref_prefix": "results/disc/01_extract/ARID3A/refpanel", "out_ref_prefix": "results/disc/03_match/ARID3A/refpanel_matched", "maf_min": 0.01}, "log": ["results/log/02_match_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 12, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'filter_and_match_snps:target=disc,locus=ARID3A' --allowed-rules 'filter_and_match_snps' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp._zd7718j' 'results/disc/02_harmonize/ARID3A/harmonized.tsv' 'results/disc/01_extract/ARID3A/refpanel.bed' 'results/disc/01_extract/ARID3A/refpanel.bim' 'results/disc/01_extract/ARID3A/refpanel.fam' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'input' 'params' 'mtime' 'code' 'software-env' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp._zd7718j/12.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp._zd7718j/12.jobfailed'; exit 1)
+
+Submitted job 12 with external jobid 'Submitted batch job 4745782'.
+
+[Thu Apr 23 17:50:41 2026]
+rule filter_and_match_snps:
+    input: results/asian/02_harmonize/ARID3A/harmonized.tsv, results/asian/01_extract/ARID3A/refpanel.bed, results/asian/01_extract/ARID3A/refpanel.bim, results/asian/01_extract/ARID3A/refpanel.fam
+    output: results/asian/03_match/ARID3A/matched.tsv, results/asian/03_match/ARID3A/matched.snplist, results/asian/03_match/ARID3A/refpanel_matched.bed, results/asian/03_match/ARID3A/refpanel_matched.bim, results/asian/03_match/ARID3A/refpanel_matched.fam, results/asian/03_match/ARID3A/refpanel_matched.afreq, results/asian/03_match/ARID3A/diagnostics.json, results/asian/03_match/ARID3A/match.done
+    log: results/log/02_match_asian_ARID3A.log
+    jobid: 3
+    reason: Forced execution
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/filter_and_match_snps.py           --harmonized results/asian/02_harmonize/ARID3A/harmonized.tsv           --ref-prefix results/asian/01_extract/ARID3A/refpanel           --maf-min 0.01           --out-tsv results/asian/03_match/ARID3A/matched.tsv                     --out-snplist results/asian/03_match/ARID3A/matched.snplist           --diag-json results/asian/03_match/ARID3A/diagnostics.json           --done-file results/asian/03_match/ARID3A/match.done           > results/log/02_match_asian_ARID3A.log 2>&1
+
+                module load plink2/2.00a3.3lm
+                plink2                     --bfile results/asian/01_extract/ARID3A/refpanel                     --extract results/asian/03_match/ARID3A/matched.snplist                     --make-bed                     --out results/asian/03_match/ARID3A/refpanel_matched                     >> results/log/02_match_asian_ARID3A.log 2>&1
+
+                plink2                     --bfile results/asian/03_match/ARID3A/refpanel_matched                     --freq                     --out results/asian/03_match/ARID3A/refpanel_matched                     >> results/log/02_match_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "filter_and_match_snps", "local": false, "input": ["results/asian/02_harmonize/ARID3A/harmonized.tsv", "results/asian/01_extract/ARID3A/refpanel.bed", "results/asian/01_extract/ARID3A/refpanel.bim", "results/asian/01_extract/ARID3A/refpanel.fam"], "output": ["results/asian/03_match/ARID3A/matched.tsv", "results/asian/03_match/ARID3A/matched.snplist", "results/asian/03_match/ARID3A/refpanel_matched.bed", "results/asian/03_match/ARID3A/refpanel_matched.bim", "results/asian/03_match/ARID3A/refpanel_matched.fam", "results/asian/03_match/ARID3A/refpanel_matched.afreq", "results/asian/03_match/ARID3A/diagnostics.json", "results/asian/03_match/ARID3A/match.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"ref_prefix": "results/asian/01_extract/ARID3A/refpanel", "out_ref_prefix": "results/asian/03_match/ARID3A/refpanel_matched", "maf_min": 0.01}, "log": ["results/log/02_match_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 3, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'filter_and_match_snps:target=asian,locus=ARID3A' --allowed-rules 'filter_and_match_snps' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp._zd7718j' 'results/asian/02_harmonize/ARID3A/harmonized.tsv' 'results/asian/01_extract/ARID3A/refpanel.bed' 'results/asian/01_extract/ARID3A/refpanel.bim' 'results/asian/01_extract/ARID3A/refpanel.fam' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'input' 'params' 'mtime' 'code' 'software-env' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp._zd7718j/3.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp._zd7718j/3.jobfailed'; exit 1)
+
+Submitted job 3 with external jobid 'Submitted batch job 4745783'.
+Waiting at most 120 seconds for missing files.
+[Thu Apr 23 17:51:12 2026]
+Finished job 12.
+1 of 17 steps (6%) done
+[Thu Apr 23 17:51:12 2026]
+Finished job 3.
+2 of 17 steps (12%) done
+Complete log: .snakemake/log/2026-04-23T175036.829613.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

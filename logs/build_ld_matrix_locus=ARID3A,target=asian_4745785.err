@@ -1,0 +1,24 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, cores=2
+Select jobs to execute...
+
+[Thu Apr 23 17:53:58 2026]
+rule build_ld_matrix:
+    input: results/asian/03_match/ARID3A/matched.tsv
+    output: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv, results/asian/05_ld_matrix/ARID3A/diagnostics.json, results/asian/05_ld_matrix/ARID3A/ld_matrix.done
+    log: results/log/04_ld_matrix_asian_ARID3A.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=/tmp, time=00:30:00, cores=2
+
+
+        python scripts/build_ld_matrix.py           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --out-matrix results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv           --diag-json results/asian/05_ld_matrix/ARID3A/diagnostics.json           --done-file results/asian/05_ld_matrix/ARID3A/ld_matrix.done           > results/log/04_ld_matrix_asian_ARID3A.log 2>&1
+        
+[Thu Apr 23 17:54:10 2026]
+Finished job 0.
+1 of 1 steps (100%) done

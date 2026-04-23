@@ -1,0 +1,57 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 15
+Job stats:
+job                    count
+-------------------  -------
+ldscore_diagnostics        2
+total                      2
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+
+[Thu Apr 23 15:20:06 2026]
+rule ldscore_diagnostics:
+    input: results/asian/03_match/ARID3A/matched.tsv
+    output: results/asian/04_ldscore_plot/ARID3A/ldscore_vs_p.png, results/asian/04_ldscore_plot/ARID3A/correlation.tsv, results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done
+    log: results/log/03_ldscore_plot_asian_ARID3A.log
+    jobid: 19
+    reason: Forced execution
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        module load R/4.5.1-mkl
+        Rscript scripts/plot_ldscore_vs_p.R           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --plot-png results/asian/04_ldscore_plot/ARID3A/ldscore_vs_p.png           --diag-tsv results/asian/04_ldscore_plot/ARID3A/correlation.tsv           --done-file results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done           --require-correlation true           --min-correlation 0.05           > results/log/03_ldscore_plot_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "ldscore_diagnostics", "local": false, "input": ["results/asian/03_match/ARID3A/matched.tsv"], "output": ["results/asian/04_ldscore_plot/ARID3A/ldscore_vs_p.png", "results/asian/04_ldscore_plot/ARID3A/correlation.tsv", "results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"require_corr": "true", "min_corr": 0.05}, "log": ["results/log/03_ldscore_plot_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 19, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'ldscore_diagnostics:target=asian,locus=ARID3A' --allowed-rules 'ldscore_diagnostics' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.j1ej01v9' 'results/asian/03_match/ARID3A/matched.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'mtime' 'input' 'code' 'params' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.j1ej01v9/19.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.j1ej01v9/19.jobfailed'; exit 1)
+
+Submitted job 19 with external jobid 'Submitted batch job 4745687'.
+
+[Thu Apr 23 15:20:06 2026]
+rule ldscore_diagnostics:
+    input: results/disc/03_match/ARID3A/matched.tsv
+    output: results/disc/04_ldscore_plot/ARID3A/ldscore_vs_p.png, results/disc/04_ldscore_plot/ARID3A/correlation.tsv, results/disc/04_ldscore_plot/ARID3A/ldscore_plot.done
+    log: results/log/03_ldscore_plot_disc_ARID3A.log
+    jobid: 20
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        module load R/4.5.1-mkl
+        Rscript scripts/plot_ldscore_vs_p.R           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --plot-png results/disc/04_ldscore_plot/ARID3A/ldscore_vs_p.png           --diag-tsv results/disc/04_ldscore_plot/ARID3A/correlation.tsv           --done-file results/disc/04_ldscore_plot/ARID3A/ldscore_plot.done           --require-correlation true           --min-correlation 0.05           > results/log/03_ldscore_plot_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "ldscore_diagnostics", "local": false, "input": ["results/disc/03_match/ARID3A/matched.tsv"], "output": ["results/disc/04_ldscore_plot/ARID3A/ldscore_vs_p.png", "results/disc/04_ldscore_plot/ARID3A/correlation.tsv", "results/disc/04_ldscore_plot/ARID3A/ldscore_plot.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"require_corr": "true", "min_corr": 0.05}, "log": ["results/log/03_ldscore_plot_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 20, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'ldscore_diagnostics:target=disc,locus=ARID3A' --allowed-rules 'ldscore_diagnostics' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.j1ej01v9' 'results/disc/03_match/ARID3A/matched.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'mtime' 'input' 'code' 'params' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.j1ej01v9/20.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.j1ej01v9/20.jobfailed'; exit 1)
+
+Submitted job 20 with external jobid 'Submitted batch job 4745688'.

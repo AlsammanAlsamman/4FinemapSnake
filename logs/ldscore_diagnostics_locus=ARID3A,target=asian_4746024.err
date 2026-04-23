@@ -1,0 +1,25 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, cores=2
+Select jobs to execute...
+
+[Thu Apr 23 20:55:58 2026]
+rule ldscore_diagnostics:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    output: results/asian/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png, results/asian/04_ldscore_plot/ARID3A/correlation.tsv, results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done
+    log: results/log/03_ldscore_plot_asian_ARID3A.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=/tmp, time=00:30:00, cores=2
+
+
+        module load R/4.5.1-mkl
+        Rscript scripts/plot_ldscore_vs_p.R           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --ld-matrix results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv           --plot-png results/asian/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png           --diag-tsv results/asian/04_ldscore_plot/ARID3A/correlation.tsv           --done-file results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done           --require-correlation false           --min-correlation 0.05           > results/log/03_ldscore_plot_asian_ARID3A.log 2>&1
+        
+[Thu Apr 23 20:56:20 2026]
+Finished job 0.
+1 of 1 steps (100%) done

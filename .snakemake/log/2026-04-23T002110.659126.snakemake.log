@@ -1,0 +1,174 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 15
+Job stats:
+job                        count
+-----------------------  -------
+all                            1
+build_ld_matrix                4
+export_summary                 4
+extract_locus                  4
+filter_and_match_snps          4
+harmonize_with_refpanel        4
+qc_fix_ld_matrix               4
+run_cojo_iterative             4
+run_finemap                    4
+run_susier                     4
+total                         37
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (4)
+Select jobs to execute...
+Selected jobs (4)
+Resources after job selection: {'_cores': 9223372036854775803, '_nodes': 11}
+
+[Thu Apr 23 00:21:54 2026]
+rule extract_locus:
+    input: inputs/Disc.tsv, inputs/loci.txt
+    output: results/disc/01_extract/loci/extracted.tsv, results/disc/01_extract/loci/diagnostics.json, results/disc/01_extract/loci/extract.done
+    log: results/log/00_extract_disc_loci.log
+    jobid: 32
+    reason: Missing output files: results/disc/01_extract/loci/extracted.tsv
+    wildcards: target=disc, locus=loci
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1229, disk_mib=1173, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/extract_loci.py           --gwas inputs/Disc.tsv           --loci inputs/loci.txt           --locus loci           --out-tsv results/disc/01_extract/loci/extracted.tsv           --diag-json results/disc/01_extract/loci/diagnostics.json           --done-file results/disc/01_extract/loci/extract.done           > results/log/00_extract_disc_loci.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "extract_locus", "local": false, "input": ["inputs/Disc.tsv", "inputs/loci.txt"], "output": ["results/disc/01_extract/loci/extracted.tsv", "results/disc/01_extract/loci/diagnostics.json", "results/disc/01_extract/loci/extract.done"], "wildcards": {"target": "disc", "locus": "loci"}, "params": {"locus": "loci"}, "log": ["results/log/00_extract_disc_loci.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1229, "disk_mib": 1173, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 32, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'extract_locus:target=disc,locus=loci' --allowed-rules 'extract_locus' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1229' 'disk_mib=1173' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux' 'inputs/Disc.tsv' 'inputs/loci.txt' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'params' 'input' 'mtime' 'software-env' 'code' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/32.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/32.jobfailed'; exit 1)
+
+Submitted job 32 with external jobid 'Submitted batch job 4745427'.
+
+[Thu Apr 23 00:21:56 2026]
+rule extract_locus:
+    input: inputs/Asian.tsv, inputs/loci.txt
+    output: results/asian/01_extract/ARID3A/extracted.tsv, results/asian/01_extract/ARID3A/diagnostics.json, results/asian/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_asian_ARID3A.log
+    jobid: 5
+    reason: Missing output files: results/asian/01_extract/ARID3A/extracted.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/extract_loci.py           --gwas inputs/Asian.tsv           --loci inputs/loci.txt           --locus ARID3A           --out-tsv results/asian/01_extract/ARID3A/extracted.tsv           --diag-json results/asian/01_extract/ARID3A/diagnostics.json           --done-file results/asian/01_extract/ARID3A/extract.done           > results/log/00_extract_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "extract_locus", "local": false, "input": ["inputs/Asian.tsv", "inputs/loci.txt"], "output": ["results/asian/01_extract/ARID3A/extracted.tsv", "results/asian/01_extract/ARID3A/diagnostics.json", "results/asian/01_extract/ARID3A/extract.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"locus": "ARID3A"}, "log": ["results/log/00_extract_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 5, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'extract_locus:target=asian,locus=ARID3A' --allowed-rules 'extract_locus' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux' 'inputs/Asian.tsv' 'inputs/loci.txt' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'params' 'input' 'mtime' 'software-env' 'code' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/5.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/5.jobfailed'; exit 1)
+
+Submitted job 5 with external jobid 'Submitted batch job 4745428'.
+
+[Thu Apr 23 00:21:56 2026]
+rule extract_locus:
+    input: inputs/Asian.tsv, inputs/loci.txt
+    output: results/asian/01_extract/loci/extracted.tsv, results/asian/01_extract/loci/diagnostics.json, results/asian/01_extract/loci/extract.done
+    log: results/log/00_extract_asian_loci.log
+    jobid: 14
+    reason: Missing output files: results/asian/01_extract/loci/extracted.tsv
+    wildcards: target=asian, locus=loci
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/extract_loci.py           --gwas inputs/Asian.tsv           --loci inputs/loci.txt           --locus loci           --out-tsv results/asian/01_extract/loci/extracted.tsv           --diag-json results/asian/01_extract/loci/diagnostics.json           --done-file results/asian/01_extract/loci/extract.done           > results/log/00_extract_asian_loci.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "extract_locus", "local": false, "input": ["inputs/Asian.tsv", "inputs/loci.txt"], "output": ["results/asian/01_extract/loci/extracted.tsv", "results/asian/01_extract/loci/diagnostics.json", "results/asian/01_extract/loci/extract.done"], "wildcards": {"target": "asian", "locus": "loci"}, "params": {"locus": "loci"}, "log": ["results/log/00_extract_asian_loci.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 14, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'extract_locus:target=asian,locus=loci' --allowed-rules 'extract_locus' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux' 'inputs/Asian.tsv' 'inputs/loci.txt' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'params' 'input' 'mtime' 'software-env' 'code' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/14.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/14.jobfailed'; exit 1)
+
+Submitted job 14 with external jobid 'Submitted batch job 4745429'.
+
+[Thu Apr 23 00:21:57 2026]
+rule extract_locus:
+    input: inputs/Disc.tsv, inputs/loci.txt
+    output: results/disc/01_extract/ARID3A/extracted.tsv, results/disc/01_extract/ARID3A/diagnostics.json, results/disc/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_disc_ARID3A.log
+    jobid: 23
+    reason: Missing output files: results/disc/01_extract/ARID3A/extracted.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1229, disk_mib=1173, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/extract_loci.py           --gwas inputs/Disc.tsv           --loci inputs/loci.txt           --locus ARID3A           --out-tsv results/disc/01_extract/ARID3A/extracted.tsv           --diag-json results/disc/01_extract/ARID3A/diagnostics.json           --done-file results/disc/01_extract/ARID3A/extract.done           > results/log/00_extract_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "extract_locus", "local": false, "input": ["inputs/Disc.tsv", "inputs/loci.txt"], "output": ["results/disc/01_extract/ARID3A/extracted.tsv", "results/disc/01_extract/ARID3A/diagnostics.json", "results/disc/01_extract/ARID3A/extract.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"locus": "ARID3A"}, "log": ["results/log/00_extract_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1229, "disk_mib": 1173, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 23, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'extract_locus:target=disc,locus=ARID3A' --allowed-rules 'extract_locus' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1229' 'disk_mib=1173' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux' 'inputs/Disc.tsv' 'inputs/loci.txt' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'params' 'input' 'mtime' 'software-env' 'code' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/23.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/23.jobfailed'; exit 1)
+
+Submitted job 23 with external jobid 'Submitted batch job 4745430'.
+[Thu Apr 23 00:23:57 2026]
+Error in rule extract_locus:
+    jobid: 32
+    input: inputs/Disc.tsv, inputs/loci.txt
+    output: results/disc/01_extract/loci/extracted.tsv, results/disc/01_extract/loci/diagnostics.json, results/disc/01_extract/loci/extract.done
+    log: results/log/00_extract_disc_loci.log (check log file(s) for error details)
+    shell:
+        
+        python scripts/extract_loci.py           --gwas inputs/Disc.tsv           --loci inputs/loci.txt           --locus loci           --out-tsv results/disc/01_extract/loci/extracted.tsv           --diag-json results/disc/01_extract/loci/diagnostics.json           --done-file results/disc/01_extract/loci/extract.done           > results/log/00_extract_disc_loci.log 2>&1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 4745427
+
+Error executing rule extract_locus on cluster (jobid: 32, external: Submitted batch job 4745427, jobscript: /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/snakejob.extract_locus.32.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Apr 23 00:23:57 2026]
+Error in rule extract_locus:
+    jobid: 5
+    input: inputs/Asian.tsv, inputs/loci.txt
+    output: results/asian/01_extract/ARID3A/extracted.tsv, results/asian/01_extract/ARID3A/diagnostics.json, results/asian/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_asian_ARID3A.log (check log file(s) for error details)
+    shell:
+        
+        python scripts/extract_loci.py           --gwas inputs/Asian.tsv           --loci inputs/loci.txt           --locus ARID3A           --out-tsv results/asian/01_extract/ARID3A/extracted.tsv           --diag-json results/asian/01_extract/ARID3A/diagnostics.json           --done-file results/asian/01_extract/ARID3A/extract.done           > results/log/00_extract_asian_ARID3A.log 2>&1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 4745428
+
+Error executing rule extract_locus on cluster (jobid: 5, external: Submitted batch job 4745428, jobscript: /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/snakejob.extract_locus.5.sh). For error details see the cluster log and the log files of the involved rule(s).
+Cleanup job metadata.
+Cleanup failed jobs output files.
+Cleanup job metadata.
+[Thu Apr 23 00:23:57 2026]
+Error in rule extract_locus:
+    jobid: 14
+    input: inputs/Asian.tsv, inputs/loci.txt
+    output: results/asian/01_extract/loci/extracted.tsv, results/asian/01_extract/loci/diagnostics.json, results/asian/01_extract/loci/extract.done
+    log: results/log/00_extract_asian_loci.log (check log file(s) for error details)
+    shell:
+        
+        python scripts/extract_loci.py           --gwas inputs/Asian.tsv           --loci inputs/loci.txt           --locus loci           --out-tsv results/asian/01_extract/loci/extracted.tsv           --diag-json results/asian/01_extract/loci/diagnostics.json           --done-file results/asian/01_extract/loci/extract.done           > results/log/00_extract_asian_loci.log 2>&1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 4745429
+
+Error executing rule extract_locus on cluster (jobid: 14, external: Submitted batch job 4745429, jobscript: /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/snakejob.extract_locus.14.sh). For error details see the cluster log and the log files of the involved rule(s).
+Cleanup failed jobs output files.
+Cleanup job metadata.
+[Thu Apr 23 00:23:57 2026]
+Error in rule extract_locus:
+    jobid: 23
+    input: inputs/Disc.tsv, inputs/loci.txt
+    output: results/disc/01_extract/ARID3A/extracted.tsv, results/disc/01_extract/ARID3A/diagnostics.json, results/disc/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_disc_ARID3A.log (check log file(s) for error details)
+    shell:
+        
+        python scripts/extract_loci.py           --gwas inputs/Disc.tsv           --loci inputs/loci.txt           --locus ARID3A           --out-tsv results/disc/01_extract/ARID3A/extracted.tsv           --diag-json results/disc/01_extract/ARID3A/diagnostics.json           --done-file results/disc/01_extract/ARID3A/extract.done           > results/log/00_extract_disc_ARID3A.log 2>&1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 4745430
+
+Error executing rule extract_locus on cluster (jobid: 23, external: Submitted batch job 4745430, jobscript: /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.qzle7eux/snakejob.extract_locus.23.sh). For error details see the cluster log and the log files of the involved rule(s).
+Cleanup failed jobs output files.
+Cleanup job metadata.
+Cleanup failed jobs output files.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2026-04-23T002110.659126.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

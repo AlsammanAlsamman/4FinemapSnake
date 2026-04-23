@@ -1,0 +1,54 @@
+Full Traceback (most recent call last):
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/snakemake/__init__.py", line 671, in snakemake
+    workflow.include(
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/snakemake/workflow.py", line 1362, in include
+    snakefile = infer_source_file(snakefile, basedir)
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/snakemake/sourcecache.py", line 323, in infer_source_file
+    if is_local_file(path_or_uri):
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/snakemake/common/__init__.py", line 92, in is_local_file
+    return parse_uri(path_or_uri).scheme == "file"
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/snakemake/common/__init__.py", line 96, in parse_uri
+    from smart_open import parse_uri
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/smart_open/__init__.py", line 34, in <module>
+    from .smart_open_lib import open, parse_uri, smart_open, register_compressor  # noqa: E402
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/smart_open/smart_open_lib.py", line 35, in <module>
+    from smart_open import doctools
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/smart_open/doctools.py", line 21, in <module>
+    from . import transport
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/smart_open/transport.py", line 101, in <module>
+    register_transport('smart_open.s3')
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/smart_open/transport.py", line 49, in register_transport
+    submodule = importlib.import_module(submodule)
+  File "/usr/local/analysis/python/3.10/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/usr/local/analysis/python/3.10.2/lib/python3.10/site-packages/smart_open/s3.py", line 17, in <module>
+    import boto3
+  File "/home/alsammana/.local/lib/python3.10/site-packages/boto3/__init__.py", line 17, in <module>
+    from boto3.compat import _warn_deprecated_python
+  File "/home/alsammana/.local/lib/python3.10/site-packages/boto3/compat.py", line 21, in <module>
+    from s3transfer.manager import TransferConfig
+  File "/home/alsammana/.local/lib/python3.10/site-packages/s3transfer/manager.py", line 25, in <module>
+    from s3transfer.copies import CopySubmissionTask
+  File "/home/alsammana/.local/lib/python3.10/site-packages/s3transfer/copies.py", line 19, in <module>
+    from s3transfer.tasks import (
+  File "/home/alsammana/.local/lib/python3.10/site-packages/s3transfer/tasks.py", line 16, in <module>
+    from s3transfer.utils import get_callbacks
+  File "/home/alsammana/.local/lib/python3.10/site-packages/s3transfer/utils.py", line 29, in <module>
+    from botocore.httpchecksum import DEFAULT_CHECKSUM_ALGORITHM, AwsChunkedWrapper
+  File "/home/alsammana/.local/lib/python3.10/site-packages/botocore/httpchecksum.py", line 34, in <module>
+    from botocore.model import StructureShape
+  File "/home/alsammana/.local/lib/python3.10/site-packages/botocore/model.py", line 18, in <module>
+    from botocore.auth import resolve_auth_type
+  File "/home/alsammana/.local/lib/python3.10/site-packages/botocore/auth.py", line 46, in <module>
+    from botocore.utils import (
+  File "/home/alsammana/.local/lib/python3.10/site-packages/botocore/utils.py", line 34, in <module>
+    import dateutil.parser
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 975, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_data
+KeyboardInterrupt
+
+Cancelling snakemake on user request.

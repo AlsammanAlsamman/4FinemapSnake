@@ -1,0 +1,24 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=32000, mem_mib=30518, disk_mb=1238, disk_mib=1181, cores=2
+Select jobs to execute...
+
+[Thu Apr 23 00:39:24 2026]
+rule harmonize_with_refpanel:
+    input: results/disc/01_extract/ARID3A/extracted.tsv, resources/refpanel/g1000_eas.bim
+    output: results/disc/02_harmonize/ARID3A/harmonized.tsv, results/disc/02_harmonize/ARID3A/diagnostics.json, results/disc/02_harmonize/ARID3A/harmonize.done
+    log: results/log/01_harmonize_disc_ARID3A.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1238, disk_mib=1181, tmpdir=/tmp, time=00:30:00, cores=2
+
+
+        python scripts/harmonize_gwas.py           --gwas results/disc/01_extract/ARID3A/extracted.tsv           --ref-prefix resources/refpanel/g1000_eas           --out-tsv results/disc/02_harmonize/ARID3A/harmonized.tsv           --diag-json results/disc/02_harmonize/ARID3A/diagnostics.json           --done-file results/disc/02_harmonize/ARID3A/harmonize.done           > results/log/01_harmonize_disc_ARID3A.log 2>&1
+        
+[Thu Apr 23 00:39:59 2026]
+Finished job 0.
+1 of 1 steps (100%) done

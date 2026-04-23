@@ -1,0 +1,63 @@
+##############################################################################
+# ANALYSIS CONFIGURATION
+# Kept in original project style (metadata/refpanels/targets) with extensions.
+##############################################################################
+
+metadata:
+  project_name: "finemapping"
+  version: "0.1.0"
+
+# Absolute or project-relative path where all step outputs are written.
+results_dir: "results"
+
+
+
+# Per-population reference panel prefixes (plink bed/bim/fam prefix).
+refpanels:
+  EAS:
+    path: "resources/refpanel/g1000_eas"
+  EUR:
+    path: "resources/refpanel/g1000_eur"
+  AMR:
+    path: "resources/refpanel/g1000_amr"
+
+# Global filters and behavior.
+filters:
+  refpanel_maf_min: 0.01
+  gwas_pvalue_threshold: 5e-8
+  matrix_symmetry_tolerance: 1e-6
+
+diagnostics:
+  ldscore_plot_enabled: true
+  require_ldscore_correlation: false
+  min_ldscore_p_correlation: 0.05
+
+finemap_params:
+  max_causal: 10
+  credible_set_coverage: 0.95
+
+susie_params:
+  L: 10
+  coverage: 0.95
+
+cojo_params:
+  pvalue_cutoff: 5e-8
+  max_iterations: 25
+
+default_resources:
+  mem_mb: 32000
+  cores: 2
+  time: "00:30:00"
+
+targets:
+  disc:
+    gwaspath: "inputs/Disc.tsv"
+    loci: "inputs/loci.txt"
+    refpanel: EAS
+    samplesize: 85987
+  asian:
+    gwaspath: "inputs/Asian.tsv"
+    loci: "inputs/loci.txt"
+    refpanel: EAS
+    samplesize: 159219
+

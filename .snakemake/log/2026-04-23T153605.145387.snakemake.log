@@ -1,0 +1,71 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job                    count
+-------------------  -------
+build_ld_matrix            2
+ldscore_diagnostics        2
+total                      4
+
+Select jobs to execute...
+
+[Thu Apr 23 15:36:07 2026]
+rule build_ld_matrix:
+    input: results/asian/03_match/ARID3A/matched.tsv
+    output: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv, results/asian/05_ld_matrix/ARID3A/diagnostics.json, results/asian/05_ld_matrix/ARID3A/ld_matrix.done
+    log: results/log/04_ld_matrix_asian_ARID3A.log
+    jobid: 7
+    reason: Forced execution
+    wildcards: target=asian, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+
+
+[Thu Apr 23 15:36:07 2026]
+rule build_ld_matrix:
+    input: results/disc/03_match/ARID3A/matched.tsv
+    output: results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv, results/disc/05_ld_matrix/ARID3A/diagnostics.json, results/disc/05_ld_matrix/ARID3A/ld_matrix.done
+    log: results/log/04_ld_matrix_disc_ARID3A.log
+    jobid: 16
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+
+[Thu Apr 23 15:36:16 2026]
+Finished job 16.
+1 of 15 steps (7%) done
+Select jobs to execute...
+
+[Thu Apr 23 15:36:18 2026]
+rule ldscore_diagnostics:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv
+    output: results/disc/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png, results/disc/04_ldscore_plot/ARID3A/correlation.tsv, results/disc/04_ldscore_plot/ARID3A/ldscore_plot.done
+    log: results/log/03_ldscore_plot_disc_ARID3A.log
+    jobid: 20
+    reason: Input files updated by another job: results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+
+[Thu Apr 23 15:36:57 2026]
+Finished job 20.
+2 of 15 steps (13%) done
+[Thu Apr 23 15:37:28 2026]
+Finished job 7.
+3 of 15 steps (20%) done
+Select jobs to execute...
+
+[Thu Apr 23 15:37:28 2026]
+rule ldscore_diagnostics:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    output: results/asian/04_ldscore_plot/ARID3A/zscore_vs_ldscore.png, results/asian/04_ldscore_plot/ARID3A/correlation.tsv, results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done
+    log: results/log/03_ldscore_plot_asian_ARID3A.log
+    jobid: 19
+    reason: Input files updated by another job: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+
+[Thu Apr 23 15:38:37 2026]
+Finished job 19.
+4 of 15 steps (27%) done
+Complete log: .snakemake/log/2026-04-23T153605.145387.snakemake.log

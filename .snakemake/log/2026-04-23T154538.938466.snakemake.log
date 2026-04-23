@@ -1,0 +1,44 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job                        count
+-----------------------  -------
+all                            1
+build_ld_matrix                2
+export_summary                 2
+extract_locus                  2
+filter_and_match_snps          2
+harmonize_with_refpanel        2
+ldscore_diagnostics            2
+qc_fix_ld_matrix               2
+run_cojo_iterative             2
+run_finemap                    2
+run_susier                     2
+total                         21
+
+Select jobs to execute...
+
+[Thu Apr 23 15:45:41 2026]
+rule extract_locus:
+    input: inputs/Asian.tsv, inputs/loci.txt
+    output: results/asian/01_extract/ARID3A/extracted.tsv, results/asian/01_extract/ARID3A/diagnostics.json, results/asian/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_asian_ARID3A.log
+    jobid: 5
+    reason: Forced execution
+    wildcards: target=asian, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+
+
+[Thu Apr 23 15:45:41 2026]
+rule extract_locus:
+    input: inputs/Disc.tsv, inputs/loci.txt
+    output: results/disc/01_extract/ARID3A/extracted.tsv, results/disc/01_extract/ARID3A/diagnostics.json, results/disc/01_extract/ARID3A/extract.done
+    log: results/log/00_extract_disc_ARID3A.log
+    jobid: 14
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+

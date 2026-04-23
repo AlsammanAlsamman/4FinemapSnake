@@ -1,0 +1,71 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 15
+Job stats:
+job                        count
+-----------------------  -------
+run_cojo_iterative_gcta        2
+total                          2
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+
+[Thu Apr 23 20:59:36 2026]
+rule run_cojo_iterative_gcta:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/03_match/ARID3A/refpanel_matched.bed, results/asian/03_match/ARID3A/refpanel_matched.bim, results/asian/03_match/ARID3A/refpanel_matched.fam
+    output: results/asian/09_cojo_gcta/ARID3A/cojo_independent_signals.tsv, results/asian/09_cojo_gcta/ARID3A/diagnostics.json, results/asian/09_cojo_gcta/ARID3A/cojo.done
+    log: results/log/08b_cojo_gcta_asian_ARID3A.log
+    jobid: 0
+    reason: Missing output files: results/asian/09_cojo_gcta/ARID3A/cojo.done
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        module load gcta
+        module load R/4.5.1-mkl
+        Rscript scripts/run_cojo_iterative_gcta.R           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --bfile-prefix results/asian/03_match/ARID3A/refpanel_matched           --out-tsv results/asian/09_cojo_gcta/ARID3A/cojo_independent_signals.tsv           --diag-json results/asian/09_cojo_gcta/ARID3A/diagnostics.json           --done-file results/asian/09_cojo_gcta/ARID3A/cojo.done           --sample-size 159219           --p-cutoff 5e-08           --max-iterations 25           --plot-dir results/asian/09_cojo_gcta/ARID3A/iterations           --gcta-bin gcta           > results/log/08b_cojo_gcta_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_cojo_iterative_gcta", "local": false, "input": ["results/asian/03_match/ARID3A/matched.tsv", "results/asian/03_match/ARID3A/refpanel_matched.bed", "results/asian/03_match/ARID3A/refpanel_matched.bim", "results/asian/03_match/ARID3A/refpanel_matched.fam"], "output": ["results/asian/09_cojo_gcta/ARID3A/cojo_independent_signals.tsv", "results/asian/09_cojo_gcta/ARID3A/diagnostics.json", "results/asian/09_cojo_gcta/ARID3A/cojo.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"p_cutoff": 5e-08, "max_iter": 25, "sample_size": 159219, "bfile_prefix": "results/asian/03_match/ARID3A/refpanel_matched", "plot_dir": "results/asian/09_cojo_gcta/ARID3A/iterations", "gcta_module": "gcta", "gcta_bin": "gcta"}, "log": ["results/log/08b_cojo_gcta_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 0, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_cojo_iterative_gcta:target=asian,locus=ARID3A' --allowed-rules 'run_cojo_iterative_gcta' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.q14mgl1d' 'results/asian/03_match/ARID3A/matched.tsv' 'results/asian/03_match/ARID3A/refpanel_matched.bed' 'results/asian/03_match/ARID3A/refpanel_matched.bim' 'results/asian/03_match/ARID3A/refpanel_matched.fam' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'code' 'params' 'input' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.q14mgl1d/0.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.q14mgl1d/0.jobfailed'; exit 1)
+
+Submitted job 0 with external jobid 'Submitted batch job 4746034'.
+
+[Thu Apr 23 20:59:36 2026]
+rule run_cojo_iterative_gcta:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/03_match/ARID3A/refpanel_matched.bed, results/disc/03_match/ARID3A/refpanel_matched.bim, results/disc/03_match/ARID3A/refpanel_matched.fam
+    output: results/disc/09_cojo_gcta/ARID3A/cojo_independent_signals.tsv, results/disc/09_cojo_gcta/ARID3A/diagnostics.json, results/disc/09_cojo_gcta/ARID3A/cojo.done
+    log: results/log/08b_cojo_gcta_disc_ARID3A.log
+    jobid: 4
+    reason: Missing output files: results/disc/09_cojo_gcta/ARID3A/cojo.done
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        module load gcta
+        module load R/4.5.1-mkl
+        Rscript scripts/run_cojo_iterative_gcta.R           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --bfile-prefix results/disc/03_match/ARID3A/refpanel_matched           --out-tsv results/disc/09_cojo_gcta/ARID3A/cojo_independent_signals.tsv           --diag-json results/disc/09_cojo_gcta/ARID3A/diagnostics.json           --done-file results/disc/09_cojo_gcta/ARID3A/cojo.done           --sample-size 85987           --p-cutoff 5e-08           --max-iterations 25           --plot-dir results/disc/09_cojo_gcta/ARID3A/iterations           --gcta-bin gcta           > results/log/08b_cojo_gcta_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_cojo_iterative_gcta", "local": false, "input": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/03_match/ARID3A/refpanel_matched.bed", "results/disc/03_match/ARID3A/refpanel_matched.bim", "results/disc/03_match/ARID3A/refpanel_matched.fam"], "output": ["results/disc/09_cojo_gcta/ARID3A/cojo_independent_signals.tsv", "results/disc/09_cojo_gcta/ARID3A/diagnostics.json", "results/disc/09_cojo_gcta/ARID3A/cojo.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"p_cutoff": 5e-08, "max_iter": 25, "sample_size": 85987, "bfile_prefix": "results/disc/03_match/ARID3A/refpanel_matched", "plot_dir": "results/disc/09_cojo_gcta/ARID3A/iterations", "gcta_module": "gcta", "gcta_bin": "gcta"}, "log": ["results/log/08b_cojo_gcta_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 4, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_cojo_iterative_gcta:target=disc,locus=ARID3A' --allowed-rules 'run_cojo_iterative_gcta' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.q14mgl1d' 'results/disc/03_match/ARID3A/matched.tsv' 'results/disc/03_match/ARID3A/refpanel_matched.bed' 'results/disc/03_match/ARID3A/refpanel_matched.bim' 'results/disc/03_match/ARID3A/refpanel_matched.fam' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'code' 'params' 'input' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.q14mgl1d/4.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.q14mgl1d/4.jobfailed'; exit 1)
+
+Submitted job 4 with external jobid 'Submitted batch job 4746035'.
+Waiting at most 120 seconds for missing files.
+[Thu Apr 23 21:00:36 2026]
+Finished job 0.
+1 of 2 steps (50%) done
+[Thu Apr 23 21:00:36 2026]
+Finished job 4.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2026-04-23T205933.601168.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

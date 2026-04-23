@@ -1,0 +1,24 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, cores=2
+Select jobs to execute...
+
+[Thu Apr 23 00:42:26 2026]
+rule run_cojo_iterative:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/asian/09_cojo/ARID3A/cojo_independent_signals.tsv, results/asian/09_cojo/ARID3A/diagnostics.json, results/asian/09_cojo/ARID3A/cojo.done
+    log: results/log/08_cojo_asian_ARID3A.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=/tmp, time=00:30:00, cores=2
+
+
+        bash scripts/run_cojo_iterative.sh           --input-tsv results/asian/03_match/ARID3A/matched.tsv           --ld-matrix results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/asian/09_cojo/ARID3A/cojo_independent_signals.tsv           --diag-json results/asian/09_cojo/ARID3A/diagnostics.json           --done-file results/asian/09_cojo/ARID3A/cojo.done           --p-cutoff 5e-08           --max-iterations 25           > results/log/08_cojo_asian_ARID3A.log 2>&1
+        
+[Thu Apr 23 00:42:30 2026]
+Finished job 0.
+1 of 1 steps (100%) done

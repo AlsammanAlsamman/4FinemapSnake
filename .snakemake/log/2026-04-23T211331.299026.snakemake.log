@@ -1,0 +1,50 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 200
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count
+----------------  -------
+build_ld_matrix         2
+qc_fix_ld_matrix        2
+run_finemap             2
+total                   6
+
+Select jobs to execute...
+
+[Thu Apr 23 21:13:33 2026]
+rule build_ld_matrix:
+    input: results/asian/03_match/ARID3A/matched.tsv, results/asian/03_match/ARID3A/refpanel_matched.bim
+    output: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv, results/asian/05_ld_matrix/ARID3A/diagnostics.json, results/asian/05_ld_matrix/ARID3A/ld_matrix.done
+    log: results/log/04_ld_matrix_asian_ARID3A.log
+    jobid: 7
+    reason: Set of input files has changed since last execution; Code has changed since last execution
+    wildcards: target=asian, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+
+
+[Thu Apr 23 21:13:33 2026]
+rule build_ld_matrix:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/03_match/ARID3A/refpanel_matched.bim
+    output: results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv, results/disc/05_ld_matrix/ARID3A/diagnostics.json, results/disc/05_ld_matrix/ARID3A/ld_matrix.done
+    log: results/log/04_ld_matrix_disc_ARID3A.log
+    jobid: 16
+    reason: Set of input files has changed since last execution; Code has changed since last execution
+    wildcards: target=disc, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+
+[Thu Apr 23 21:16:11 2026]
+Finished job 7.
+1 of 15 steps (7%) done
+Select jobs to execute...
+
+[Thu Apr 23 21:16:12 2026]
+rule qc_fix_ld_matrix:
+    input: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    output: results/asian/06_ld_qc/ARID3A/ld_matrix_qc.tsv, results/asian/06_ld_qc/ARID3A/diagnostics.json, results/asian/06_ld_qc/ARID3A/ld_qc.done
+    log: results/log/05_ld_qc_asian_ARID3A.log
+    jobid: 6
+    reason: Input files updated by another job: results/asian/05_ld_matrix/ARID3A/ld_matrix.tsv
+    wildcards: target=asian, locus=ARID3A
+    resources: tmpdir=/tmp, mem_mb=32000, mem_mib=30518, time=00:30:00, cores=2
+

@@ -1,0 +1,67 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 15
+Job stats:
+job                        count
+-----------------------  -------
+harmonize_with_refpanel        2
+total                          2
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (2)
+Select jobs to execute...
+Selected jobs (2)
+Resources after job selection: {'_cores': 9223372036854775805, '_nodes': 13}
+
+[Thu Apr 23 17:43:30 2026]
+rule harmonize_with_refpanel:
+    input: results/asian/01_extract/ARID3A/extracted.tsv, results/asian/01_extract/ARID3A/refpanel.bim
+    output: results/asian/02_harmonize/ARID3A/harmonized.tsv, results/asian/02_harmonize/ARID3A/diagnostics.json, results/asian/02_harmonize/ARID3A/harmonize.done
+    log: results/log/01_harmonize_asian_ARID3A.log
+    jobid: 4
+    reason: Forced execution
+    wildcards: target=asian, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/harmonize_gwas.py           --gwas results/asian/01_extract/ARID3A/extracted.tsv           --ref-prefix results/asian/01_extract/ARID3A/refpanel           --out-tsv results/asian/02_harmonize/ARID3A/harmonized.tsv           --diag-json results/asian/02_harmonize/ARID3A/diagnostics.json           --done-file results/asian/02_harmonize/ARID3A/harmonize.done           > results/log/01_harmonize_asian_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "harmonize_with_refpanel", "local": false, "input": ["results/asian/01_extract/ARID3A/extracted.tsv", "results/asian/01_extract/ARID3A/refpanel.bim"], "output": ["results/asian/02_harmonize/ARID3A/harmonized.tsv", "results/asian/02_harmonize/ARID3A/diagnostics.json", "results/asian/02_harmonize/ARID3A/harmonize.done"], "wildcards": {"target": "asian", "locus": "ARID3A"}, "params": {"ref_prefix": "results/asian/01_extract/ARID3A/refpanel"}, "log": ["results/log/01_harmonize_asian_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 4, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'harmonize_with_refpanel:target=asian,locus=ARID3A' --allowed-rules 'harmonize_with_refpanel' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.ri00mkvh' 'results/asian/01_extract/ARID3A/extracted.tsv' 'results/asian/01_extract/ARID3A/refpanel.bim' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'mtime' 'params' 'code' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.ri00mkvh/4.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.ri00mkvh/4.jobfailed'; exit 1)
+
+Submitted job 4 with external jobid 'Submitted batch job 4745779'.
+
+[Thu Apr 23 17:43:31 2026]
+rule harmonize_with_refpanel:
+    input: results/disc/01_extract/ARID3A/extracted.tsv, results/disc/01_extract/ARID3A/refpanel.bim
+    output: results/disc/02_harmonize/ARID3A/harmonized.tsv, results/disc/02_harmonize/ARID3A/diagnostics.json, results/disc/02_harmonize/ARID3A/harmonize.done
+    log: results/log/01_harmonize_disc_ARID3A.log
+    jobid: 13
+    reason: Forced execution
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        python scripts/harmonize_gwas.py           --gwas results/disc/01_extract/ARID3A/extracted.tsv           --ref-prefix results/disc/01_extract/ARID3A/refpanel           --out-tsv results/disc/02_harmonize/ARID3A/harmonized.tsv           --diag-json results/disc/02_harmonize/ARID3A/diagnostics.json           --done-file results/disc/02_harmonize/ARID3A/harmonize.done           > results/log/01_harmonize_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "harmonize_with_refpanel", "local": false, "input": ["results/disc/01_extract/ARID3A/extracted.tsv", "results/disc/01_extract/ARID3A/refpanel.bim"], "output": ["results/disc/02_harmonize/ARID3A/harmonized.tsv", "results/disc/02_harmonize/ARID3A/diagnostics.json", "results/disc/02_harmonize/ARID3A/harmonize.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"ref_prefix": "results/disc/01_extract/ARID3A/refpanel"}, "log": ["results/log/01_harmonize_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 13, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'harmonize_with_refpanel:target=disc,locus=ARID3A' --allowed-rules 'harmonize_with_refpanel' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.ri00mkvh' 'results/disc/01_extract/ARID3A/extracted.tsv' 'results/disc/01_extract/ARID3A/refpanel.bim' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'mtime' 'params' 'code' 'input' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.ri00mkvh/13.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.ri00mkvh/13.jobfailed'; exit 1)
+
+Submitted job 13 with external jobid 'Submitted batch job 4745780'.
+Waiting at most 120 seconds for missing files.
+[Thu Apr 23 17:44:01 2026]
+Finished job 4.
+1 of 19 steps (5%) done
+[Thu Apr 23 17:44:01 2026]
+Finished job 13.
+2 of 19 steps (11%) done
+Complete log: .snakemake/log/2026-04-23T174328.495473.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

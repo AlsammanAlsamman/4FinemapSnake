@@ -1,0 +1,28 @@
+alsammana:GeneBasedAssoFlow$
+./submit.sh --snakefile rules/plot_snp_gene_comparison.smk /s/nath-lab/alsamman/___Analysis___/Hispanic_2025/MAGMA_PipiLIne/results/example_analysis/plots/example_analysis_plots.done
+Submission type: Individual Rule
+Snakefile: rules/plot_snp_gene_comparison.smk
+Cores: 2
+Target(s): /s/nath-lab/alsamman/___Analysis___/Hispanic_2025/MAGMA_PipiLIne/results/example_analysis/plots/example_analysis_plots.done
+Jobs: 1
+
+Adjusting SLURM parameters for individual rule execution...
+Building DAG of jobs...
+Full Traceback (most recent call last):
+  File "/usr/local/analysis/python/3.7.0/lib/python3.7/site-packages/snakemake/__init__.py", line 785, in snakemake
+    keepmetadata=keep_metadata,
+  File "/usr/local/analysis/python/3.7.0/lib/python3.7/site-packages/snakemake/workflow.py", line 769, in execute
+    dag.init()
+  File "/usr/local/analysis/python/3.7.0/lib/python3.7/site-packages/snakemake/dag.py", line 184, in init
+    self.file2jobs(file),
+  File "/usr/local/analysis/python/3.7.0/lib/python3.7/site-packages/snakemake/dag.py", line 1705, in file2jobs
+    raise MissingRuleException(targetfile)
+snakemake.exceptions.MissingRuleException: No rule to produce /s/nath-lab/alsamman/___Analysis___/Hispanic_2025/MAGMA_PipiLIne/results/example_analysis/plots/example_analysis_plots.done (if you use input functions make sure that they don't raise unexpected exceptions).
+
+MissingRuleException:
+No rule to produce /s/nath-lab/alsamman/___Analysis___/Hispanic_2025/MAGMA_PipiLIne/results/example_analysis/plots/example_analysis_plots.done (if you use input functions make sure that they don't raise unexpected exceptions).
+unlocking
+removed all locks
+Snakemake workflow submitted for target(s): /s/nath-lab/alsamman/___Analysis___/Hispanic_2025/MAGMA_PipiLIne/results/example_analysis/plots/example_analysis_plots.done
+Monitor jobs with: squeue -u alsammana
+alsammana:GeneBasedAssoFlow$

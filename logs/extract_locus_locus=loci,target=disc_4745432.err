@@ -1,0 +1,35 @@
+Config file configs/analysis.yml is extended by additional config specified via the command line.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=32000, mem_mib=30518, disk_mb=1229, disk_mib=1173, cores=2
+Select jobs to execute...
+
+[Thu Apr 23 00:29:27 2026]
+rule extract_locus:
+    input: inputs/Disc.tsv, inputs/loci.txt
+    output: results/disc/01_extract/loci/extracted.tsv, results/disc/01_extract/loci/diagnostics.json, results/disc/01_extract/loci/extract.done
+    log: results/log/00_extract_disc_loci.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: target=disc, locus=loci
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1229, disk_mib=1173, tmpdir=/tmp, time=00:30:00, cores=2
+
+
+        python scripts/extract_loci.py           --gwas inputs/Disc.tsv           --loci inputs/loci.txt           --locus loci           --out-tsv results/disc/01_extract/loci/extracted.tsv           --diag-json results/disc/01_extract/loci/diagnostics.json           --done-file results/disc/01_extract/loci/extract.done           > results/log/00_extract_disc_loci.log 2>&1
+        
+[Thu Apr 23 00:31:13 2026]
+Error in rule extract_locus:
+    jobid: 0
+    input: inputs/Disc.tsv, inputs/loci.txt
+    output: results/disc/01_extract/loci/extracted.tsv, results/disc/01_extract/loci/diagnostics.json, results/disc/01_extract/loci/extract.done
+    log: results/log/00_extract_disc_loci.log (check log file(s) for error details)
+    shell:
+        
+        python scripts/extract_loci.py           --gwas inputs/Disc.tsv           --loci inputs/loci.txt           --locus loci           --out-tsv results/disc/01_extract/loci/extracted.tsv           --diag-json results/disc/01_extract/loci/diagnostics.json           --done-file results/disc/01_extract/loci/extract.done           > results/log/00_extract_disc_loci.log 2>&1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
