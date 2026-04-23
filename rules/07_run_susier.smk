@@ -16,6 +16,7 @@ rule run_susier:
     params:
         L=lambda wc: int(get_analysis_value("susie_params.L")),
         coverage=lambda wc: float(get_analysis_value("susie_params.coverage")),
+        sample_size=lambda wc: int(get_analysis_value(f"targets.{wc.target}.samplesize")),
         r_module=get_software_module("r"),
         r_libs_user=get_software_param("r", "r_libs_user", ""),
     log:
@@ -34,6 +35,7 @@ rule run_susier:
           --out-tsv {output.tsv} \
           --diag-json {output.diag} \
           --done-file {output.done} \
+                    --sample-size {params.sample_size} \
           --L {params.L} \
           --coverage {params.coverage} \
           > {log} 2>&1

@@ -65,3 +65,57 @@ Jobscript:
 cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'qc_fix_ld_matrix:target=disc,locus=ARID3A' --allowed-rules 'qc_fix_ld_matrix' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.v9rkulep' 'results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'input' 'software-env' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.v9rkulep/4.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.v9rkulep/4.jobfailed'; exit 1)
 
 Submitted job 4 with external jobid 'Submitted batch job 4746072'.
+[Thu Apr 23 21:36:38 2026]
+Finished job 4.
+2 of 3 steps (67%) done
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 15}
+Ready jobs (1)
+Select jobs to execute...
+Selected jobs (1)
+Resources after job selection: {'_cores': 9223372036854775806, '_nodes': 14}
+
+[Thu Apr 23 21:36:38 2026]
+rule run_susier:
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/disc/08_susier/ARID3A/susier_credible_set.tsv, results/disc/08_susier/ARID3A/diagnostics.json, results/disc/08_susier/ARID3A/susier.done
+    log: results/log/07_susier_disc_ARID3A.log
+    jobid: 0
+    reason: Input files updated by another job: results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    wildcards: target=disc, locus=ARID3A
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, time=00:30:00, cores=2
+
+
+        module load R/4.4.1-mkl bioconductor/3.19
+        export R_LIBS_USER="~/R/packages:/usr/local/analysis/bioconductor/3.19/R/library:/usr/local/analysis/R/4.4.1-mkl/lib/R/library"
+        Rscript scripts/run_susier.R           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --ld-matrix results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/disc/08_susier/ARID3A/susier_credible_set.tsv           --diag-json results/disc/08_susier/ARID3A/diagnostics.json           --done-file results/disc/08_susier/ARID3A/susier.done           --L 10           --coverage 0.95           > results/log/07_susier_disc_ARID3A.log 2>&1
+        
+Jobscript:
+#!/bin/sh
+# properties = {"type": "single", "rule": "run_susier", "local": false, "input": ["results/disc/03_match/ARID3A/matched.tsv", "results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv"], "output": ["results/disc/08_susier/ARID3A/susier_credible_set.tsv", "results/disc/08_susier/ARID3A/diagnostics.json", "results/disc/08_susier/ARID3A/susier.done"], "wildcards": {"target": "disc", "locus": "ARID3A"}, "params": {"L": 10, "coverage": 0.95, "r_module": "R/4.4.1-mkl bioconductor/3.19", "r_libs_user": "~/R/packages:/usr/local/analysis/bioconductor/3.19/R/library:/usr/local/analysis/R/4.4.1-mkl/lib/R/library"}, "log": ["results/log/07_susier_disc_ARID3A.log"], "threads": 1, "resources": {"mem_mb": 32000, "mem_mib": 30518, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "time": "00:30:00", "cores": 2}, "jobid": 0, "cluster": {}}
+cd /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake && /usr/local/analysis/python/3.10/bin/python3.10 -m snakemake --snakefile '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/Snakefile' --target-jobs 'run_susier:target=disc,locus=ARID3A' --allowed-rules 'run_susier' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=32000' 'mem_mib=30518' 'disk_mb=1000' 'disk_mib=954' 'cores=2' --wait-for-files '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.v9rkulep' 'results/disc/03_match/ARID3A/matched.tsv' 'results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'code' 'mtime' 'params' 'input' 'software-env' --skip-script-cleanup  --conda-frontend 'mamba' --drop-metadata  --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --configfiles '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/configs/analysis.yml' --printshellcmds  --latency-wait 120 --scheduler 'greedy' --scheduler-solver-path '/usr/local/analysis/python/3.10/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.v9rkulep/0.jobfinished' || (touch '/s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.v9rkulep/0.jobfailed'; exit 1)
+
+Submitted job 0 with external jobid 'Submitted batch job 4746076'.
+[Thu Apr 23 21:37:18 2026]
+Error in rule run_susier:
+    jobid: 0
+    input: results/disc/03_match/ARID3A/matched.tsv, results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv
+    output: results/disc/08_susier/ARID3A/susier_credible_set.tsv, results/disc/08_susier/ARID3A/diagnostics.json, results/disc/08_susier/ARID3A/susier.done
+    log: results/log/07_susier_disc_ARID3A.log (check log file(s) for error details)
+    shell:
+        
+        module load R/4.4.1-mkl bioconductor/3.19
+        export R_LIBS_USER="~/R/packages:/usr/local/analysis/bioconductor/3.19/R/library:/usr/local/analysis/R/4.4.1-mkl/lib/R/library"
+        Rscript scripts/run_susier.R           --input-tsv results/disc/03_match/ARID3A/matched.tsv           --ld-matrix results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --out-tsv results/disc/08_susier/ARID3A/susier_credible_set.tsv           --diag-json results/disc/08_susier/ARID3A/diagnostics.json           --done-file results/disc/08_susier/ARID3A/susier.done           --L 10           --coverage 0.95           > results/log/07_susier_disc_ARID3A.log 2>&1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 4746076
+
+Error executing rule run_susier on cluster (jobid: 0, external: Submitted batch job 4746076, jobscript: /s/nath-lab/alsamman/____MyCodes____/4FinemapSnake/.snakemake/tmp.v9rkulep/snakejob.run_susier.0.sh). For error details see the cluster log and the log files of the involved rule(s).
+Cleanup job metadata.
+Cleanup failed jobs output files.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2026-04-23T213513.849720.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

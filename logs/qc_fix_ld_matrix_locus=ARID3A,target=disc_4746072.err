@@ -20,3 +20,6 @@ rule qc_fix_ld_matrix:
                 module load R/4.5.1-mkl
                 Rscript scripts/qc_fix_ld_matrix.R           --input-matrix results/disc/05_ld_matrix/ARID3A/ld_matrix.tsv           --out-matrix results/disc/06_ld_qc/ARID3A/ld_matrix_qc.tsv           --diag-json results/disc/06_ld_qc/ARID3A/diagnostics.json           --done-file results/disc/06_ld_qc/ARID3A/ld_qc.done           --tolerance 1e-06           > results/log/05_ld_qc_disc_ARID3A.log 2>&1
         
+[Thu Apr 23 21:36:24 2026]
+Finished job 0.
+1 of 1 steps (100%) done
