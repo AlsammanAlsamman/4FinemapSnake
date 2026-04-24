@@ -3,7 +3,7 @@
 #SBATCH --output=logs/gwas_finemap_%j.out
 #SBATCH --error=logs/gwas_finemap_%j.err
 #SBATCH --time=2-00:00:00
-#SBATCH --mem=64G
+#SBATCH --mem=128G
 #SBATCH --cpus-per-task=8
 
 # Create logs directory
@@ -17,6 +17,7 @@ SNAKEFILE=""
 CORES=""
 JOBS=""
 UNTIL_RULE=""
+ALLOWED_RULES=()
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
@@ -27,6 +28,15 @@ while [[ $# -gt 0 ]]; do
             ;;
         --until)
             UNTIL_RULE="--until $2"
+            shift 2
+            ;;
+        --allowed-rules)
+            IFS=',' read -r -a _rules <<< "$2"
+            for _r in "${_rules[@]}"; do
+                if [[ -n "$_r" ]]; then
+                    ALLOWED_RULES+=("$_r")
+                fi
+            done
             shift 2
             ;;
         --snakefile)
@@ -71,7 +81,7 @@ if [[ "$INDIVIDUAL_RULE" == true ]]; then
     DEFAULT_SNAKEFILE="$SNAKEFILE"
     DEFAULT_CORES="${CORES:-2}"
     DEFAULT_JOBS=1
-    DEFAULT_MEM="32G"
+    DEFAULT_MEM="128G"
     DEFAULT_TIME="2:00:00"
     DEFAULT_CPUS=2
 else
@@ -79,7 +89,7 @@ else
     DEFAULT_SNAKEFILE="${SNAKEFILE:-Snakefile}"
     DEFAULT_CORES="${CORES:-8}"
     DEFAULT_JOBS=15
-    DEFAULT_MEM="64G"
+    DEFAULT_MEM="128G"
     DEFAULT_TIME="2-00:00:00"
     DEFAULT_CPUS=8
 fi
@@ -111,8 +121,21 @@ echo "Submission type: $([ "$INDIVIDUAL_RULE" == true ] && echo "Individual Rule
 echo "Snakefile: $DEFAULT_SNAKEFILE"
 echo "Cores: $DEFAULT_CORES"
 echo "Target(s): ${TARGETS[*]:-"(from snakefile)"}"
+if [[ ${#ALLOWED_RULES[@]} -gt 0 ]]; then
+    echo "Allowed rule(s): ${ALLOWED_RULES[*]}"
+fi
 echo "Jobs: $DEFAULT_JOBS"
 echo ""
+
+ALLOWED_RULES_ARGS=()
+if [[ ${#ALLOWED_RULES[@]} -gt 0 ]]; then
+    ALLOWED_RULES_ARGS=(--allowed-rules "${ALLOWED_RULES[@]}")
+fi
+
+TARGET_ARGS=()
+if [[ ${#TARGETS[@]} -gt 0 ]]; then
+    TARGET_ARGS=(-- "${TARGETS[@]}")
+fi
 
 # Adjust SLURM header for individual rules
 if [[ "$INDIVIDUAL_RULE" == true ]]; then
@@ -143,14 +166,15 @@ if [[ "$INDIVIDUAL_RULE" == true ]]; then
         $METADATA_FLAG \
         $DRY_RUN \
         $UNTIL_RULE \
+        "${ALLOWED_RULES_ARGS[@]}" \
         $EXTRA_FLAGS \
-        "${TARGETS[@]}"
+        "${TARGET_ARGS[@]}"
     SNAKEMAKE_EXIT_CODE=$?
 else
     # Full pipeline submission - original configuration
     snakemake \
         --cluster "sbatch \
-            --mem={resources.mem_mb} \
+            --mem=128G \
             --time={resources.time} \
             --job-name={rule}_{wildcards} \
             --cpus-per-task={threads} \
@@ -169,8 +193,9 @@ else
         $METADATA_FLAG \
         $DRY_RUN \
         $UNTIL_RULE \
+        "${ALLOWED_RULES_ARGS[@]}" \
         $EXTRA_FLAGS \
-        "${TARGETS[@]}"
+        "${TARGET_ARGS[@]}"
     SNAKEMAKE_EXIT_CODE=$?
 fi
 

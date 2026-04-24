@@ -1,46 +1,48 @@
 #!/usr/bin/env bash
-# Pipeline execution guide — run steps one by one using submit.sh.
-# Each command targets a specific rule via --until.
-# Dry-run first to validate graph, then execute.
+# Pipeline execution guide — run one step at a time with simple rule-based commands.
+# Each command runs ALL configured datasets/loci from configs/analysis.yml.
 
-# ─── DRY-RUN (validate DAG before any real execution) ────────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --dry-run --snakefile Snakefile"
+# Dry-run (validate DAG before execution)
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --dry-run"
 
-# ─── STEP 1: Extract locus GWAS and standardize columns ──────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/01_extract/ARID3A/extracted.done results/disc/01_extract/ARID3A/extracted.done"
+# Step 1: Extract locus GWAS and reference panel slice
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules extract_locus,extract_locus_all extract_locus_all"
 
-# ─── STEP 2: Harmonize GWAS to reference panel PLINK alleles ─────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/02_harmonize/ARID3A/harmonized.done results/disc/02_harmonize/ARID3A/harmonized.done"
+# Step 2: Harmonize GWAS to reference panel alleles
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules harmonize_with_refpanel,harmonize_with_refpanel_all harmonize_with_refpanel_all"
 
-# ─── STEP 3: Filter low-MAF SNPs and enforce reference SNP order ─────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/03_match/ARID3A/matched.done results/disc/03_match/ARID3A/matched.done"
+# Step 3: Filter and match SNPs to reference order
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules filter_and_match_snps,filter_and_match_snps_all filter_and_match_snps_all"
 
-# ─── STEP 4: LD-score vs -log10(P) diagnostic plots ─────────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/04_ldscore_plot/ARID3A/ldscore_plot.done results/disc/04_ldscore_plot/ARID3A/ldscore_plot.done"
+# Step 4: Build LD matrix
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules build_ld_matrix,build_ld_matrix_all build_ld_matrix_all"
 
-# ─── STEP 5: Build LD matrix ─────────────────────────────────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/05_ld_matrix/ARID3A/ld_matrix.done results/disc/05_ld_matrix/ARID3A/ld_matrix.done"
+# Step 5: LD-score vs signal diagnostics
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules ldscore_diagnostics,ldscore_diagnostics_all ldscore_diagnostics_all"
 
-# ─── STEP 6: QC / symmetrize LD matrix ───────────────────────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/06_ld_qc/ARID3A/ld_qc.done results/disc/06_ld_qc/ARID3A/ld_qc.done"
+# Step 6: QC / symmetrize LD matrix
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules qc_fix_ld_matrix,qc_fix_ld_matrix_all qc_fix_ld_matrix_all"
 
-# ─── STEP 7: FINEMAP ─────────────────────────────────────────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/07_finemap/ARID3A/finemap.done results/disc/07_finemap/ARID3A/finemap.done"
+# Step 7: FINEMAP
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules run_finemap,run_finemap_all run_finemap_all"
 
-# ─── STEP 8: SuSiE ───────────────────────────────────────────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/08_susier/ARID3A/susier.done results/disc/08_susier/ARID3A/susier.done"
+# Step 8: SuSiE
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules run_susier,run_susier_all run_susier_all"
 
-# ─── STEP 9: COJO iterative conditional analysis ─────────────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/09_cojo/ARID3A/cojo.done results/disc/09_cojo/ARID3A/cojo.done"
+# Step 9: COJO iterative conditional analysis (GCTA-COJO)
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules run_cojo_iterative_gcta,run_cojo_iterative_gcta_all run_cojo_iterative_gcta_all"
 
-# ─── STEP 9b: COJO iterative conditional analysis (GCTA-COJO) ───────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/09_cojo_gcta/ARID3A/cojo.done results/disc/09_cojo_gcta/ARID3A/cojo.done"
+# Step 10: Manhattan plots
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules plot_manhattan,plot_manhattan_all plot_manhattan_all"
 
-# ─── STEP 10: Manhattan plots ────────────────────────────────────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/asian/10_manhattan/ARID3A/manhattan_all.png results/disc/10_manhattan/ARID3A/manhattan_all.png"
+# Step 11: Export per-locus summary tables (TSV + Excel)
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules export_summary,export_summary_all export_summary_all"
 
-# ─── STEP 11: Export per-locus summary tables (TSV + Excel) ──────────────────
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile results/summary/ARID3A_summary.tsv"
+# Step 12: Export COJO iteration SNP table (TSV + Excel)
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules export_cojo_iteration_table,export_cojo_iteration_table_all export_cojo_iteration_table_all"
 
-# ─── FULL PIPELINE (all steps in one shot) ───────────────────────────────────
-# bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile"
+# Step 13: GWAS locus-zoom + LD R² triangle plot (PDF + PNG)
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules plot_locus_ld,plot_locus_ld_all plot_locus_ld_all"
+
+# Step 14: Export FINEMAP all-SNP table (TSV + Excel)
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules export_finemap_table,export_finemap_table_all export_finemap_table_all"

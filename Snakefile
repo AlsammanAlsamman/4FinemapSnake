@@ -61,10 +61,12 @@ include: "rules/04_make_ld_matrix.smk"
 include: "rules/05_ld_matrix_qc_fix.smk"
 include: "rules/06_run_finemap.smk"
 include: "rules/07_run_susier.smk"
-include: "rules/08_run_cojo_iterative.smk"
 include: "rules/08b_run_cojo_iterative_gcta.smk"
 include: "rules/09_plot_manhattan.smk"
 include: "rules/10_export_summary.smk"
+include: "rules/11_export_cojo_iteration_table.smk"
+include: "rules/12_plot_locus_ld.smk"
+include: "rules/13_export_finemap_table.smk"
 
 rule all:
     input:
@@ -76,6 +78,106 @@ rule all:
         ),
         expand(
             f"{RESULTS_DIR}/{{target}}/04_ldscore_plot/{{locus}}/ldscore_plot.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule extract_locus_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/01_extract/{{locus}}/extract.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule harmonize_with_refpanel_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/02_harmonize/{{locus}}/harmonize.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule filter_and_match_snps_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/03_match/{{locus}}/match.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule build_ld_matrix_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/05_ld_matrix/{{locus}}/ld_matrix.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule ldscore_diagnostics_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/04_ldscore_plot/{{locus}}/ldscore_plot.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule qc_fix_ld_matrix_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/06_ld_qc/{{locus}}/ld_qc.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule run_finemap_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/07_finemap/{{locus}}/finemap.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule run_susier_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/08_susier/{{locus}}/susier.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule run_cojo_iterative_gcta_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/09_cojo_gcta/{{locus}}/cojo.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
+rule plot_manhattan_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/10_manhattan/{{locus}}/manhattan.done",
             zip,
             target=PAIR_TARGETS,
             locus=PAIR_LOCI,

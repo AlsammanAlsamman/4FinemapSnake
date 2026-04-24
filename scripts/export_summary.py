@@ -15,6 +15,30 @@ def _tag(df: pd.DataFrame, method: str) -> pd.DataFrame:
     return out
 
 
+def _find_column_case_insensitive(df: pd.DataFrame, name: str) -> str | None:
+    want = name.lower()
+    for col in df.columns:
+        if str(col).lower() == want:
+            return str(col)
+    return None
+
+
+def _filter_susier_credible(df: pd.DataFrame) -> pd.DataFrame:
+    pip_col = _find_column_case_insensitive(df, "PIP")
+    cs_col = _find_column_case_insensitive(df, "CS")
+
+    if pip_col is None:
+        raise ValueError("SuSiE summary must include a PIP column")
+    if cs_col is None:
+        raise ValueError("SuSiE summary must include a CS column for credible set membership")
+
+    out = df.copy()
+    out[pip_col] = pd.to_numeric(out[pip_col], errors="coerce")
+    cs_is_present = out[cs_col].notna() & (out[cs_col].astype(str).str.strip() != "")
+    keep = cs_is_present & (out[pip_col] > 0)
+    return out.loc[keep].copy()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export per-locus summary table and Excel")
     parser.add_argument("--target", required=True)
@@ -32,8 +56,12 @@ def main() -> None:
     _mkdir_for(args.done_file)
 
     finemap = _tag(pd.read_csv(args.finemap_tsv, sep="\t"), "finemap")
-    susier = _tag(pd.read_csv(args.susier_tsv, sep="\t"), "susier")
-    cojo = _tag(pd.read_csv(args.cojo_tsv, sep="\t"), "cojo")
+
+    susier_raw = pd.read_csv(args.susier_tsv, sep="\t")
+    susier_filtered = _filter_susier_credible(susier_raw)
+    susier = _tag(susier_filtered, "susier")
+
+    cojo = _tag(pd.read_csv(args.cojo_tsv, sep="\t"), "cojo_gcta")
 
     summary = pd.concat([finemap, susier, cojo], ignore_index=True, sort=False)
     summary.insert(0, "target", args.target)

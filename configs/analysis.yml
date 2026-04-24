@@ -39,6 +39,7 @@ finemap_params:
 susie_params:
   L: 10
   coverage: 0.95
+  window_kb: 250
 
 cojo_params:
   pvalue_cutoff: 5e-8

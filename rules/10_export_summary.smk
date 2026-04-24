@@ -9,7 +9,7 @@ rule export_summary:
     input:
         finemap=f"{RESULTS_DIR}/{{target}}/07_finemap/{{locus}}/finemap_credible_set.tsv",
         susier=f"{RESULTS_DIR}/{{target}}/08_susier/{{locus}}/susier_credible_set.tsv",
-        cojo=f"{RESULTS_DIR}/{{target}}/09_cojo/{{locus}}/cojo_independent_signals.tsv",
+        cojo=f"{RESULTS_DIR}/{{target}}/09_cojo_gcta/{{locus}}/cojo_independent_signals.tsv",
     output:
         tsv=f"{RESULTS_DIR}/{{target}}/10_summary/{{locus}}/summary.tsv",
         xlsx=f"{RESULTS_DIR}/{{target}}/10_summary/{{locus}}/summary.xlsx",
@@ -35,4 +35,25 @@ rule export_summary:
           --out-xlsx {output.xlsx} \
           --done-file {output.done} \
           > {log} 2>&1
+        """
+
+
+rule export_summary_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/10_summary/{{locus}}/summary.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        ),
+    output:
+        done=f"{RESULTS_DIR}/10_summary/all_summaries.done",
+    resources:
+        mem_mb=1000,
+        time="00:10:00",
+        cores=1,
+    shell:
+        """
+        mkdir -p $(dirname {output.done})
+        echo ok > {output.done}
         """
