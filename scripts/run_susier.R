@@ -318,7 +318,8 @@ rds_path    <- paste0(backing_file, ".rds")
 
 if (!file.exists(rds_path)) {
   LOG("  Reading PLINK bed file into bigsnpr backing store ...")
-  snp_obj <- snp_readBed(paste0(plink_prefix, ".bed"), backingfile = backing_file)
+  rds_created <- snp_readBed(paste0(plink_prefix, ".bed"), backingfile = backing_file)
+  snp_obj <- snp_attach(rds_created)
 } else {
   LOG("  Attaching existing bigsnpr backing store ...")
   snp_obj <- snp_attach(rds_path)

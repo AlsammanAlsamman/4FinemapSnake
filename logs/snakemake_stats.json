@@ -1,23 +1,28 @@
 {
-    "total_runtime": 40.20135760307312,
+    "total_runtime": 90.13459920883179,
     "rules": {
-        "run_susier": {
-            "mean-runtime": 40.20135760307312,
-            "min-runtime": 40.20135760307312,
-            "max-runtime": 40.20135760307312
+        "export_summary": {
+            "mean-runtime": 29.966097116470337,
+            "min-runtime": 29.925001859664917,
+            "max-runtime": 30.007192373275757
+        },
+        "export_summary_all": {
+            "mean-runtime": 60.108524799346924,
+            "min-runtime": 60.108524799346924,
+            "max-runtime": 60.108524799346924
         }
     },
     "files": {
-        "results/asian/08_susier/ARID3A/susier_credible_set.tsv": {
-            "start-time": "Fri Apr 24 15:14:53 2026",
-            "stop-time": "Fri Apr 24 15:15:33 2026",
-            "duration": 40.20135760307312,
+        "results/asian/10_summary/ARID3A/summary.tsv": {
+            "start-time": "Fri Apr 24 16:55:16 2026",
+            "stop-time": "Fri Apr 24 16:55:46 2026",
+            "duration": 30.007192373275757,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 31000,
-                "mem_mib": 29564,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
@@ -25,16 +30,16 @@
                 "cores": 2
             }
         },
-        "results/asian/08_susier/ARID3A/diagnostics.json": {
-            "start-time": "Fri Apr 24 15:14:53 2026",
-            "stop-time": "Fri Apr 24 15:15:33 2026",
-            "duration": 40.20135760307312,
+        "results/asian/10_summary/ARID3A/summary.xlsx": {
+            "start-time": "Fri Apr 24 16:55:16 2026",
+            "stop-time": "Fri Apr 24 16:55:46 2026",
+            "duration": 30.007192373275757,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 31000,
-                "mem_mib": 29564,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
@@ -42,16 +47,16 @@
                 "cores": 2
             }
         },
-        "results/asian/08_susier/ARID3A/diagnostics.log": {
-            "start-time": "Fri Apr 24 15:14:53 2026",
-            "stop-time": "Fri Apr 24 15:15:33 2026",
-            "duration": 40.20135760307312,
+        "results/asian/10_summary/ARID3A/summary.done": {
+            "start-time": "Fri Apr 24 16:55:16 2026",
+            "stop-time": "Fri Apr 24 16:55:46 2026",
+            "duration": 30.007192373275757,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 31000,
-                "mem_mib": 29564,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
@@ -59,16 +64,16 @@
                 "cores": 2
             }
         },
-        "results/asian/08_susier/ARID3A/susier_overview.png": {
-            "start-time": "Fri Apr 24 15:14:53 2026",
-            "stop-time": "Fri Apr 24 15:15:33 2026",
-            "duration": 40.20135760307312,
+        "results/disc/10_summary/ARID3A/summary.tsv": {
+            "start-time": "Fri Apr 24 16:55:16 2026",
+            "stop-time": "Fri Apr 24 16:55:46 2026",
+            "duration": 29.925001859664917,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 31000,
-                "mem_mib": 29564,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
@@ -76,16 +81,16 @@
                 "cores": 2
             }
         },
-        "results/asian/08_susier/ARID3A/susier_pip.png": {
-            "start-time": "Fri Apr 24 15:14:53 2026",
-            "stop-time": "Fri Apr 24 15:15:33 2026",
-            "duration": 40.20135760307312,
+        "results/disc/10_summary/ARID3A/summary.xlsx": {
+            "start-time": "Fri Apr 24 16:55:16 2026",
+            "stop-time": "Fri Apr 24 16:55:46 2026",
+            "duration": 29.925001859664917,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 31000,
-                "mem_mib": 29564,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
@@ -93,16 +98,16 @@
                 "cores": 2
             }
         },
-        "results/asian/08_susier/ARID3A/susier_ld.png": {
-            "start-time": "Fri Apr 24 15:14:53 2026",
-            "stop-time": "Fri Apr 24 15:15:33 2026",
-            "duration": 40.20135760307312,
+        "results/disc/10_summary/ARID3A/summary.done": {
+            "start-time": "Fri Apr 24 16:55:16 2026",
+            "stop-time": "Fri Apr 24 16:55:46 2026",
+            "duration": 29.925001859664917,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 31000,
-                "mem_mib": 29564,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
@@ -110,38 +115,21 @@
                 "cores": 2
             }
         },
-        "results/asian/08_susier/ARID3A/susier_zscore.png": {
-            "start-time": "Fri Apr 24 15:14:53 2026",
-            "stop-time": "Fri Apr 24 15:15:33 2026",
-            "duration": 40.20135760307312,
+        "results/10_summary/all_summaries.done": {
+            "start-time": "Fri Apr 24 16:55:46 2026",
+            "stop-time": "Fri Apr 24 16:56:46 2026",
+            "duration": 60.108524799346924,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 31000,
-                "mem_mib": 29564,
+                "mem_mb": 1000,
+                "mem_mib": 954,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results/asian/08_susier/ARID3A/susier.done": {
-            "start-time": "Fri Apr 24 15:14:53 2026",
-            "stop-time": "Fri Apr 24 15:15:33 2026",
-            "duration": 40.20135760307312,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 31000,
-                "mem_mib": 29564,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
+                "time": "00:10:00",
+                "cores": 1
             }
         }
     }

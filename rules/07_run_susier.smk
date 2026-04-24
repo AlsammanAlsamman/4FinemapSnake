@@ -31,7 +31,7 @@ rule run_susier:
     log:
         f"{RESULTS_DIR}/log/07_susier_{{target}}_{{locus}}.log",
     resources:
-        mem_mb=128000,
+        mem_mb=64000,
         time="00:30:00",
         cores=2,
     shell:

@@ -1,8 +1,0 @@
-Source: 05_ld_matrix
-  overlap_sig: 98
-  unique ld_score_norm: 98
-  ld_score_norm min: 0.021327, median: 0.069765, max: 0.097776
-Source: 06_ld_qc
-  overlap_sig: 98
-  unique ld_score_norm: 98
-  ld_score_norm min: 0.021327, median: 0.069765, max: 0.097776

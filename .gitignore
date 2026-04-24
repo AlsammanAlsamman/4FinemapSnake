@@ -5,3 +5,8 @@ resources/
 *.out
 *.log
 .snakemake/
+*.pdf
+*.txt
+*.xlx
+*.xl*
+*.doc*

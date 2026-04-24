@@ -7,6 +7,8 @@ RESULTS_DIR = get_results_dir()
 
 rule export_summary:
     input:
+        matched=f"{RESULTS_DIR}/{{target}}/03_match/{{locus}}/matched.tsv",
+        afreq=f"{RESULTS_DIR}/{{target}}/03_match/{{locus}}/refpanel_matched.afreq",
         finemap=f"{RESULTS_DIR}/{{target}}/07_finemap/{{locus}}/finemap_credible_set.tsv",
         susier=f"{RESULTS_DIR}/{{target}}/08_susier/{{locus}}/susier_credible_set.tsv",
         cojo=f"{RESULTS_DIR}/{{target}}/09_cojo_gcta/{{locus}}/cojo_independent_signals.tsv",
@@ -28,6 +30,8 @@ rule export_summary:
         python scripts/export_summary.py \
           --target {params.target} \
           --locus {params.locus} \
+          --matched-tsv {input.matched} \
+          --afreq {input.afreq} \
           --finemap-tsv {input.finemap} \
           --susier-tsv {input.susier} \
           --cojo-tsv {input.cojo} \
