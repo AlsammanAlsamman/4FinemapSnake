@@ -1,17 +1,22 @@
 {
-    "total_runtime": 20.102108478546143,
+    "total_runtime": 120.09566855430603,
     "rules": {
-        "qc_fix_ld_matrix": {
-            "mean-runtime": 16.909749627113342,
-            "min-runtime": 13.91212272644043,
-            "max-runtime": 19.907376527786255
+        "export_cojo_iteration_table": {
+            "mean-runtime": 59.94836068153381,
+            "min-runtime": 59.89612102508545,
+            "max-runtime": 60.00060033798218
+        },
+        "export_cojo_iteration_table_all": {
+            "mean-runtime": 60.090598344802856,
+            "min-runtime": 60.090598344802856,
+            "max-runtime": 60.090598344802856
         }
     },
     "files": {
-        "results/asian/06_ld_qc/ARID5B/ld_matrix_qc.tsv": {
-            "start-time": "Mon Apr 27 20:48:29 2026",
-            "stop-time": "Mon Apr 27 20:48:43 2026",
-            "duration": 13.91212272644043,
+        "results/asian/11_cojo_iteration_table/ARID5B/cojo_iteration_snps.tsv": {
+            "start-time": "Mon Apr 27 21:14:10 2026",
+            "stop-time": "Mon Apr 27 21:15:10 2026",
+            "duration": 60.00060033798218,
             "priority": 0,
             "resources": {
                 "_cores": 1,
@@ -25,10 +30,10 @@
                 "cores": 2
             }
         },
-        "results/asian/06_ld_qc/ARID5B/diagnostics.json": {
-            "start-time": "Mon Apr 27 20:48:29 2026",
-            "stop-time": "Mon Apr 27 20:48:43 2026",
-            "duration": 13.91212272644043,
+        "results/asian/11_cojo_iteration_table/ARID5B/cojo_iteration_snps.xlsx": {
+            "start-time": "Mon Apr 27 21:14:10 2026",
+            "stop-time": "Mon Apr 27 21:15:10 2026",
+            "duration": 60.00060033798218,
             "priority": 0,
             "resources": {
                 "_cores": 1,
@@ -42,10 +47,10 @@
                 "cores": 2
             }
         },
-        "results/asian/06_ld_qc/ARID5B/ld_qc.done": {
-            "start-time": "Mon Apr 27 20:48:29 2026",
-            "stop-time": "Mon Apr 27 20:48:43 2026",
-            "duration": 13.91212272644043,
+        "results/asian/11_cojo_iteration_table/ARID5B/diagnostics.json": {
+            "start-time": "Mon Apr 27 21:14:10 2026",
+            "stop-time": "Mon Apr 27 21:15:10 2026",
+            "duration": 60.00060033798218,
             "priority": 0,
             "resources": {
                 "_cores": 1,
@@ -59,10 +64,10 @@
                 "cores": 2
             }
         },
-        "results/disc/06_ld_qc/ARID5B/ld_matrix_qc.tsv": {
-            "start-time": "Mon Apr 27 20:48:29 2026",
-            "stop-time": "Mon Apr 27 20:48:49 2026",
-            "duration": 19.907376527786255,
+        "results/asian/11_cojo_iteration_table/ARID5B/cojo_iteration_table.done": {
+            "start-time": "Mon Apr 27 21:14:10 2026",
+            "stop-time": "Mon Apr 27 21:15:10 2026",
+            "duration": 60.00060033798218,
             "priority": 0,
             "resources": {
                 "_cores": 1,
@@ -76,10 +81,10 @@
                 "cores": 2
             }
         },
-        "results/disc/06_ld_qc/ARID5B/diagnostics.json": {
-            "start-time": "Mon Apr 27 20:48:29 2026",
-            "stop-time": "Mon Apr 27 20:48:49 2026",
-            "duration": 19.907376527786255,
+        "results/disc/11_cojo_iteration_table/ARID5B/cojo_iteration_snps.tsv": {
+            "start-time": "Mon Apr 27 21:14:10 2026",
+            "stop-time": "Mon Apr 27 21:15:10 2026",
+            "duration": 59.89612102508545,
             "priority": 0,
             "resources": {
                 "_cores": 1,
@@ -93,10 +98,10 @@
                 "cores": 2
             }
         },
-        "results/disc/06_ld_qc/ARID5B/ld_qc.done": {
-            "start-time": "Mon Apr 27 20:48:29 2026",
-            "stop-time": "Mon Apr 27 20:48:49 2026",
-            "duration": 19.907376527786255,
+        "results/disc/11_cojo_iteration_table/ARID5B/cojo_iteration_snps.xlsx": {
+            "start-time": "Mon Apr 27 21:14:10 2026",
+            "stop-time": "Mon Apr 27 21:15:10 2026",
+            "duration": 59.89612102508545,
             "priority": 0,
             "resources": {
                 "_cores": 1,
@@ -108,6 +113,57 @@
                 "tmpdir": "<TBD>",
                 "time": "00:30:00",
                 "cores": 2
+            }
+        },
+        "results/disc/11_cojo_iteration_table/ARID5B/diagnostics.json": {
+            "start-time": "Mon Apr 27 21:14:10 2026",
+            "stop-time": "Mon Apr 27 21:15:10 2026",
+            "duration": 59.89612102508545,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results/disc/11_cojo_iteration_table/ARID5B/cojo_iteration_table.done": {
+            "start-time": "Mon Apr 27 21:14:10 2026",
+            "stop-time": "Mon Apr 27 21:15:10 2026",
+            "duration": 59.89612102508545,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results/11_cojo_iteration_table/all_cojo_iteration_tables.done": {
+            "start-time": "Mon Apr 27 21:15:10 2026",
+            "stop-time": "Mon Apr 27 21:16:10 2026",
+            "duration": 60.090598344802856,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 1000,
+                "mem_mib": 954,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:10:00",
+                "cores": 1
             }
         }
     }
