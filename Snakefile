@@ -67,6 +67,9 @@ include: "rules/10_export_summary.smk"
 include: "rules/11_export_cojo_iteration_table.smk"
 include: "rules/12_plot_locus_ld.smk"
 include: "rules/13_export_finemap_table.smk"
+include: "rules/14_extract_coloc_eqtls.smk"
+include: "rules/15_export_snp_master_table.smk"
+include: "rules/16_causal_snp_analysis.smk"
 
 rule all:
     input:

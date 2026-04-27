@@ -12,6 +12,7 @@ rule export_summary:
         finemap=f"{RESULTS_DIR}/{{target}}/07_finemap/{{locus}}/finemap_credible_set.tsv",
         susier=f"{RESULTS_DIR}/{{target}}/08_susier/{{locus}}/susier_credible_set.tsv",
         cojo=f"{RESULTS_DIR}/{{target}}/09_cojo_gcta/{{locus}}/cojo_independent_signals.tsv",
+        cojo_dir=f"{RESULTS_DIR}/{{target}}/09_cojo_gcta/{{locus}}/gcta_tmp",
     output:
         tsv=f"{RESULTS_DIR}/{{target}}/10_summary/{{locus}}/summary.tsv",
         xlsx=f"{RESULTS_DIR}/{{target}}/10_summary/{{locus}}/summary.xlsx",
@@ -19,6 +20,7 @@ rule export_summary:
     params:
         target=lambda wc: wc.target,
         locus=lambda wc: wc.locus,
+        cojo_dir=lambda wc: f"{RESULTS_DIR}/{wc.target}/09_cojo_gcta/{wc.locus}/gcta_tmp",
     log:
         f"{RESULTS_DIR}/log/10_summary_{{target}}_{{locus}}.log",
     resources:
@@ -35,6 +37,7 @@ rule export_summary:
           --finemap-tsv {input.finemap} \
           --susier-tsv {input.susier} \
           --cojo-tsv {input.cojo} \
+          --cojo-dir {params.cojo_dir} \
           --out-tsv {output.tsv} \
           --out-xlsx {output.xlsx} \
           --done-file {output.done} \

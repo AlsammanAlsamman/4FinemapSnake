@@ -2,8 +2,6 @@
 # Pipeline execution guide — run one step at a time with simple rule-based commands.
 # Each command runs ALL configured datasets/loci from configs/analysis.yml.
 
-# Dry-run (validate DAG before execution)
-bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --dry-run"
 
 # Step 1: Extract locus GWAS and reference panel slice
 bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules extract_locus,extract_locus_all extract_locus_all"
@@ -46,3 +44,12 @@ bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile -
 
 # Step 14: Export FINEMAP all-SNP table (TSV + Excel)
 bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules export_finemap_table,export_finemap_table_all export_finemap_table_all"
+
+# Step 15: Coloc preparation - subset all eQTL resources to prioritized summary SNPs
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules extract_coloc_eqtls,extract_coloc_eqtls_all extract_coloc_eqtls_all"
+
+# Step 16: Export SNP master table + LD matrices (r², r, D′) per locus
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules export_snp_master_table,export_snp_master_table_all export_snp_master_table_all"
+
+# Step 17: Causal SNP analysis (PDF plots + Excel summary)
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules causal_snp_analysis,causal_snp_analysis_all causal_snp_analysis_all"

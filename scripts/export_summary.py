@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import os
+import glob
 import numpy as np
 import pandas as pd
 
@@ -22,6 +23,50 @@ def _compute_or(beta):
     return np.exp(beta)
 
 
+def _load_cojo_iterations(cojo_dir: str) -> dict:
+    """
+    Load all COJO iteration files and extract conditional p-values and ORs.
+    Returns dict: {iter_num: {SNP: {p: pC, or: OR}, ...}, ...}
+    """
+    iterations = {}
+    
+    # Find all iter_*.cma.cojo files
+    iter_files = sorted(glob.glob(os.path.join(cojo_dir, "iter_*.cma.cojo")))
+    
+    for iter_file in iter_files:
+        # Extract iteration number from filename (e.g., iter_01.cma.cojo -> 01)
+        basename = os.path.basename(iter_file)
+        iter_num_str = basename.split("_")[1].split(".")[0]  # Get "01" from "iter_01.cma.cojo"
+        iter_num = int(iter_num_str)
+        
+        # Read the COJO output file
+        try:
+            df = pd.read_csv(iter_file, sep="\t")
+            df["SNP"] = df["SNP"].astype(str)
+            
+            # Extract conditional p-value and beta
+            pc_col = _find_column_case_insensitive(df, "pC")
+            bc_col = _find_column_case_insensitive(df, "bC")
+            
+            if pc_col and bc_col:
+                # Compute OR from conditional beta
+                df["or_cond"] = df[bc_col].apply(_compute_or)
+                
+                # Create dictionary for this iteration
+                iter_data = {}
+                for _, row in df.iterrows():
+                    snp = row["SNP"]
+                    pc = pd.to_numeric(row[pc_col], errors="coerce")
+                    or_cond = pd.to_numeric(row["or_cond"], errors="coerce")
+                    iter_data[snp] = {"p": pc, "or": or_cond}
+                
+                iterations[iter_num] = iter_data
+        except Exception as e:
+            print(f"Warning: Could not read {iter_file}: {e}")
+    
+    return iterations
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export per-locus summary table and Excel")
     parser.add_argument("--target", required=True)
@@ -31,6 +76,7 @@ def main() -> None:
     parser.add_argument("--finemap-tsv", required=True)
     parser.add_argument("--susier-tsv", required=True)
     parser.add_argument("--cojo-tsv", required=True)
+    parser.add_argument("--cojo-dir", required=True, help="Directory with COJO iteration files (gcta_tmp)")
     parser.add_argument("--out-tsv", required=True)
     parser.add_argument("--out-xlsx", required=True)
     parser.add_argument("--done-file", required=True)
@@ -39,6 +85,9 @@ def main() -> None:
     _mkdir_for(args.out_tsv)
     _mkdir_for(args.out_xlsx)
     _mkdir_for(args.done_file)
+
+    # Load COJO iterations
+    cojo_iterations = _load_cojo_iterations(args.cojo_dir)
 
     # Load base data: matched GWAS and allele frequencies
     matched = pd.read_csv(args.matched_tsv, sep="\t")
@@ -87,12 +136,8 @@ def main() -> None:
     else:
         finemap["finemap_pip"] = pd.NA
 
-    # Find CS column case-insensitively
-    cs_col = _find_column_case_insensitive(finemap, "CS")
-    if cs_col:
-        finemap["finemap_cs"] = finemap[cs_col]
-    else:
-        finemap["finemap_cs"] = pd.NA
+    # FINEMAP credible set TSV contains only SNPs in credible sets, so finemap_cs = 1 for all
+    finemap["finemap_cs"] = 1
 
     finemap_keep = finemap[["SNP", "finemap_pip", "finemap_cs"]].drop_duplicates(subset=["SNP"], keep="first")
 
@@ -131,10 +176,30 @@ def main() -> None:
     summary = summary.merge(susier_keep, on="SNP", how="left")
     summary = summary.merge(cojo_keep, on="SNP", how="left")
 
-    # Fill NAs with empty string for better display
+    # Add COJO conditional p-values and ORs for each iteration
+    for iter_num in sorted(cojo_iterations.keys()):
+        iter_data = cojo_iterations[iter_num]
+        col_p = f"p_iter{iter_num}"
+        col_or = f"or_iter{iter_num}"
+        
+        summary[col_p] = summary["SNP"].map(lambda snp: iter_data.get(snp, {}).get("p", np.nan))
+        summary[col_or] = summary["SNP"].map(lambda snp: iter_data.get(snp, {}).get("or", np.nan))
+
+    # Fill NAs with empty string for better display for specific columns
     for col in ["finemap_pip", "finemap_cs", "susie_pip", "susie_cs", "cojo"]:
         if col in summary.columns:
             summary[col] = summary[col].fillna("")
+
+    # Reorder columns to match desired output: 
+    # SNP, CHR, BP, EA, OA, AF, P, BETA, OR, SE, cojo, finemap_pip, finemap_cs, susie_pip, susie_cs, [p_iterN, or_iterN, ...]
+    desired_cols = ["SNP", "CHR", "BP", "EA", "OA", "AF", "P", "BETA", "OR", "SE", "cojo", "finemap_pip", "finemap_cs", "susie_pip", "susie_cs"]
+    
+    # Add iteration columns at the end
+    iter_cols = sorted([c for c in summary.columns if c.startswith("p_iter") or c.startswith("or_iter")])
+    desired_cols.extend(iter_cols)
+    
+    available_cols = [c for c in desired_cols if c in summary.columns]
+    summary = summary[available_cols]
 
     # Order by P value
     summary = summary.sort_values("P").reset_index(drop=True)

@@ -21,6 +21,9 @@ refpanels:
   AMR:
     path: "resources/refpanel/g1000_amr"
 
+resources:
+  eqtls_dir: "resources/eQTLs"
+
 # Global filters and behavior.
 filters:
   refpanel_maf_min: 0.01
@@ -44,6 +47,9 @@ susie_params:
 cojo_params:
   pvalue_cutoff: 5e-8
   max_iterations: 25
+
+coloc_params:
+  cojo_keep_label: "iter1"
 
 default_resources:
   mem_mb: 32000
