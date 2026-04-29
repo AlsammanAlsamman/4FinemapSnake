@@ -85,6 +85,22 @@ snp <- snp %>%
       !is.na(min_eqtl_pval) ~ "Weak / none",
       TRUE                  ~ "No data"
     ) %>% factor(levels=c("Strong (<1e-10)","Moderate (<1e-5)","Weak / none","No data")),
+    causal_tier      = case_when(
+      Composite_PIP > 0.5 & n_eqtl_sig >= 3 & in_CS ~ "Tier 1 (high confidence)",
+      Composite_PIP > 0.1 & n_eqtl_sig >= 1 ~ "Tier 2 (moderate)",
+      in_CS & n_eqtl_sig == 0 ~ "Tier 3 (GWAS support)",
+      TRUE ~ "Not tiered"
+    ) %>% factor(levels=c("Tier 1 (high confidence)","Tier 2 (moderate)","Tier 3 (GWAS support)","Not tiered")),
+    tier_reason      = case_when(
+      causal_tier == "Tier 1 (high confidence)" ~
+        sprintf("Tier 1: Composite_PIP=%.4f (>0.5), n_eqtl_sig=%d (>=3), in_CS=TRUE", Composite_PIP, n_eqtl_sig),
+      causal_tier == "Tier 2 (moderate)" ~
+        sprintf("Tier 2: Composite_PIP=%.4f (>0.1), n_eqtl_sig=%d (>=1)", Composite_PIP, n_eqtl_sig),
+      causal_tier == "Tier 3 (GWAS support)" ~
+        sprintf("Tier 3: in_CS=TRUE and n_eqtl_sig=%d (no significant eQTL tissues)", n_eqtl_sig),
+      TRUE ~
+        sprintf("Not tiered: Composite_PIP=%.4f, n_eqtl_sig=%d, in_CS=%s", Composite_PIP, n_eqtl_sig, if_else(in_CS, "TRUE", "FALSE"))
+    ),
     label_top        = if_else(Composite_PIP > 0.1 | in_CS, SNP_rsID, NA_character_)
   )
 
@@ -753,11 +769,34 @@ joint_out <- snp_score %>%
          pip_sc, eqtl_sc, joint_score,
          n_eqtl_sig, log10_min_eqtl,
          GWAS_pval, GWAS_OR, GWAS_log10p,
-         LD_score, in_CS, CS_membership) %>%
+         LD_score, in_CS, CS_membership, causal_tier, tier_reason) %>%
   rename(PIP_score_norm=pip_sc, eQTL_score_norm=eqtl_sc, Joint_causal_score=joint_score)
 add_sheet_data(wb, "Joint_Causal_Score", joint_out, freeze_col=5)
 
-# ── Sheet 10: README ──────────────────────────────────────────────────────────
+# ── Sheet 10: Tier-only assignment table ─────────────────────────────────────
+tier_out <- snp %>%
+  left_join(select(snp_score, SNP_rsID, joint_score), by = "SNP_rsID") %>%
+  filter(causal_tier != "Not tiered") %>%
+  arrange(causal_tier, desc(Composite_PIP), desc(n_eqtl_sig), desc(joint_score)) %>%
+  transmute(
+    Causal_tier = as.character(causal_tier),
+    SNP_rsID, CHR, POS, EA, OA,
+    FINEMAP_PIP, SuSiE_PIP, Composite_PIP,
+    Joint_causal_score = joint_score,
+    n_eqtl_sig, log10_min_eqtl,
+    GWAS_pval, GWAS_OR, GWAS_beta, GWAS_log10p,
+    LD_score,
+    in_CS,
+    meets_pip_gt_0_5 = Composite_PIP > 0.5,
+    meets_pip_gt_0_1 = Composite_PIP > 0.1,
+    meets_eqtl_ge_3 = n_eqtl_sig >= 3,
+    meets_eqtl_ge_1 = n_eqtl_sig >= 1,
+    no_sig_eqtl = n_eqtl_sig == 0,
+    tier_reason
+  )
+add_sheet_data(wb, "Tier_Assignments", tier_out, freeze_col=6)
+
+# ── Sheet 11: README ──────────────────────────────────────────────────────────
 addWorksheet(wb, "README")
 readme_txt <- c(
   "CAUSAL SNP IDENTIFICATION — ANALYSIS SUMMARY",
@@ -772,7 +811,8 @@ readme_txt <- c(
   "7. LD_matrix_r          — Signed r (blue=negative, red=positive phase)",
   "8. LD_matrix_Dprime     — D' normalised LD (blue=neg, red=pos; <1 = historical recombination)",
   "9. Joint_Causal_Score   — Combined ranking: normalised PIP + normalised eQTL signal",
-  "10. README              — This sheet",
+  "10. Tier_Assignments    — Tier 1/2/3 SNP-only table with full metrics and criterion checks",
+  "11. README              — This sheet",
   "",
   "KEY METRICS:",
   "Composite_PIP    = (FINEMAP_PIP + SuSiE_PIP) / 2",

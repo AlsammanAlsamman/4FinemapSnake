@@ -8,7 +8,7 @@ metadata:
   version: "0.1.0"
 
 # Absolute or project-relative path where all step outputs are written.
-results_dir: "results"
+results_dir: "results_both_genes"
 
 
 

@@ -1,158 +1,124 @@
 {
-    "total_runtime": 120.09566855430603,
+    "total_runtime": 120.04629397392273,
     "rules": {
-        "export_cojo_iteration_table": {
-            "mean-runtime": 59.94836068153381,
-            "min-runtime": 59.89612102508545,
-            "max-runtime": 60.00060033798218
+        "causal_snp_analysis": {
+            "mean-runtime": 59.93022286891937,
+            "min-runtime": 59.87978553771973,
+            "max-runtime": 59.98066020011902
         },
-        "export_cojo_iteration_table_all": {
-            "mean-runtime": 60.090598344802856,
-            "min-runtime": 60.090598344802856,
-            "max-runtime": 60.090598344802856
+        "causal_snp_analysis_all": {
+            "mean-runtime": 60.05226516723633,
+            "min-runtime": 60.05226516723633,
+            "max-runtime": 60.05226516723633
         }
     },
     "files": {
-        "results/asian/11_cojo_iteration_table/ARID5B/cojo_iteration_snps.tsv": {
-            "start-time": "Mon Apr 27 21:14:10 2026",
-            "stop-time": "Mon Apr 27 21:15:10 2026",
-            "duration": 60.00060033798218,
+        "results/asian/16_causal_snp_analysis/ARID5B/all_plots.pdf": {
+            "start-time": "Mon Apr 27 21:57:58 2026",
+            "stop-time": "Mon Apr 27 21:58:58 2026",
+            "duration": 59.98066020011902,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
+                "mem_mb": 64000,
+                "mem_mib": 61036,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
+                "time": "02:00:00",
                 "cores": 2
             }
         },
-        "results/asian/11_cojo_iteration_table/ARID5B/cojo_iteration_snps.xlsx": {
-            "start-time": "Mon Apr 27 21:14:10 2026",
-            "stop-time": "Mon Apr 27 21:15:10 2026",
-            "duration": 60.00060033798218,
+        "results/asian/16_causal_snp_analysis/ARID5B/causal_snp_summary.xlsx": {
+            "start-time": "Mon Apr 27 21:57:58 2026",
+            "stop-time": "Mon Apr 27 21:58:58 2026",
+            "duration": 59.98066020011902,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
+                "mem_mb": 64000,
+                "mem_mib": 61036,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
+                "time": "02:00:00",
                 "cores": 2
             }
         },
-        "results/asian/11_cojo_iteration_table/ARID5B/diagnostics.json": {
-            "start-time": "Mon Apr 27 21:14:10 2026",
-            "stop-time": "Mon Apr 27 21:15:10 2026",
-            "duration": 60.00060033798218,
+        "results/asian/16_causal_snp_analysis/ARID5B/causal_snp_analysis.done": {
+            "start-time": "Mon Apr 27 21:57:58 2026",
+            "stop-time": "Mon Apr 27 21:58:58 2026",
+            "duration": 59.98066020011902,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
+                "mem_mb": 64000,
+                "mem_mib": 61036,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
+                "time": "02:00:00",
                 "cores": 2
             }
         },
-        "results/asian/11_cojo_iteration_table/ARID5B/cojo_iteration_table.done": {
-            "start-time": "Mon Apr 27 21:14:10 2026",
-            "stop-time": "Mon Apr 27 21:15:10 2026",
-            "duration": 60.00060033798218,
+        "results/disc/16_causal_snp_analysis/ARID5B/all_plots.pdf": {
+            "start-time": "Mon Apr 27 21:57:58 2026",
+            "stop-time": "Mon Apr 27 21:58:58 2026",
+            "duration": 59.87978553771973,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
+                "mem_mb": 64000,
+                "mem_mib": 61036,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
+                "time": "02:00:00",
                 "cores": 2
             }
         },
-        "results/disc/11_cojo_iteration_table/ARID5B/cojo_iteration_snps.tsv": {
-            "start-time": "Mon Apr 27 21:14:10 2026",
-            "stop-time": "Mon Apr 27 21:15:10 2026",
-            "duration": 59.89612102508545,
+        "results/disc/16_causal_snp_analysis/ARID5B/causal_snp_summary.xlsx": {
+            "start-time": "Mon Apr 27 21:57:58 2026",
+            "stop-time": "Mon Apr 27 21:58:58 2026",
+            "duration": 59.87978553771973,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
+                "mem_mb": 64000,
+                "mem_mib": 61036,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
+                "time": "02:00:00",
                 "cores": 2
             }
         },
-        "results/disc/11_cojo_iteration_table/ARID5B/cojo_iteration_snps.xlsx": {
-            "start-time": "Mon Apr 27 21:14:10 2026",
-            "stop-time": "Mon Apr 27 21:15:10 2026",
-            "duration": 59.89612102508545,
+        "results/disc/16_causal_snp_analysis/ARID5B/causal_snp_analysis.done": {
+            "start-time": "Mon Apr 27 21:57:58 2026",
+            "stop-time": "Mon Apr 27 21:58:58 2026",
+            "duration": 59.87978553771973,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
+                "mem_mb": 64000,
+                "mem_mib": 61036,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
+                "time": "02:00:00",
                 "cores": 2
             }
         },
-        "results/disc/11_cojo_iteration_table/ARID5B/diagnostics.json": {
-            "start-time": "Mon Apr 27 21:14:10 2026",
-            "stop-time": "Mon Apr 27 21:15:10 2026",
-            "duration": 59.89612102508545,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results/disc/11_cojo_iteration_table/ARID5B/cojo_iteration_table.done": {
-            "start-time": "Mon Apr 27 21:14:10 2026",
-            "stop-time": "Mon Apr 27 21:15:10 2026",
-            "duration": 59.89612102508545,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results/11_cojo_iteration_table/all_cojo_iteration_tables.done": {
-            "start-time": "Mon Apr 27 21:15:10 2026",
-            "stop-time": "Mon Apr 27 21:16:10 2026",
-            "duration": 60.090598344802856,
+        "results/16_causal_snp_analysis/all_causal_snp_analysis.done": {
+            "start-time": "Mon Apr 27 21:58:58 2026",
+            "stop-time": "Mon Apr 27 21:59:58 2026",
+            "duration": 60.05226516723633,
             "priority": 0,
             "resources": {
                 "_cores": 1,
