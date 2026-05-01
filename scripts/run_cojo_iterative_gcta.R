@@ -124,6 +124,7 @@ run_gcta_slct <- function(prefix = "slct") {
     "--cojo-file", ma_file,
     "--cojo-p", format(p_cutoff, scientific = TRUE),
     "--cojo-slct",
+    "--cojo-collinear", "0.9",
     "--out", out_prefix
   )
 

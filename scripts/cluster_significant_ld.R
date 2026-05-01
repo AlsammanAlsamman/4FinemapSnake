@@ -38,7 +38,7 @@ safe_mkdir(opt$`out-summary`)
 safe_mkdir(opt$`out-html`)
 safe_mkdir(opt$`out-diag`)
 safe_mkdir(opt$`done-file`)
-write_interactive_plot <- function(plot_df, locus_name, p_threshold, out_html) {
+write_interactive_plot <- function(plot_df, locus_name, p_threshold, out_html, meta = list()) {
   plot_df <- as.data.frame(plot_df)
   plot_df$bp_mb <- as.numeric(plot_df$bp) / 1e6
   plot_df$logp <- -log10(pmax(pmin(as.numeric(plot_df$p), 1), 1e-300))
@@ -118,6 +118,49 @@ write_interactive_plot <- function(plot_df, locus_name, p_threshold, out_html) {
 
   payload <- list(data = traces, layout = layout)
   payload_json <- jsonlite::toJSON(payload, auto_unbox = TRUE, digits = 12)
+  locus_name_json <- jsonlite::toJSON(locus_name, auto_unbox = TRUE)
+
+  # Build info card HTML from meta list
+  fmt_bp <- function(x) if (is.na(x) || !is.finite(x)) "N/A" else format(as.integer(x), big.mark = ",")
+  fmt_mb <- function(x) if (is.na(x) || !is.finite(x)) "N/A" else sprintf("%.3f Mb", x / 1e6)
+  fmt_kb <- function(x) if (is.na(x) || !is.finite(x)) "N/A" else sprintf("%.1f kb", x / 1e3)
+  fmt_sci <- function(x) if (is.na(x) || !is.finite(x)) "N/A" else format(x, scientific = TRUE, digits = 3)
+  fmt_n  <- function(x) if (is.na(x) || !is.finite(x)) "N/A" else format(as.integer(x), big.mark = ",")
+
+  locus_chr   <- if (!is.null(meta$chr))          meta$chr          else "N/A"
+  locus_start <- if (!is.null(meta$locus_start))  meta$locus_start  else NA
+  locus_end   <- if (!is.null(meta$locus_end))    meta$locus_end    else NA
+  locus_width <- if (is.finite(locus_start) && is.finite(locus_end)) locus_end - locus_start else NA
+  n_total     <- if (!is.null(meta$n_total))      meta$n_total      else nrow(plot_df)
+  n_sig       <- if (!is.null(meta$n_sig))        meta$n_sig        else sum(plot_df$p <= p_threshold, na.rm = TRUE)
+  n_clusters  <- if (!is.null(meta$n_clusters))   meta$n_clusters   else length(unique(plot_df$cluster_label[plot_df$cluster_label != "background"]))
+  r2_thr      <- if (!is.null(meta$r2_threshold)) meta$r2_threshold else "N/A"
+  dist_kb_val <- if (!is.null(meta$distance_kb))  meta$distance_kb  else "N/A"
+  lead_snp    <- if (!is.null(meta$lead_snp))     meta$lead_snp     else "N/A"
+  lead_p      <- if (!is.null(meta$lead_p))       meta$lead_p       else NA
+
+  cards <- list(
+    list(label = "Locus",              value = locus_name),
+    list(label = "Chromosome",         value = paste0("chr", locus_chr)),
+    list(label = "Start",              value = fmt_bp(locus_start)),
+    list(label = "End",                value = fmt_bp(locus_end)),
+    list(label = "Width",              value = fmt_kb(locus_width)),
+    list(label = "Total SNPs",         value = fmt_n(n_total)),
+    list(label = paste0("SNPs < ", format(p_threshold, scientific = TRUE)),
+                                       value = fmt_n(n_sig)),
+    list(label = "LD clusters",        value = fmt_n(n_clusters)),
+    list(label = "R\u00b2 threshold",  value = as.character(r2_thr)),
+    list(label = "Merge distance",     value = paste0(dist_kb_val, " kb")),
+    list(label = "Lead SNP",           value = as.character(lead_snp)),
+    list(label = "Lead P",             value = fmt_sci(lead_p))
+  )
+
+  card_html <- paste(sapply(cards, function(cc) {
+    sprintf(
+      "<div class='card'><span class='clabel'>%s</span><span class='cval'>%s</span></div>",
+      cc$label, cc$value
+    )
+  }), collapse = "\n")
 
   html <- c(
     "<!doctype html>",
@@ -128,20 +171,122 @@ write_interactive_plot <- function(plot_df, locus_name, p_threshold, out_html) {
     sprintf("  <title>%s clusters Manhattan</title>", locus_name),
     "  <script src='https://cdn.plot.ly/plotly-2.35.2.min.js'></script>",
     "  <style>",
-    "    body{margin:0;font-family:Arial,sans-serif;background:#f6f8fb;color:#101828}",
-    "    .wrap{padding:14px}",
-    "    #plot{width:100%;height:86vh;border:1px solid #d0d5dd;background:#fff;border-radius:10px}",
-    "    .hint{margin-top:8px;font-size:12px;color:#475467}",
+    "    *{box-sizing:border-box}",
+    "    body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#101828}",
+    "    .page{display:flex;flex-direction:column;height:100vh;padding:12px 16px;gap:10px}",
+    "    .infobar{display:flex;flex-wrap:wrap;gap:8px;background:#fff;",
+    "             border:1px solid #d0d5dd;border-radius:10px;padding:10px 14px}",
+    "    .card{display:flex;flex-direction:column;min-width:110px;padding:4px 10px;",
+    "          border-right:1px solid #e4e7ec}",
+    "    .card:last-child{border-right:none}",
+    "    .clabel{font-size:10px;font-weight:600;text-transform:uppercase;",
+    "            letter-spacing:.05em;color:#667085}",
+    "    .cval{font-size:13px;font-weight:700;color:#101828;margin-top:2px}",
+    "    .mainrow{display:flex;flex:1;min-height:0;gap:10px}",
+    "    .plotwrap{flex:1;min-height:0;border:1px solid #d0d5dd;border-radius:10px;",
+    "             background:#fff;overflow:hidden}",
+    "    .snpbox{width:350px;max-width:42vw;background:#fff;border:1px solid #d0d5dd;",
+    "           border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px}",
+    "    .snpbox h3{margin:0;font-size:14px}",
+    "    .snpgrid{display:grid;grid-template-columns:110px 1fr;gap:6px;font-size:12px}",
+    "    .k{color:#667085;font-weight:600}",
+    "    .v{font-weight:700;color:#101828;word-break:break-all}",
+    "    .snptext{width:100%;height:170px;resize:vertical;border:1px solid #d0d5dd;",
+    "            border-radius:8px;padding:8px;font-size:12px;font-family:monospace}",
+    "    .btn{align-self:flex-start;border:1px solid #155eef;background:#155eef;color:#fff;",
+    "         border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer}",
+    "    .btn:active{transform:translateY(1px)}",
+    "    .copymsg{font-size:11px;color:#027a48;min-height:14px}",
+    "    @media (max-width: 1100px){.mainrow{flex-direction:column}.snpbox{width:100%;max-width:none}}",
+    "    #plot{width:100%;height:100%}",
+    "    .hint{font-size:11px;color:#667085;padding:2px 4px}",
     "  </style>",
     "</head>",
     "<body>",
-    "  <div class='wrap'>",
-    "    <div id='plot'></div>",
-    "    <div class='hint'>Click legend items to hide/show clusters. Double-click a legend item to isolate one cluster.</div>",
+    "  <div class='page'>",
+    "    <div class='infobar'>",
+    card_html,
+    "    </div>",
+    "    <div class='mainrow'>",
+    "      <div class='plotwrap'><div id='plot'></div></div>",
+    "      <div class='snpbox'>",
+    "        <h3>Selected SNP Details</h3>",
+    "        <div class='snpgrid'>",
+    "          <div class='k'>SNP</div><div class='v' id='sel-snp'>Click a point</div>",
+    "          <div class='k'>Chromosome</div><div class='v' id='sel-chr'>-</div>",
+    "          <div class='k'>Position (bp)</div><div class='v' id='sel-bp'>-</div>",
+    "          <div class='k'>P-value</div><div class='v' id='sel-p'>-</div>",
+    "          <div class='k'>Cluster</div><div class='v' id='sel-cluster'>-</div>",
+    "        </div>",
+    "        <textarea id='sel-text' class='snptext' readonly>Click any SNP on the plot to populate copy-ready text.</textarea>",
+    "        <button id='copy-btn' class='btn' type='button'>Copy SNP Info</button>",
+    "        <div id='copy-msg' class='copymsg'></div>",
+    "      </div>",
+    "    </div>",
+    "    <div class='hint'>&#9432; Click legend items to hide/show clusters &mdash; double-click to isolate one cluster.</div>",
     "  </div>",
     "  <script>",
     sprintf("    const payload = %s;", payload_json),
-    "    Plotly.newPlot('plot', payload.data, payload.layout, {responsive:true, displaylogo:false});",
+    sprintf("    const locusName = %s;", locus_name_json),
+    "    const fmtInt = (x) => Number.isFinite(Number(x)) ? Number(x).toLocaleString() : 'N/A';",
+    "    const fmtSci = (x) => Number.isFinite(Number(x)) ? Number(x).toExponential(3) : 'N/A';",
+    "    const el = {",
+    "      snp: document.getElementById('sel-snp'),",
+    "      chr: document.getElementById('sel-chr'),",
+    "      bp: document.getElementById('sel-bp'),",
+    "      p: document.getElementById('sel-p'),",
+    "      cluster: document.getElementById('sel-cluster'),",
+    "      txt: document.getElementById('sel-text'),",
+    "      copyBtn: document.getElementById('copy-btn'),",
+    "      copyMsg: document.getElementById('copy-msg')",
+    "    };",
+    "    const updateSnpBox = (point) => {",
+    "      const cd = (point && point.customdata) ? point.customdata : [];",
+    "      const snp = (cd[0] ?? 'N/A').toString();",
+    "      const chr = (cd[1] ?? 'N/A').toString();",
+    "      const bp = cd[2];",
+    "      const p = cd[3];",
+    "      const cluster = (cd[4] ?? 'N/A').toString();",
+    "      const chrText = chr === 'N/A' ? 'N/A' : ('chr' + chr);",
+    "      el.snp.textContent = snp;",
+    "      el.chr.textContent = chrText;",
+    "      el.bp.textContent = fmtInt(bp);",
+    "      el.p.textContent = fmtSci(p);",
+    "      el.cluster.textContent = cluster;",
+    "      el.txt.value = [",
+    "        'Locus: ' + locusName,",
+    "        'SNP: ' + snp,",
+    "        'Chromosome: ' + chrText,",
+    "        'Position (bp): ' + fmtInt(bp),",
+    "        'P-value: ' + fmtSci(p),",
+    "        'Cluster: ' + cluster",
+    "      ].join('\\n');",
+    "      el.copyMsg.textContent = '';",
+    "    };",
+    "    const copyText = async () => {",
+    "      const txt = el.txt.value || '';",
+    "      if (!txt.trim()) return;",
+    "      try {",
+    "        if (navigator.clipboard && navigator.clipboard.writeText) {",
+    "          await navigator.clipboard.writeText(txt);",
+    "        } else {",
+    "          el.txt.focus();",
+    "          el.txt.select();",
+    "          document.execCommand('copy');",
+    "        }",
+    "        el.copyMsg.textContent = 'Copied to clipboard.';",
+    "      } catch (e) {",
+    "        el.copyMsg.textContent = 'Copy failed; select the text manually.';",
+    "      }",
+    "    };",
+    "    el.copyBtn.addEventListener('click', copyText);",
+    "    Plotly.newPlot('plot', payload.data, payload.layout, {responsive:true, displaylogo:false}).then(() => {",
+    "      const plot = document.getElementById('plot');",
+    "      plot.on('plotly_click', (ev) => {",
+    "        if (!ev || !ev.points || !ev.points.length) return;",
+    "        updateSnpBox(ev.points[0]);",
+    "      });",
+    "    });",
     "  </script>",
     "</body>",
     "</html>"
@@ -200,7 +345,20 @@ if (nrow(sig) == 0) {
   fwrite(empty, opt$`out-summary`, sep = "\t")
   base_df <- copy(gwas)
   base_df[, cluster_label := "background"]
-  write_interactive_plot(base_df, opt$locus, opt$`p-threshold`, opt$`out-html`)
+  locus_idx_e  <- match(opt$locus, as.character(loci[["loci"]]))
+  meta_empty <- list(
+    chr         = if (!is.na(locus_idx_e)) loci[["chr"]][locus_idx_e]              else NA,
+    locus_start = if (!is.na(locus_idx_e)) as.integer(loci[["start"]][locus_idx_e]) else NA,
+    locus_end   = if (!is.na(locus_idx_e)) as.integer(loci[["end"]][locus_idx_e])   else NA,
+    n_total     = nrow(base_df),
+    n_sig       = 0L,
+    n_clusters  = 0L,
+    r2_threshold = opt$`r2-threshold`,
+    distance_kb  = opt$`distance-kb`,
+    lead_snp     = "none",
+    lead_p       = NA_real_
+  )
+  write_interactive_plot(base_df, opt$locus, opt$`p-threshold`, opt$`out-html`, meta = meta_empty)
   diag <- list(
     locus = opt$locus,
     p_threshold = opt$`p-threshold`,
@@ -431,7 +589,22 @@ for (cid in seq_along(cluster_members)) {
 summary_df <- do.call(rbind, cluster_rows)
 summary_df <- summary_df[order(summary_df$chr, summary_df$cluster_start), ]
 fwrite(summary_df, opt$`out-summary`, sep = "\t")
-write_interactive_plot(gwas_with_cluster, opt$locus, opt$`p-threshold`, opt$`out-html`)
+locus_idx  <- match(opt$locus, as.character(loci[["loci"]]))
+# Pick overall lead SNP (lowest p among all significant SNPs)
+lead_row <- sig[which.min(sig$p), ]
+meta_final <- list(
+  chr          = if (!is.na(locus_idx)) loci[["chr"]][locus_idx]                          else (if (nrow(sig) > 0) sig$chr[1] else NA),
+  locus_start  = if (!is.na(locus_idx)) as.integer(loci[["start"]][locus_idx])             else min(gwas$bp),
+  locus_end    = if (!is.na(locus_idx)) as.integer(loci[["end"]][locus_idx])               else max(gwas$bp),
+  n_total      = nrow(gwas),
+  n_sig        = nrow(sig),
+  n_clusters   = nrow(summary_df),
+  r2_threshold = opt$`r2-threshold`,
+  distance_kb  = opt$`distance-kb`,
+  lead_snp     = if (nrow(lead_row) > 0) as.character(lead_row$snp[1]) else "N/A",
+  lead_p       = if (nrow(lead_row) > 0) as.numeric(lead_row$p[1]) else NA_real_
+)
+write_interactive_plot(gwas_with_cluster, opt$locus, opt$`p-threshold`, opt$`out-html`, meta = meta_final)
 
 diag <- list(
   locus = opt$locus,
