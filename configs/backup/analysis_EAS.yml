@@ -8,7 +8,7 @@ metadata:
   version: "0.1.0"
 
 # Absolute or project-relative path where all step outputs are written.
-results_dir: "results_Hispanic"
+results_dir: "results_both_genes"
 
 
 
@@ -54,19 +54,20 @@ cojo_params:
 coloc_params:
   cojo_keep_label: "iter1"
 
-# Step 4b (significant SNP LD clustering): edge threshold for SNP-SNP LD graph.
-clustering_LD:
-  sig_ld_cluster_r2_threshold: 0.2
-  sig_distance_cluster_r2_threshold: 150 #kbp
-
 default_resources:
   mem_mb: 32000
   cores: 2
   time: "00:30:00"
 
 targets:
-  Hisp:
-    gwaspath: "inputs/Hisp.tsv"
-    loci: "inputs/loci_2.txt"
-    refpanel: AMR
-    samplesize: 8519
+  disc:
+    gwaspath: "inputs/Disc.tsv"
+    loci: "inputs/loci.txt"
+    refpanel: EAS
+    samplesize: 85987
+  asian:
+    gwaspath: "inputs/Asian.tsv"
+    loci: "inputs/loci.txt"
+    refpanel: EAS
+    samplesize: 159219
+

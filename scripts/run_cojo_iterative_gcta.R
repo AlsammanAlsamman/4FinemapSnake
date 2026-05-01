@@ -117,6 +117,46 @@ run_gcta_cond <- function(selected_snps, prefix) {
   cma
 }
 
+run_gcta_slct <- function(prefix = "slct") {
+  out_prefix <- file.path(tmp_dir, prefix)
+  cmd_args <- c(
+    "--bfile", bfile_prefix,
+    "--cojo-file", ma_file,
+    "--cojo-p", format(p_cutoff, scientific = TRUE),
+    "--cojo-slct",
+    "--out", out_prefix
+  )
+
+  status <- system2(gcta_bin, args = cmd_args, stdout = TRUE, stderr = TRUE)
+  status_code <- attr(status, "status")
+  status_text <- paste(status, collapse = "\n")
+
+  # GCTA returns non-zero and no .jma.cojo when no SNP passes the p cutoff.
+  if (grepl("No SNPs have been selected", status_text, fixed = TRUE)) {
+    return(data.frame(SNP = character(0), pJ = numeric(0), stringsAsFactors = FALSE))
+  }
+
+  if (!is.null(status_code) && status_code != 0) {
+    stop(sprintf("GCTA --cojo-slct failed: %s", status_text))
+  }
+
+  jma_file <- paste0(out_prefix, ".jma.cojo")
+  if (!file.exists(jma_file)) {
+    stop(sprintf("Missing GCTA --cojo-slct output: %s", jma_file))
+  }
+
+  jma <- read.table(jma_file, header = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+  if (!all(c("SNP", "pJ") %in% colnames(jma))) {
+    stop(sprintf("GCTA jma missing required columns SNP/pJ: %s", jma_file))
+  }
+
+  jma$SNP <- as.character(jma$SNP)
+  jma$pJ <- suppressWarnings(as.numeric(jma$pJ))
+  jma <- jma[is.finite(jma$pJ), , drop = FALSE]
+  jma <- jma[order(jma$pJ, decreasing = FALSE), , drop = FALSE]
+  jma
+}
+
 plot_manhattan <- function(pvals, selected, tag) {
   d <- data.frame(BP = gwas$BP, SNP = gwas$SNP, p = pvals, selected = FALSE, stringsAsFactors = FALSE)
   d$selected[d$SNP %in% selected] <- TRUE
@@ -133,31 +173,33 @@ plot_manhattan <- function(pvals, selected, tag) {
   ggsave(png, p, width = 10, height = 4.8, dpi = 150)
 }
 
-p_current <- gwas$P
-selected <- character(0)
-records <- list()
+p_current   <- gwas$P
+selected    <- character(0)
+blacklist   <- character(0)
+records     <- list()
 stop_reason <- "p_threshold"
 
 # Base plot at iteration 0 using original GWAS p-values.
 plot_manhattan(p_current, selected, "iter_00_base_original")
 
-for (it in seq_len(max_iter)) {
-  remaining <- !(gwas$SNP %in% selected)
-  if (!any(remaining)) {
-    stop_reason <- "no_candidates"
-    break
+# Option C: use GCTA stepwise selection first (handles collinearity internally)
+jma <- run_gcta_slct("slct")
+selected_all <- unique(jma$SNP)
+if (length(selected_all) > max_iter) {
+  selected_all <- selected_all[seq_len(max_iter)]
+  stop_reason <- "max_iterations"
+}
+
+if (length(selected_all) == 0) {
+  stop_reason <- "p_threshold"
+}
+
+for (it in seq_along(selected_all)) {
+  lead_snp <- selected_all[it]
+  if (!(lead_snp %in% gwas$SNP)) {
+    next
   }
 
-  idx_rem <- which(remaining)
-  lead_idx <- idx_rem[which.min(p_current[idx_rem])]
-  lead_p <- p_current[lead_idx]
-
-  if (!is.finite(lead_p) || lead_p > p_cutoff) {
-    stop_reason <- "p_threshold"
-    break
-  }
-
-  lead_snp <- gwas$SNP[lead_idx]
   prev_selected <- selected
   selected <- c(selected, lead_snp)
 
@@ -177,24 +219,34 @@ for (it in seq_len(max_iter)) {
   # Plot after conditioning on selected SNPs.
   plot_manhattan(p_next, selected, sprintf("iter_%02d_conditioned_on_%d_snps", it, length(selected)))
 
-  cma_row <- cma[cma$SNP == lead_snp, , drop = FALSE]
-  beta_cond <- NA_real_
-  se_cond <- NA_real_
-  z_cond <- NA_real_
-  if (nrow(cma_row) > 0 && !is.na(beta_col) && !is.na(se_col)) {
-    beta_cond <- suppressWarnings(as.numeric(cma_row[[beta_col]][1]))
-    se_cond <- suppressWarnings(as.numeric(cma_row[[se_col]][1]))
-    if (is.finite(beta_cond) && is.finite(se_cond) && se_cond > 0) {
-      z_cond <- beta_cond / se_cond
-    }
+  jma_row <- jma[jma$SNP == lead_snp, , drop = FALSE]
+  p_joint <- if (nrow(jma_row) > 0 && "pJ" %in% colnames(jma_row)) {
+    suppressWarnings(as.numeric(jma_row$pJ[1]))
+  } else {
+    NA_real_
+  }
+  beta_cond <- if (nrow(jma_row) > 0 && "bJ" %in% colnames(jma_row)) {
+    suppressWarnings(as.numeric(jma_row$bJ[1]))
+  } else {
+    NA_real_
+  }
+  se_cond <- if (nrow(jma_row) > 0 && "bJ_se" %in% colnames(jma_row)) {
+    suppressWarnings(as.numeric(jma_row$bJ_se[1]))
+  } else {
+    NA_real_
+  }
+  z_cond <- if (is.finite(beta_cond) && is.finite(se_cond) && se_cond > 0) {
+    beta_cond / se_cond
+  } else {
+    NA_real_
   }
 
   records[[length(records) + 1]] <- data.frame(
     iteration = it,
     lead_snp = lead_snp,
-    chr_bp = gwas$BP[lead_idx],
-    p_original = gwas$P[lead_idx],
-    p_conditional = lead_p,
+    chr_bp = gwas$BP[match(lead_snp, gwas$SNP)],
+    p_original = gwas$P[match(lead_snp, gwas$SNP)],
+    p_conditional = p_joint,
     beta_conditional = beta_cond,
     se_conditional = se_cond,
     z_conditional = z_cond,
@@ -204,10 +256,10 @@ for (it in seq_len(max_iter)) {
   )
 
   p_current <- p_next
+}
 
-  if (it == max_iter) {
-    stop_reason <- "max_iterations"
-  }
+if (length(selected_all) > 0 && length(records) == length(selected_all) && stop_reason != "max_iterations") {
+  stop_reason <- "selection_complete"
 }
 
 if (length(records) > 0) {
@@ -240,6 +292,8 @@ json_lines <- c(
   sprintf("  \"iterations_run\": %d,", nrow(out)),
   sprintf("  \"stop_reason\": \"%s\",", stop_reason),
   sprintf("  \"n_snps\": %d,", nrow(gwas)),
+  sprintf("  \"n_blacklisted\": %d,", length(blacklist)),
+  sprintf("  \"blacklisted_snps\": \"%s\",", paste(blacklist, collapse = ",")),
   sprintf("  \"plot_dir\": \"%s\"", gsub("\\\\", "\\\\\\\\", plot_dir)),
   "}"
 )

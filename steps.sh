@@ -15,6 +15,9 @@ bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile -
 # Step 4: Build LD matrix
 bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules build_ld_matrix,build_ld_matrix_all build_ld_matrix_all"
 
+# Step 4b: Cluster significant SNPs by LD (igraph) + per-cluster Manhattan/triangle plots
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules cluster_significant_ld,cluster_significant_ld_all cluster_significant_ld_all"
+
 # Step 5: LD-score vs signal diagnostics
 bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules ldscore_diagnostics,ldscore_diagnostics_all ldscore_diagnostics_all"
 
@@ -53,3 +56,6 @@ bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile -
 
 # Step 17: Causal SNP analysis (PDF plots + Excel summary)
 bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules causal_snp_analysis,causal_snp_analysis_all causal_snp_analysis_all"
+
+# Step 18: SNP-list conditional analysis (GCTA-COJO per conditioning SNP, impact plots + Excel)
+bash --login -c "cd $(pwd) && ml slurm && bash submit.sh --snakefile Snakefile --allowed-rules snplist_conditional_cojo,snplist_conditional_cojo_all snplist_conditional_cojo_all"

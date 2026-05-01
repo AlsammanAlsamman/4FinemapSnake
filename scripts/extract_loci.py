@@ -31,9 +31,13 @@ def _standardize_columns(df: pd.DataFrame) -> pd.DataFrame:
         "a1": "A1",
         "ea": "A1",
         "effect_allele": "A1",
+        "effectallele": "A1",
+        "allele1": "A1",
         "a2": "A2",
         "nea": "A2",
         "other_allele": "A2",
+        "otherallele": "A2",
+        "allele2": "A2",
         "beta": "BETA",
         "se": "SE",
     }

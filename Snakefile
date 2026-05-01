@@ -58,6 +58,7 @@ include: "rules/01_harmonize.smk"
 include: "rules/02_filter_match_snps.smk"
 include: "rules/03_ldscore_diagnostics.smk"
 include: "rules/04_make_ld_matrix.smk"
+include: "rules/04b_sig_ld_clusters.smk"
 include: "rules/05_ld_matrix_qc_fix.smk"
 include: "rules/06_run_finemap.smk"
 include: "rules/07_run_susier.smk"
@@ -70,6 +71,7 @@ include: "rules/13_export_finemap_table.smk"
 include: "rules/14_extract_coloc_eqtls.smk"
 include: "rules/15_export_snp_master_table.smk"
 include: "rules/16_causal_snp_analysis.smk"
+include: "rules/17_snplist_conditional_cojo.smk"
 
 rule all:
     input:
