@@ -57,7 +57,7 @@ coloc_params:
 # Step 4b (significant SNP LD clustering): edge threshold for SNP-SNP LD graph.
 clustering_LD:
   sig_ld_cluster_r2_threshold: 0.2
-  sig_distance_cluster_r2_threshold: 150 #kbp
+  sig_distance_cluster_r2_threshold: 50 #kbp
 
 default_resources:
   mem_mb: 32000
