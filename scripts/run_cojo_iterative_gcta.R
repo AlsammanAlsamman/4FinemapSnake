@@ -299,4 +299,7 @@ json_lines <- c(
   "}"
 )
 writeLines(json_lines, diag_json)
+
+# Write done sentinel file
+writeLines("ok", done_file)
 writeLines("ok", done_file)

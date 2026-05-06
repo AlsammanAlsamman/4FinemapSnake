@@ -1,5 +1,2154 @@
 {
-    "total_runtime": 0,
-    "rules": {},
-    "files": {}
+    "total_runtime": 125.10984206199646,
+    "rules": {
+        "run_cojo_iterative_gcta": {
+            "mean-runtime": 41.960268440700716,
+            "min-runtime": 31.085047245025635,
+            "max-runtime": 59.97970366477966
+        }
+    },
+    "files": {
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.925700664520264,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.925700664520264,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c2/cojo.done": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.925700664520264,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp21_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.85845947265625,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp21_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.85845947265625,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp21_c1/cojo.done": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.85845947265625,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c4/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.78497052192688,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c4/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.78497052192688,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c4/cojo.done": {
+            "start-time": "Fri May  1 23:44:40 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.78497052192688,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.70347619056702,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.70347619056702,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c1/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.70347619056702,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp6_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.628066062927246,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp6_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.628066062927246,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp6_c2/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.628066062927246,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp8/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.53163123130798,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp8/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.53163123130798,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp8/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.53163123130798,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.481698751449585,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.481698751449585,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c2/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.481698751449585,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp16_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.40159010887146,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp16_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.40159010887146,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp16_c2/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.40159010887146,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.34708786010742,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.34708786010742,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c1/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.34708786010742,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.202791929244995,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.202791929244995,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c1/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.202791929244995,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c5/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.165536642074585,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c5/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.165536642074585,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c5/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.165536642074585,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp24/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.09339213371277,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp24/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.09339213371277,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp24/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:40 2026",
+            "duration": 59.09339213371277,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.97970366477966,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.97970366477966,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c2/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.97970366477966,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp16_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.93984127044678,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp16_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.93984127044678,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp16_c1/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.93984127044678,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c3/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.864776372909546,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c3/diagnostics.json": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.864776372909546,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c3/cojo.done": {
+            "start-time": "Fri May  1 23:44:41 2026",
+            "stop-time": "Fri May  1 23:45:41 2026",
+            "duration": 59.864776372909546,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp18_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 33.05597472190857,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp18_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 33.05597472190857,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp18_c1/cojo.done": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 33.05597472190857,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp13/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 33.01033687591553,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp13/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 33.01033687591553,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp13/cojo.done": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 33.01033687591553,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp5/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.920851945877075,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp5/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.920851945877075,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp5/cojo.done": {
+            "start-time": "Fri May  1 23:45:40 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.920851945877075,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c3/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.84594774246216,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c3/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.84594774246216,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp15_c3/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.84594774246216,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp9_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.80146789550781,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp9_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.80146789550781,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp9_c2/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.80146789550781,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp19/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.724282026290894,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp19/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.724282026290894,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp19/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.724282026290894,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp12/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.67365288734436,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp12/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.67365288734436,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp12/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.67365288734436,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp20/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.58983373641968,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp20/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.58983373641968,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp20/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.58983373641968,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp23_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.5452082157135,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp23_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.5452082157135,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp23_c1/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.5452082157135,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp7/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.47298192977905,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp7/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.47298192977905,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp7/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.47298192977905,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.39410400390625,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.39410400390625,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp3_c1/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.39410400390625,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp17/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.31004619598389,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp17/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.31004619598389,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp17/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:13 2026",
+            "duration": 32.31004619598389,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp6_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 33.09299874305725,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp6_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 33.09299874305725,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp6_c1/cojo.done": {
+            "start-time": "Fri May  1 23:45:41 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 33.09299874305725,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp25/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:42 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 32.51698136329651,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp25/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:42 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 32.51698136329651,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp25/cojo.done": {
+            "start-time": "Fri May  1 23:45:42 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 32.51698136329651,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp21_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:45:42 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 32.17791152000427,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp21_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:45:42 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 32.17791152000427,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp21_c2/cojo.done": {
+            "start-time": "Fri May  1 23:45:42 2026",
+            "stop-time": "Fri May  1 23:46:14 2026",
+            "duration": 32.17791152000427,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp23_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:13 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 32.05940246582031,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp23_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:13 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 32.05940246582031,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp23_c2/cojo.done": {
+            "start-time": "Fri May  1 23:46:13 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 32.05940246582031,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp10/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:13 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.845775365829468,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp10/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:13 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.845775365829468,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp10/cojo.done": {
+            "start-time": "Fri May  1 23:46:13 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.845775365829468,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp18_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.75640106201172,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp18_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.75640106201172,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp18_c2/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.75640106201172,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.711663484573364,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp1/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.711663484573364,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp1/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.711663484573364,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.641839504241943,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp2/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.641839504241943,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp2/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.641839504241943,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c4/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.562007665634155,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c4/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.562007665634155,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c4/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.562007665634155,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c2/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.480068922042847,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c2/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.480068922042847,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c2/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.480068922042847,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp22/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.386425971984863,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp22/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.386425971984863,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp22/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.386425971984863,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c3/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.31307888031006,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c3/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.31307888031006,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp4_c3/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.31307888031006,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c3/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.261303186416626,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c3/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.261303186416626,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c3/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.261303186416626,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c5/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.186958074569702,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c5/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.186958074569702,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp14_c5/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.186958074569702,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp9_c1/cojo_independent_signals.tsv": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.085047245025635,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp9_c1/diagnostics.json": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.085047245025635,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        },
+        "results_Hispanic/Hisp/09_cojo_gcta/Hisp9_c1/cojo.done": {
+            "start-time": "Fri May  1 23:46:14 2026",
+            "stop-time": "Fri May  1 23:46:45 2026",
+            "duration": 31.085047245025635,
+            "priority": 0,
+            "resources": {
+                "_cores": 1,
+                "_nodes": 1,
+                "mem_mb": 32000,
+                "mem_mib": 30518,
+                "disk_mb": 1000,
+                "disk_mib": 954,
+                "tmpdir": "<TBD>",
+                "time": "00:30:00",
+                "cores": 2
+            }
+        }
+    }
 }

@@ -67,6 +67,6 @@ default_resources:
 targets:
   Hisp:
     gwaspath: "inputs/Hisp.tsv"
-    loci: "inputs/loci_2.txt"
+    loci: "inputs/loci_hisp_modified.txt"
     refpanel: AMR
     samplesize: 8519

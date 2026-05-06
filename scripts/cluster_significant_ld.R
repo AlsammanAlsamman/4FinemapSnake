@@ -363,6 +363,7 @@ if (nrow(sig) == 0) {
     locus = opt$locus,
     p_threshold = opt$`p-threshold`,
     r2_threshold = opt$`r2-threshold`,
+    distance_kb = opt$`distance-kb`,
     n_sig_snps = 0,
     n_clusters = 0,
     message = "No SNPs with P <= threshold in locus"
@@ -441,6 +442,74 @@ if (length(V(g)) > 0) {
 }
 
 n_clusters_ld_only <- length(cluster_members)
+
+# Assign any significant SNPs left unassigned after clique peeling.
+# Assign each unassigned significant SNP to the nearest existing cluster range on the same chromosome.
+# Only create singleton clusters when no cluster exists on that chromosome.
+
+assigned_snps <- if (length(cluster_members) > 0) unique(unlist(cluster_members, use.names = FALSE)) else character(0)
+unassigned_sig <- setdiff(sig_snps, assigned_snps)
+n_unassigned_before <- length(unassigned_sig)
+n_unassigned_assigned_to_existing <- 0L
+n_unassigned_new_singletons <- 0L
+
+if (length(unassigned_sig) > 0) {
+  if (length(cluster_members) == 0) {
+    for (snp_id in unassigned_sig) {
+      cluster_members[[length(cluster_members) + 1]] <- snp_id
+      n_unassigned_new_singletons <- n_unassigned_new_singletons + 1L
+    }
+  } else {
+    cluster_ranges <- lapply(seq_along(cluster_members), function(i) {
+      cl_i <- sig[snp %in% cluster_members[[i]]]
+      data.frame(
+        idx = i,
+        chr = as.integer(cl_i$chr[1]),
+        st = min(cl_i$bp),
+        en = max(cl_i$bp),
+        stringsAsFactors = FALSE
+      )
+    })
+    cluster_ranges <- do.call(rbind, cluster_ranges)
+
+    for (snp_id in unassigned_sig) {
+      snp_row <- sig[snp == snp_id]
+      if (nrow(snp_row) == 0) {
+        next
+      }
+      snp_chr <- as.integer(snp_row$chr[1])
+      snp_bp <- as.numeric(snp_row$bp[1])
+
+      same_chr <- which(cluster_ranges$chr == snp_chr)
+      if (length(same_chr) == 0) {
+        cluster_members[[length(cluster_members) + 1]] <- snp_id
+        n_unassigned_new_singletons <- n_unassigned_new_singletons + 1L
+        next
+      }
+
+      dists <- sapply(same_chr, function(j) {
+        st <- cluster_ranges$st[j]
+        en <- cluster_ranges$en[j]
+        if (snp_bp < st) {
+          st - snp_bp
+        } else if (snp_bp > en) {
+          snp_bp - en
+        } else {
+          0
+        }
+      })
+
+      best_local <- same_chr[which.min(dists)]
+      target_idx <- cluster_ranges$idx[best_local]
+      cluster_members[[target_idx]] <- unique(c(cluster_members[[target_idx]], snp_id))
+      n_unassigned_assigned_to_existing <- n_unassigned_assigned_to_existing + 1L
+
+      cl_target <- sig[snp %in% cluster_members[[target_idx]]]
+      cluster_ranges$st[best_local] <- min(cl_target$bp)
+      cluster_ranges$en[best_local] <- max(cl_target$bp)
+    }
+  }
+}
 
 # Merge nearby clusters if genomic gap is within threshold (kb -> bp).
 dist_bp <- as.numeric(opt$`distance-kb`) * 1000
@@ -613,6 +682,9 @@ diag <- list(
   distance_kb = opt$`distance-kb`,
   n_sig_snps = nrow(sig),
   n_clusters_ld_only = n_clusters_ld_only,
+  n_unassigned_sig_snps_before_assignment = n_unassigned_before,
+  n_unassigned_assigned_to_existing = n_unassigned_assigned_to_existing,
+  n_unassigned_new_singleton_clusters = n_unassigned_new_singletons,
   n_clusters = nrow(summary_df),
   plot_dir = plot_dir
 )
