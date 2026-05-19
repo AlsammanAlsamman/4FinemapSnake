@@ -138,6 +138,22 @@ def get_analysis_value(path: str) -> Any:
     if found:
         return node
 
+    # Modern fine-mapping schema should be strict: do not invent fallback values.
+    # This avoids hidden defaults (e.g., ancestry/population settings) bleeding into
+    # runs that are fully specified by configs/analysis.yml.
+    modern_schema_markers = (
+        "targets",
+        "refpanels",
+        "filters",
+        "diagnostics",
+        "finemap_params",
+        "susie_params",
+        "cojo_params",
+        "coloc_params",
+    )
+    if any(k in cfg for k in modern_schema_markers):
+        raise KeyError(f"analysis.yml missing key path: {path}")
+
     results_dir = get_results_dir()
     cohort_cfg = cfg.get("cohort", {}) if isinstance(cfg.get("cohort"), dict) else {}
     ref_cfg = cfg.get("reference", {}) if isinstance(cfg.get("reference"), dict) else {}

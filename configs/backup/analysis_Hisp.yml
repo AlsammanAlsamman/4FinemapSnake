@@ -1,0 +1,72 @@
+##############################################################################
+# ANALYSIS CONFIGURATION
+# Kept in original project style (metadata/refpanels/targets) with extensions.
+##############################################################################
+
+metadata:
+  project_name: "finemapping"
+  version: "0.1.0"
+
+# Absolute or project-relative path where all step outputs are written.
+results_dir: "results_Hispanic"
+
+
+
+# Per-population reference panel prefixes (plink bed/bim/fam prefix).
+refpanels:
+  EAS:
+    path: "resources/refpanel/g1000_eas"
+  EUR:
+    path: "resources/refpanel/g1000_eur"
+  AMR:
+    path: "resources/refpanel/g1000_amr"
+
+resources:
+  eqtls_dir: "resources/eQTLs"
+
+evidances:
+  snplist: "resources/snp_list.txt"
+
+# Global filters and behavior.
+filters:
+  refpanel_maf_min: 0.01
+  gwas_pvalue_threshold: 5e-8
+  matrix_symmetry_tolerance: 1e-6
+
+diagnostics:
+  ldscore_plot_enabled: true
+  require_ldscore_correlation: false
+  min_ldscore_p_correlation: 0.05
+
+finemap_params:
+  max_causal: 10
+  credible_set_coverage: 0.95
+
+susie_params:
+  L: 10
+  coverage: 0.95
+  window_kb: 250
+
+cojo_params:
+  pvalue_cutoff: 5e-8
+  max_iterations: 25
+
+coloc_params:
+  cojo_keep_label: "iter1"
+
+# Step 4b (significant SNP LD clustering): edge threshold for SNP-SNP LD graph.
+clustering_LD:
+  sig_ld_cluster_r2_threshold: 0.2
+  sig_distance_cluster_r2_threshold: 50 #kbp
+
+default_resources:
+  mem_mb: 32000
+  cores: 2
+  time: "00:30:00"
+
+targets:
+  Hisp:
+    gwaspath: "inputs/Hisp.tsv"
+    loci: "inputs/loci_hisp_modified.txt"
+    refpanel: AMR
+    samplesize: 8519
