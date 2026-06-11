@@ -10,7 +10,7 @@ rule plot_manhattan:
         matched=f"{RESULTS_DIR}/{{target}}/03_match/{{locus}}/matched.tsv",
         finemap=f"{RESULTS_DIR}/{{target}}/07_finemap/{{locus}}/finemap_credible_set.tsv",
         susier=f"{RESULTS_DIR}/{{target}}/08_susier/{{locus}}/susier_credible_set.tsv",
-        cojo=f"{RESULTS_DIR}/{{target}}/09_cojo/{{locus}}/cojo_independent_signals.tsv",
+        cojo=f"{RESULTS_DIR}/{{target}}/09_cojo_gcta/{{locus}}/cojo_independent_signals.tsv",
     output:
         png=f"{RESULTS_DIR}/{{target}}/10_manhattan/{{locus}}/manhattan.png",
         done=f"{RESULTS_DIR}/{{target}}/10_manhattan/{{locus}}/manhattan.done",

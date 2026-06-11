@@ -1,237 +1,45 @@
 {
-    "total_runtime": 120.1563401222229,
+    "total_runtime": 70.01904320716858,
     "rules": {
-        "plot_locus_ld": {
-            "mean-runtime": 59.84582722187042,
-            "min-runtime": 59.638702630996704,
-            "max-runtime": 60.04319977760315
-        },
-        "plot_locus_ld_all": {
-            "mean-runtime": 60.04835057258606,
-            "min-runtime": 60.04835057258606,
-            "max-runtime": 60.04835057258606
+        "export_summary_all": {
+            "mean-runtime": 70.01904320716858,
+            "min-runtime": 70.01904320716858,
+            "max-runtime": 70.01904320716858
         }
     },
     "files": {
-        "results_Asian_IL12AB/asian/12_locus_ld_plot/IL12B/locus_ld.pdf": {
-            "start-time": "Tue May 19 20:00:25 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 60.04319977760315,
+        "results_ASIAN_FINAL/10_summary/all_loci_summary.xlsx": {
+            "start-time": "Mon Jun  8 22:49:01 2026",
+            "stop-time": "Mon Jun  8 22:50:11 2026",
+            "duration": 70.01904320716858,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
+                "mem_mb": 8000,
+                "mem_mib": 7630,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
+                "time": "00:20:00",
                 "cores": 2
             }
         },
-        "results_Asian_IL12AB/asian/12_locus_ld_plot/IL12B/locus_ld.png": {
-            "start-time": "Tue May 19 20:00:25 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 60.04319977760315,
+        "results_ASIAN_FINAL/10_summary/all_summaries.done": {
+            "start-time": "Mon Jun  8 22:49:01 2026",
+            "stop-time": "Mon Jun  8 22:50:11 2026",
+            "duration": 70.01904320716858,
             "priority": 0,
             "resources": {
                 "_cores": 1,
                 "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
+                "mem_mb": 8000,
+                "mem_mib": 7630,
                 "disk_mb": 1000,
                 "disk_mib": 954,
                 "tmpdir": "<TBD>",
-                "time": "00:30:00",
+                "time": "00:20:00",
                 "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/asian/12_locus_ld_plot/IL12B/locus_ld.done": {
-            "start-time": "Tue May 19 20:00:25 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 60.04319977760315,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/asian/12_locus_ld_plot/IL12A/locus_ld.pdf": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.93253493309021,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/asian/12_locus_ld_plot/IL12A/locus_ld.png": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.93253493309021,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/asian/12_locus_ld_plot/IL12A/locus_ld.done": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.93253493309021,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/disc/12_locus_ld_plot/IL12A/locus_ld.pdf": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.768871545791626,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/disc/12_locus_ld_plot/IL12A/locus_ld.png": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.768871545791626,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/disc/12_locus_ld_plot/IL12A/locus_ld.done": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.768871545791626,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/disc/12_locus_ld_plot/IL12B/locus_ld.pdf": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.638702630996704,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/disc/12_locus_ld_plot/IL12B/locus_ld.png": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.638702630996704,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/disc/12_locus_ld_plot/IL12B/locus_ld.done": {
-            "start-time": "Tue May 19 20:00:26 2026",
-            "stop-time": "Tue May 19 20:01:26 2026",
-            "duration": 59.638702630996704,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 32000,
-                "mem_mib": 30518,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:30:00",
-                "cores": 2
-            }
-        },
-        "results_Asian_IL12AB/12_locus_ld_plot/all_locus_ld_plots.done": {
-            "start-time": "Tue May 19 20:01:26 2026",
-            "stop-time": "Tue May 19 20:02:26 2026",
-            "duration": 60.04835057258606,
-            "priority": 0,
-            "resources": {
-                "_cores": 1,
-                "_nodes": 1,
-                "mem_mb": 1000,
-                "mem_mib": 954,
-                "disk_mb": 1000,
-                "disk_mib": 954,
-                "tmpdir": "<TBD>",
-                "time": "00:10:00",
-                "cores": 1
             }
         }
     }

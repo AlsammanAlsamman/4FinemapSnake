@@ -57,6 +57,7 @@ include: "rules/00_extract_loci.smk"
 include: "rules/01_harmonize.smk"
 include: "rules/02_filter_match_snps.smk"
 include: "rules/03_ldscore_diagnostics.smk"
+include: "rules/03b_calculate_ldscores_all_snps.smk"
 include: "rules/04_make_ld_matrix.smk"
 include: "rules/04b_sig_ld_clusters.smk"
 include: "rules/05_ld_matrix_qc_fix.smk"
@@ -72,6 +73,7 @@ include: "rules/14_extract_coloc_eqtls.smk"
 include: "rules/15_export_snp_master_table.smk"
 include: "rules/16_causal_snp_analysis.smk"
 include: "rules/17_snplist_conditional_cojo.smk"
+include: "rules/18_run_coloc.smk"
 
 rule all:
     input:
@@ -139,6 +141,16 @@ rule ldscore_diagnostics_all:
         )
 
 
+rule calculate_ldscores_all_snps_all:
+    input:
+        expand(
+            f"{RESULTS_DIR}/{{target}}/04_ldscore_table/{{locus}}/ldscores.done",
+            zip,
+            target=PAIR_TARGETS,
+            locus=PAIR_LOCI,
+        )
+
+
 rule qc_fix_ld_matrix_all:
     input:
         expand(
@@ -177,6 +189,27 @@ rule run_cojo_iterative_gcta_all:
             target=PAIR_TARGETS,
             locus=PAIR_LOCI,
         )
+    output:
+        tsv=f"{RESULTS_DIR}/09_cojo_gcta/cojo_loci_summary.tsv",
+        xlsx=f"{RESULTS_DIR}/09_cojo_gcta/cojo_loci_summary.xlsx",
+        done=f"{RESULTS_DIR}/09_cojo_gcta/all_cojo.done",
+    params:
+        results_dir=RESULTS_DIR,
+    log:
+        f"{RESULTS_DIR}/log/08b_cojo_loci_summary.log",
+    resources:
+        mem_mb=4000,
+        time="00:10:00",
+        cores=1,
+    shell:
+        """
+        python scripts/export_cojo_loci_summary.py \
+          --results-dir {params.results_dir} \
+          --out-tsv {output.tsv} \
+          --out-xlsx {output.xlsx} \
+          --done-file {output.done} \
+          > {log} 2>&1
+        """
 
 
 rule plot_manhattan_all:

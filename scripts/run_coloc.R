@@ -219,25 +219,32 @@ prepare_gwas_data <- function(summary_df, selected_snps_df) {
 }
 
 #' Prepare eQTL data for a specific gene in coloc.abf analysis
-prepare_eqtl_data_for_gene <- function(eqtl_df, gene_id) {
+prepare_eqtl_data_for_gene <- function(eqtl_df, gene_id, gene_col="eGeneID") {
     # Filter to specific gene
-    eqtl_gene <- eqtl_df[eqtl_df$gene_id == gene_id, ]
+    eqtl_gene <- eqtl_df[eqtl_df[[gene_col]] == gene_id, ]
     
     if (nrow(eqtl_gene) == 0) {
         return(NULL)
     }
     
-    # Ensure required columns
-    required_cols <- c("SNP", "P", "BETA")
-    missing_cols <- setdiff(required_cols, colnames(eqtl_gene))
+    # Handle both column naming schemes
+    snp_col <- if ("SNP" %in% colnames(eqtl_gene)) "SNP" else if ("rsID" %in% colnames(eqtl_gene)) "rsID" else NULL
+    beta_col <- if ("BETA" %in% colnames(eqtl_gene)) "BETA" else if ("beta_eQTL" %in% colnames(eqtl_gene)) "beta_eQTL" else NULL
+    pval_col <- if ("P" %in% colnames(eqtl_gene)) "P" else if ("pval_eQTL" %in% colnames(eqtl_gene)) "pval_eQTL" else NULL
+    se_col <- if ("SE" %in% colnames(eqtl_gene)) "SE" else if ("SE_eQTL" %in% colnames(eqtl_gene)) "SE_eQTL" else NULL
     
-    if (length(missing_cols) > 0) {
+    if (is.null(snp_col) || is.null(beta_col) || is.null(pval_col)) {
         return(NULL)
     }
     
+    # Rename columns to standard names for processing
+    eqtl_gene$SNP <- eqtl_gene[[snp_col]]
+    eqtl_gene$P <- as.numeric(eqtl_gene[[pval_col]])
+    eqtl_gene$BETA <- as.numeric(eqtl_gene[[beta_col]])
+    
     # Handle SE column
-    if ("SE" %in% colnames(eqtl_gene)) {
-        eqtl_gene$SE <- as.numeric(eqtl_gene$SE)
+    if (!is.null(se_col) && se_col %in% colnames(eqtl_gene)) {
+        eqtl_gene$SE <- as.numeric(eqtl_gene[[se_col]])
         # Replace zeros with estimated SE
         zero_se_idx <- which(eqtl_gene$SE == 0 | is.na(eqtl_gene$SE))
         if (length(zero_se_idx) > 0) {
@@ -345,7 +352,14 @@ main <- function() {
     cat(sprintf("[INFO] GWAS data prepared: %d SNPs\n", nrow(gwas_prepared)))
     
     # Get unique genes in eQTL data
-    gene_list <- unique(eqtl_combined_df$gene_id)
+    # Handle both column naming schemes
+    gene_col <- if ("gene_id" %in% colnames(eqtl_combined_df)) "gene_id" else if ("eGeneID" %in% colnames(eqtl_combined_df)) "eGeneID" else NULL
+    
+    if (is.null(gene_col)) {
+        stop("Cannot find gene ID column in eQTL data. Expected 'gene_id' or 'eGeneID'")
+    }
+    
+    gene_list <- unique(eqtl_combined_df[[gene_col]])
     cat(sprintf("[INFO] Found %d unique genes in eQTL data\n", length(gene_list)))
     
     # Initialize results storage
@@ -359,6 +373,11 @@ main <- function() {
     n_successes <- 0
     n_failures <- 0
     
+    # Determine gene and dataset columns
+    gene_col <- if ("gene_id" %in% colnames(eqtl_combined_df)) "gene_id" else "eGeneID"
+    gene_name_col <- if ("gene_name" %in% colnames(eqtl_combined_df)) "gene_name" else if ("eGeneName" %in% colnames(eqtl_combined_df)) "eGeneName" else NULL
+    dataset_col <- if ("dataset" %in% colnames(eqtl_combined_df)) "dataset" else if ("source_dataset" %in% colnames(eqtl_combined_df)) "source_dataset" else NULL
+    
     for (i in seq_along(gene_list)) {
         gene_id <- gene_list[i]
         
@@ -367,16 +386,16 @@ main <- function() {
         }
         
         # Prepare eQTL data for this gene
-        eqtl_prepared <- prepare_eqtl_data_for_gene(eqtl_combined_df, gene_id)
+        eqtl_prepared <- prepare_eqtl_data_for_gene(eqtl_combined_df, gene_id, gene_col)
         
         if (is.null(eqtl_prepared) || nrow(eqtl_prepared) < 2) {
             next
         }
         
         # Get gene name and dataset
-        gene_info <- eqtl_combined_df[eqtl_combined_df$gene_id == gene_id, ][1, ]
-        gene_name <- gene_info$gene_name
-        dataset_name <- gene_info$dataset
+        gene_info <- eqtl_combined_df[eqtl_combined_df[[gene_col]] == gene_id, ][1, ]
+        gene_name <- if (!is.null(gene_name_col) && gene_name_col %in% colnames(gene_info)) gene_info[[gene_name_col]] else gene_id
+        dataset_name <- if (!is.null(dataset_col) && dataset_col %in% colnames(gene_info)) gene_info[[dataset_col]] else "unknown"
         
         # Run coloc.abf
         coloc_result <- run_coloc_abf_locus(
@@ -465,7 +484,11 @@ main <- function() {
     diagnostics$n_genes_failed <- n_failures
     diagnostics$analysis_timestamp <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
     diagnostics$r_version <- paste(R.version$major, R.version$minor, sep=".")
-    diagnostics$coloc_version <- tryCatch(packageVersion("coloc"), error=function(e) "unknown")
+    tryCatch({
+        diagnostics$coloc_version <- as.character(packageVersion("coloc"))
+    }, error = function(e) {
+        diagnostics$coloc_version <- "unknown"
+    })
     
     jsonlite::write_json(diagnostics, args$out_diagnostics_json, pretty=TRUE)
     cat(sprintf("[INFO] Wrote diagnostics to %s\n", args$out_diagnostics_json))
@@ -506,6 +529,7 @@ parse_arguments <- function() {
     for (i in seq(1, length(parser_args), by=2)) {
         if (i+1 <= length(parser_args)) {
             key <- sub("^--", "", parser_args[i])
+            key <- gsub("-", "_", key)  # Convert dashes to underscores
             value <- parser_args[i+1]
             
             if (key %in% names(args)) {
@@ -517,7 +541,7 @@ parse_arguments <- function() {
     # Validate required arguments
     required <- c("summary_tsv", "selected_snps_tsv", "eqtl_combined_tsv", 
                   "out_tsv", "sample_size_gwas")
-    missing <- setdiff(required, names(args)[!sapply(args[required], is.null)])
+    missing <- required[sapply(args[required], is.null)]
     
     if (length(missing) > 0) {
         stop(sprintf("Missing required arguments: %s", paste(missing, collapse=", ")))

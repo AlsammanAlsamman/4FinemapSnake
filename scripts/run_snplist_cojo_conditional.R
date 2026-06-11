@@ -120,6 +120,23 @@ plot_manhattan <- function(df, title, out_file, highlight_snps = NULL) {
   if (!is.null(highlight_snps)) {
     df$category[df$SNP %in% highlight_snps] <- "highlight"
   }
+
+  top_idx <- which.max(df$logP)
+  top_row <- df[top_idx, , drop = FALSE]
+  x_span <- max(df$BP, na.rm = TRUE) - min(df$BP, na.rm = TRUE)
+  if (!is.finite(x_span) || x_span <= 0) x_span <- 1
+  y_span <- max(df$logP, na.rm = TRUE) - min(df$logP, na.rm = TRUE)
+  if (!is.finite(y_span) || y_span <= 0) y_span <- 1
+
+  label_df <- data.frame(
+    SNP = as.character(top_row$SNP[1]),
+    x_point_mb = as.numeric(top_row$BP[1]) / 1e6,
+    y_point = as.numeric(top_row$logP[1]),
+    x_label_mb = (as.numeric(top_row$BP[1]) + 0.03 * x_span) / 1e6,
+    y_label = as.numeric(top_row$logP[1]) + 0.08 * y_span,
+    stringsAsFactors = FALSE
+  )
+
   p <- ggplot(df, aes(x = BP / 1e6, y = logP, color = category)) +
     geom_point(size = 1.8, alpha = 0.85) +
     geom_hline(yintercept = GW_THRESHOLD, linetype = "dashed", color = "red", linewidth = 0.6) +
@@ -137,6 +154,25 @@ plot_manhattan <- function(df, title, out_file, highlight_snps = NULL) {
     ) +
     theme_bw(base_size = 12) +
     theme(legend.position = "top")
+
+  p <- p +
+    geom_segment(
+      data = label_df,
+      aes(x = x_label_mb, y = y_label, xend = x_point_mb, yend = y_point),
+      inherit.aes = FALSE,
+      linewidth = 0.4,
+      color = "black"
+    ) +
+    geom_label(
+      data = label_df,
+      aes(x = x_label_mb, y = y_label, label = SNP),
+      inherit.aes = FALSE,
+      size = 3,
+      label.size = 0.25,
+      fill = "white",
+      color = "black"
+    )
+
   ggsave(out_file, plot = p, width = 10, height = 4, dpi = 150)
 }
 
@@ -291,6 +327,53 @@ header_style <- createStyle(
 )
 
 wb <- createWorkbook()
+
+## Sheet 1: p-values only (placed before SNP_Table)
+pval_cols <- grep("^P_", colnames(snp_table), value = TRUE)
+pval_table <- if (length(pval_cols) > 0) {
+  snp_table[, c("SNP", pval_cols), drop = FALSE]
+} else {
+  snp_table[, "SNP", drop = FALSE]
+}
+
+addWorksheet(wb, "PValues_Only")
+writeData(wb, "PValues_Only", pval_table)
+addStyle(wb, "PValues_Only", header_style,
+         rows = 1, cols = seq_len(ncol(pval_table)), gridExpand = TRUE)
+setColWidths(wb, "PValues_Only", cols = seq_len(ncol(pval_table)), widths = "auto")
+
+if (nrow(pval_table) > 0 && ncol(pval_table) > 1) {
+  pval_num_style <- createStyle(numFmt = "0.00E+00")
+  sig_p_style <- createStyle(fgFill = "#FDE2E1")
+
+  # Apply scientific notation with 2 decimals to all p-value cells.
+  addStyle(
+    wb,
+    "PValues_Only",
+    pval_num_style,
+    rows = 2:(nrow(pval_table) + 1),
+    cols = 2:ncol(pval_table),
+    gridExpand = TRUE,
+    stack = TRUE
+  )
+
+  # Highlight significant p-values (p < 5e-8) in light red.
+  for (col_idx in 2:ncol(pval_table)) {
+    vals <- suppressWarnings(as.numeric(pval_table[[col_idx]]))
+    hit_rows <- which(!is.na(vals) & vals < 5e-8)
+    if (length(hit_rows) > 0) {
+      addStyle(
+        wb,
+        "PValues_Only",
+        sig_p_style,
+        rows = hit_rows + 1,
+        cols = col_idx,
+        gridExpand = FALSE,
+        stack = TRUE
+      )
+    }
+  }
+}
 
 addWorksheet(wb, "SNP_Table")
 writeData(wb, "SNP_Table", snp_table)

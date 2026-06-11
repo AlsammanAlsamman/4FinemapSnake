@@ -54,13 +54,21 @@ rule export_summary_all:
             locus=PAIR_LOCI,
         ),
     output:
+        xlsx=f"{RESULTS_DIR}/10_summary/all_loci_summary.xlsx",
         done=f"{RESULTS_DIR}/10_summary/all_summaries.done",
+    params:
+        results_dir=RESULTS_DIR,
+    log:
+        f"{RESULTS_DIR}/log/10_summary_all.log",
     resources:
-        mem_mb=1000,
-        time="00:10:00",
-        cores=1,
+        mem_mb=8000,
+        time="00:20:00",
+        cores=2,
     shell:
         """
-        mkdir -p $(dirname {output.done})
-        echo ok > {output.done}
+        python scripts/aggregate_all_loci_summary.py \
+          --results-dir {params.results_dir} \
+          --out-xlsx {output.xlsx} \
+          --done-file {output.done} \
+          > {log} 2>&1
         """

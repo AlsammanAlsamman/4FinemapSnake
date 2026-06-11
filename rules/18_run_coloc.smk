@@ -1,10 +1,52 @@
+import re
 import sys
 import os
+from pathlib import Path
+import glob as glob_module
 
 sys.path.append("utils")
-from bioconfigme import get_analysis_value, get_results_dir, get_software_module
+from bioconfigme import get_analysis_value, get_software_module
 
-RESULTS_DIR = get_results_dir()
+# Build list of all results_* directories to support multiple datasets
+RESULTS_DIRS = sorted([d for d in glob_module.glob("results_*") if os.path.isdir(d)])
+if not RESULTS_DIRS:
+    RESULTS_DIRS = ["results_Asian_IL12AB"]
+
+
+def _safe_locus(value):
+    """Sanitize locus names for use in paths."""
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", str(value).strip())
+
+
+def _load_loci_for_target(target, results_dir):
+    """Load loci for a given target from config file."""
+    loci_path = Path(config["targets"][target]["loci"])
+    if not loci_path.exists():
+        return ["locus1"]
+
+    loci = []
+    with loci_path.open("r", encoding="utf-8") as handle:
+        for raw in handle:
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            parts = line.split()
+            if parts[0].lower() in {"locus", "loci", "id"}:
+                continue
+            loci.append(_safe_locus(parts[0]))
+
+    return sorted(set(loci)) if loci else ["locus1"]
+
+
+# Build target-locus pairs for each results directory
+TARGET_LOCUS_PAIRS_PER_DIR = {}
+TARGETS = sorted((config.get("targets") or {}).keys())
+for results_dir in RESULTS_DIRS:
+    TARGET_LOCUS_PAIRS = []
+    for _target in TARGETS:
+        for _locus in _load_loci_for_target(_target, results_dir):
+            TARGET_LOCUS_PAIRS.append((_target, _locus))
+    TARGET_LOCUS_PAIRS_PER_DIR[results_dir] = TARGET_LOCUS_PAIRS
 
 
 # Retrieve all eQTL dataset names from config
@@ -24,6 +66,39 @@ def get_eqtl_datasets():
 EQTL_DATASETS = list(get_eqtl_datasets().keys())
 
 
+rule match_coloc_snps:
+    """
+    Match GWAS and eQTL subsets to shared SNPs in the same SNP order.
+    """
+    input:
+        summary="{results_dir}/{target}/10_summary/{locus}/summary.tsv",
+        eqtl_combined="{results_dir}/{target}/14_coloc/{locus}/eqtl_subsets/all_eqtls.tsv",
+    output:
+        matched_gwas="{results_dir}/{target}/18_coloc/{locus}/inputs/summary_matched.tsv",
+        matched_eqtl="{results_dir}/{target}/18_coloc/{locus}/inputs/eqtl_matched.tsv",
+        matched_snplist="{results_dir}/{target}/18_coloc/{locus}/inputs/shared_snps.snplist",
+        diagnostics_json="{results_dir}/{target}/18_coloc/{locus}/inputs/match_diagnostics.json",
+        done="{results_dir}/{target}/18_coloc/{locus}/inputs/match.done",
+    log:
+        "{results_dir}/log/18_coloc_match_{target}_{locus}.log",
+    resources:
+        mem_mb=16000,
+        time="00:30:00",
+        cores=1,
+    shell:
+        """
+        python scripts/match_gwas_eqtl_snps.py \
+          --gwas-tsv {input.summary} \
+          --eqtl-tsv {input.eqtl_combined} \
+          --out-gwas-tsv {output.matched_gwas} \
+          --out-eqtl-tsv {output.matched_eqtl} \
+          --out-snplist {output.matched_snplist} \
+          --out-diagnostics-json {output.diagnostics_json} \
+          --done-file {output.done} \
+          > {log} 2>&1
+        """
+
+
 rule run_coloc:
     """
     Run colocalization analysis for a locus using extracted eQTLs.
@@ -34,16 +109,17 @@ rule run_coloc:
     Uses only SNPs selected by finemapping/fine-structure analysis (finemap, susie, cojo).
     """
     input:
-        summary=f"{RESULTS_DIR}/{{target}}/10_summary/{{locus}}/summary.tsv",
-        selected_snps=f"{RESULTS_DIR}/{{target}}/14_coloc/{{locus}}/selected_snps.tsv",
-        eqtl_combined=f"{RESULTS_DIR}/{{target}}/14_coloc/{{locus}}/eqtl_subsets/all_eqtls.tsv",
+        matched_summary="{results_dir}/{target}/18_coloc/{locus}/inputs/summary_matched.tsv",
+        matched_eqtl="{results_dir}/{target}/18_coloc/{locus}/inputs/eqtl_matched.tsv",
+        match_done="{results_dir}/{target}/18_coloc/{locus}/inputs/match.done",
+        selected_snps="{results_dir}/{target}/14_coloc/{locus}/selected_snps.tsv",
     output:
-        results_tsv=f"{RESULTS_DIR}/{{target}}/18_coloc/{{locus}}/coloc_results.tsv",
-        summary_tsv=f"{RESULTS_DIR}/{{target}}/18_coloc/{{locus}}/coloc_summary_pp.tsv",
-        credible_tsv=f"{RESULTS_DIR}/{{target}}/18_coloc/{{locus}}/coloc_credible_set95.tsv",
-        diagnostics_json=f"{RESULTS_DIR}/{{target}}/18_coloc/{{locus}}/coloc_diagnostics.json",
-        log_file=f"{RESULTS_DIR}/{{target}}/18_coloc/{{locus}}/coloc_run.log",
-        done=f"{RESULTS_DIR}/{{target}}/18_coloc/{{locus}}/coloc.done",
+        results_tsv="{results_dir}/{target}/18_coloc/{locus}/coloc_results.tsv",
+        summary_tsv="{results_dir}/{target}/18_coloc/{locus}/coloc_summary_pp.tsv",
+        credible_tsv="{results_dir}/{target}/18_coloc/{locus}/coloc_credible_set95.tsv",
+        diagnostics_json="{results_dir}/{target}/18_coloc/{locus}/coloc_diagnostics.json",
+        log_file="{results_dir}/{target}/18_coloc/{locus}/coloc_run.log",
+        done="{results_dir}/{target}/18_coloc/{locus}/coloc.done",
     params:
         target=lambda wc: wc.target,
         locus=lambda wc: wc.locus,
@@ -54,7 +130,7 @@ rule run_coloc:
         output_all_hits=lambda wc: str(get_analysis_value("coloc_params.output_all_hits")).lower(),
         r_module=get_software_module("r"),
     log:
-        f"{RESULTS_DIR}/log/18_coloc_{{target}}_{{locus}}.log",
+        "{results_dir}/log/18_coloc_{target}_{locus}.log",
     resources:
         mem_mb=64000,
         time="02:00:00",
@@ -64,9 +140,9 @@ rule run_coloc:
         module load {params.r_module}
         
         Rscript scripts/run_coloc.R \
-          --summary-tsv {input.summary} \
+                    --summary-tsv {input.matched_summary} \
           --selected-snps-tsv {input.selected_snps} \
-          --eqtl-combined-tsv {input.eqtl_combined} \
+                    --eqtl-combined-tsv {input.matched_eqtl} \
           --target {params.target} \
           --locus {params.locus} \
           --sample-size-gwas {params.sample_size_gwas} \
@@ -87,48 +163,41 @@ rule run_coloc:
 rule run_coloc_all:
     """
     Aggregate all colocalization analyses across all loci for a target.
+    Uses standard expand with defined target-locus pairs.
     """
     input:
-        expand(
-            f"{RESULTS_DIR}/{{target}}/18_coloc/{{locus}}/coloc.done",
-            zip,
-            target=PAIR_TARGETS,
-            locus=PAIR_LOCI,
+        lambda wc: expand(
+            "{results_dir}/{target}/18_coloc/{locus}/coloc.done",
+            results_dir=wc.results_dir,
+            target=[t for t, _ in TARGET_LOCUS_PAIRS_PER_DIR.get(wc.results_dir, [])],
+            locus=[l for _, l in TARGET_LOCUS_PAIRS_PER_DIR.get(wc.results_dir, [])],
         ),
     output:
-        done=f"{RESULTS_DIR}/18_coloc/all_coloc.done",
-    resources:
-        mem_mb=1000,
-        time="00:10:00",
-        cores=1,
+        "{results_dir}/18_coloc/all_coloc.done",
     shell:
         """
-        mkdir -p $(dirname {output.done})
-        echo "All colocalization analyses completed at $(date)" > {output.done}
+        mkdir -p $(dirname {output})
+        echo ok > {output}
         """
 
 
 rule coloc_merge_results:
     """
-    Merge per-locus colocalization results into genome-wide summary tables.
+    Merge colocalization results across all loci into genome-wide summary tables.
     """
     input:
-        all_done=f"{RESULTS_DIR}/18_coloc/all_coloc.done",
+        "{results_dir}/18_coloc/all_coloc.done",
     output:
-        genome_wide_tsv=f"{RESULTS_DIR}/18_coloc/coloc_genome_wide_results.tsv",
-        genome_wide_credible_tsv=f"{RESULTS_DIR}/18_coloc/coloc_genome_wide_credible_set95.tsv",
-        summary_xlsx=f"{RESULTS_DIR}/18_coloc/coloc_summary_statistics.xlsx",
-        done=f"{RESULTS_DIR}/18_coloc/coloc_merge.done",
-    resources:
-        mem_mb=32000,
-        time="01:00:00",
-        cores=2,
+        results_tsv="{results_dir}/18_coloc/coloc_genome_wide_results.tsv",
+        credible_tsv="{results_dir}/18_coloc/coloc_genome_wide_credible_set95.tsv",
+        summary_xlsx="{results_dir}/18_coloc/coloc_summary_statistics.xlsx",
+    params:
+        results_dir=lambda wc: wc.results_dir,
     shell:
         """
-        python scripts/merge_coloc_results.py \
-          --results-dir {RESULTS_DIR} \
-          --out-genome-wide-tsv {output.genome_wide_tsv} \
-          --out-credible-tsv {output.genome_wide_credible_tsv} \
-          --out-summary-xlsx {output.summary_xlsx} \
-          --done-file {output.done}
+        /usr/local/analysis/python/3.10.2/bin/python3.10 scripts/merge_coloc_results.py \
+          --results-dir {params.results_dir} \
+          --out-tsv {output.results_tsv} \
+          --out-credible-tsv {output.credible_tsv} \
+          --out-xlsx {output.summary_xlsx}
         """

@@ -1,0 +1,637 @@
+##############################################################################
+# ANALYSIS CONFIGURATION
+# Kept in original project style (metadata/refpanels/targets) with extensions.
+##############################################################################
+
+metadata:
+  project_name: "finemapping"
+  version: "0.1.0"
+
+# Absolute or project-relative path where all step outputs are written.
+results_dir: "results_UBASH3A"
+
+
+
+# Per-population reference panel prefixes (plink bed/bim/fam prefix).
+refpanels:
+  EAS:
+    path: "resources/refpanel/g1000_eas"
+  EUR:
+    path: "resources/refpanel/g1000_eur"
+  AMR:
+    path: "resources/refpanel/g1000_amr"
+
+resources:
+  eqtls_dir: "resources/eQTLs"
+  eqtl_datasets:
+    # 4-population immune cell types (Asian GWAS)
+    B_CELL_NAIVE:
+      path: "resources/eQTLs/B_CELL_NAIVE_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    CD4_NAIVE:
+      path: "resources/eQTLs/CD4_NAIVE_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    CD8_NAIVE:
+      path: "resources/eQTLs/CD8_NAIVE_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    M2:
+      path: "resources/eQTLs/M2_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    MONOCYTES:
+      path: "resources/eQTLs/MONOCYTES_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    NK:
+      path: "resources/eQTLs/NK_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    TFH:
+      path: "resources/eQTLs/TFH_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    TH1:
+      path: "resources/eQTLs/TH1_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    TH17:
+      path: "resources/eQTLs/TH17_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    TH2:
+      path: "resources/eQTLs/TH2_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    THSTAR:
+      path: "resources/eQTLs/THSTAR_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    TREG_MEM:
+      path: "resources/eQTLs/TREG_MEM_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    TREG_NAIVE:
+      path: "resources/eQTLs/TREG_NAIVE_eQTL.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "4pop"
+    # eQTLGen whole-blood (European meta-analysis)
+    eQTLGen:
+      path: "resources/eQTLs/eQTLGen_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: 7
+      pval_col: 8
+      af_col: null
+      fdr_col: 9
+      type: "meta"
+    # Immunex cell types (European cohort)
+    immunex_CD16p_Mono:
+      path: "resources/eQTLs/immunex_CD16p_Mono_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_CL_Mono:
+      path: "resources/eQTLs/immunex_CL_Mono_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_CM_CD8:
+      path: "resources/eQTLs/immunex_CM_CD8_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_DN_B:
+      path: "resources/eQTLs/immunex_DN_B_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_EM_CD8:
+      path: "resources/eQTLs/immunex_EM_CD8_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Fr_I_nTreg:
+      path: "resources/eQTLs/immunex_Fr_I_nTreg_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Fr_II_eTreg:
+      path: "resources/eQTLs/immunex_Fr_II_eTreg_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Fr_III_T:
+      path: "resources/eQTLs/immunex_Fr_III_T_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Int_Mono:
+      path: "resources/eQTLs/immunex_Int_Mono_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_LDG:
+      path: "resources/eQTLs/immunex_LDG_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_mDC:
+      path: "resources/eQTLs/immunex_mDC_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Mem_CD4:
+      path: "resources/eQTLs/immunex_Mem_CD4_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Mem_CD8:
+      path: "resources/eQTLs/immunex_Mem_CD8_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Naive_B:
+      path: "resources/eQTLs/immunex_Naive_B_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Naive_CD4:
+      path: "resources/eQTLs/immunex_Naive_CD4_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Naive_CD8:
+      path: "resources/eQTLs/immunex_Naive_CD8_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_NC_Mono:
+      path: "resources/eQTLs/immunex_NC_Mono_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Neu:
+      path: "resources/eQTLs/immunex_Neu_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_NK:
+      path: "resources/eQTLs/immunex_NK_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_pDC:
+      path: "resources/eQTLs/immunex_pDC_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Plasmablast:
+      path: "resources/eQTLs/immunex_Plasmablast_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_SM_B:
+      path: "resources/eQTLs/immunex_SM_B_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_TEMRA_CD8:
+      path: "resources/eQTLs/immunex_TEMRA_CD8_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Tfh:
+      path: "resources/eQTLs/immunex_Tfh_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Th1:
+      path: "resources/eQTLs/immunex_Th1_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Th17:
+      path: "resources/eQTLs/immunex_Th17_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_Th2:
+      path: "resources/eQTLs/immunex_Th2_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+    immunex_USM_B:
+      path: "resources/eQTLs/immunex_USM_B_formatted.tsv"
+      chr_col: 1
+      pos_col: 2
+      rsid_col: 3
+      gene_id_col: 4
+      gene_name_col: 5
+      beta_col: 6
+      se_col: null
+      pval_col: 7
+      af_col: null
+      fdr_col: null
+      type: "immunex"
+
+evidances:
+  snplist: "inputs/evidance_snps_list.txt"
+
+# Global filters and behavior.
+filters:
+  refpanel_maf_min: 0.01
+  gwas_pvalue_threshold: 5e-8
+  matrix_symmetry_tolerance: 1e-6
+
+diagnostics:
+  ldscore_plot_enabled: true
+  require_ldscore_correlation: false
+  min_ldscore_p_correlation: 0.05
+
+finemap_params:
+  max_causal: 10
+  credible_set_coverage: 0.95
+
+susie_params:
+  L: 10
+  coverage: 0.95
+  window_kb: 250
+
+cojo_params:
+  pvalue_cutoff: 5e-8
+  max_iterations: 25
+
+coloc_params:
+  cojo_keep_label: "iter1"
+  # Posterior probability thresholds for colocalization signal
+  pp_h4_threshold: 0.75      # ABF PP.H4 threshold for reporting colocalization
+  pp_h4_credible_set: 0.95   # Threshold for 95% credible set (cumulative PP)
+  # Analysis options
+  analysis_type: "quant"     # Type of analysis: "quant" for quantitative, "cc" for case-control
+  maf_filter: null           # Optional: Filter eQTLs by MAF; null = no filter
+  # Output options
+  output_all_hits: true      # Output all pairs including non-significant (PP.H4 < threshold)
+  include_credible_set: true # Include credible set annotations in output
+
+# Step 4b (significant SNP LD clustering)
+clustering_LD:
+  sig_ld_cluster_r2_threshold: 0.2
+  sig_distance_cluster_r2_threshold: 50 #kbp
+
+default_resources:
+  mem_mb: 32000
+  cores: 2
+  time: "00:30:00"
+
+targets:
+  disc:
+    gwaspath: "inputs/Disc.tsv"
+    loci: "inputs/UBASH3A.txt"
+    refpanel: EAS
+    samplesize: 85987
+  asian:
+    gwaspath: "inputs/Asian.tsv"
+    loci: "inputs/UBASH3A.txt"
+    refpanel: EAS
+    samplesize: 159219
+
